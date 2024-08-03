@@ -3,5 +3,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4,
-    "python.formatting.provider": "black"
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }
