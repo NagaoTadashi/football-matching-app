@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 const items = [
     {
         title: '試合日程・結果',
-        value: 'findScheduleResults',
+        value: 'match',
     },
     {
         title: 'メンバー',
