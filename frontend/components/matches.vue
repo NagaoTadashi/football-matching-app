@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <v-row>
         <template v-for="n in 4" :key="n">
             <v-col class="mt-2" cols="12">
@@ -10,4 +10,4 @@
             </v-col>
         </template>
     </v-row>
-</template>
+</template> -->
