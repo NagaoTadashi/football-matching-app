@@ -3,6 +3,10 @@ import { ref, watch } from 'vue';
 
 const items = [
     {
+        title: 'ホーム',
+        value: 'home',
+    },
+    {
         title: '試合日程・結果',
         value: 'match',
     },
