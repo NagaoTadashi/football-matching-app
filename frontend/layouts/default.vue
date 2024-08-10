@@ -5,18 +5,22 @@ const items = [
     {
         title: 'ホーム',
         value: 'home',
+        to: '/',
     },
     {
         title: '試合日程・結果',
         value: 'match',
+        to: '/MatchList',
     },
     {
         title: 'メンバー',
         value: 'mumber',
+        to: '/MemberList',
     },
     {
         title: '対戦相手を探す',
         value: 'findOpponent',
+        to: '/FindOpponent',
     },
 ];
 
@@ -51,7 +55,13 @@ watch(group, () => {
             :location="$vuetify.display.mobile ? 'bottom' : undefined"
             temporary
         >
-            <v-list :items="items"></v-list>
+            <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+                :link="true"
+                :to="item.to"
+                :title="item.title"
+            ></v-list-item>
         </v-navigation-drawer>
 
         <v-main class="bg-grey-lighten-2">
