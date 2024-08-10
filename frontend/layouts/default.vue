@@ -47,7 +47,7 @@ watch(group, () => {
         <v-app-bar>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-app-bar-title>Football Macth</v-app-bar-title>
+            <v-app-bar-title>Football Match</v-app-bar-title>
         </v-app-bar>
 
         <v-navigation-drawer
