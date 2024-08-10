@@ -33,7 +33,7 @@ watch(group, () => {
 </script>
 
 <template>
-    <v-app id="inspire">
+    <!-- <v-app id="inspire">
         <v-system-bar>
             <v-spacer></v-spacer>
 
@@ -69,5 +69,28 @@ watch(group, () => {
                 <slot />
             </v-container>
         </v-main>
-    </v-app>
+    </v-app> -->
+
+    <v-layout class="rounded rounded-md">
+        <v-app-bar title="Football Match"> </v-app-bar>
+
+        <v-navigation-drawer>
+            <v-list-item
+                v-for="(item, index) in items"
+                :key="index"
+                :link="true"
+                :to="item.to"
+                :title="item.title"
+            ></v-list-item>
+        </v-navigation-drawer>
+
+        <v-main
+            class="d-flex align-center justify-center"
+            style="min-height: 300px"
+        >
+            <v-container>
+                <slot />
+            </v-container>
+        </v-main>
+    </v-layout>
 </template>
