@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import PlayerCard from '~/components/pages/PlayerCard.vue';
 
-const member = {
+const member = ref({
     player1: {
         id: 1,
         position: 'GK',
@@ -143,7 +143,7 @@ const member = {
         namae: '長尾 考梓',
         name: 'Tadashi Nagao',
     },
-};
+});
 </script>
 
 <template>
