@@ -5,7 +5,7 @@ const matches = {
     match1: {
         id: 1,
         opponent: 'チームA',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Aグラウンド',
         score: '-',
@@ -13,7 +13,7 @@ const matches = {
     match2: {
         id: 2,
         opponent: 'チームB',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Bグラウンド',
         score: '○3-0',
@@ -21,7 +21,7 @@ const matches = {
     match3: {
         id: 3,
         opponent: 'チームC',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Cグラウンド',
         score: '○6-0',
@@ -29,7 +29,7 @@ const matches = {
     match4: {
         id: 4,
         opponent: 'チームD',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Dグラウンド',
         score: '●0-10',
@@ -37,7 +37,7 @@ const matches = {
     match5: {
         id: 5,
         opponent: 'チームE',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Eグラウンド',
         score: '△1-1',
@@ -45,7 +45,7 @@ const matches = {
     match6: {
         id: 6,
         opponent: 'チームF',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Fグラウンド',
         score: '○1-0',
@@ -53,7 +53,7 @@ const matches = {
     match7: {
         id: 7,
         opponent: 'チームG',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Gグラウンド',
         score: '●0-10',
@@ -61,7 +61,7 @@ const matches = {
     match8: {
         id: 8,
         opponent: 'チームH',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Hグラウンド',
         score: '△1-1',
@@ -69,7 +69,7 @@ const matches = {
     match9: {
         id: 9,
         opponent: 'チームI',
-        date: '1999年5月8日',
+        date: '1999/5/8',
         time: '12:00',
         venue: 'Iグラウンド',
         score: '○1-0',
