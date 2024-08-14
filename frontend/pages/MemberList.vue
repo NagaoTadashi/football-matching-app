@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import PlayerCard from '~/components/pages/PlayerCard.vue';
+import AddButtton from '../components/AddButtton.vue';
 
 const member = ref({
     player1: {
@@ -153,7 +154,7 @@ const member = ref({
                 <h1>メンバー一覧</h1>
             </v-col>
             <v-col cols="6" class="d-flex justify-end">
-                <v-btn>メンバーを追加</v-btn>
+                <AddButtton />
             </v-col>
         </v-row>
         <v-row>
