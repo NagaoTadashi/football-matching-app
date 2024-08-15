@@ -83,9 +83,11 @@ const variant = ref('tonal');
 <template>
     <div>
         <v-row>
-            <v-col class="mt-2" cols="12">
+            <v-col cols="6">
                 <h1>試合日程・結果</h1>
             </v-col>
+        </v-row>
+        <v-row>
             <v-col v-for="(match, i) in matches" :key="i" cols="12" md="4">
                 <v-card
                     :variant="variant"
