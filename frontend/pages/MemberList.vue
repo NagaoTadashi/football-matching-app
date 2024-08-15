@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import PlayerCard from '~/components/pages/PlayerCard.vue';
-import AddButtton from '../components/AddButtton.vue';
+import PlayerCard from '~/components/pages/memberlist/PlayerCard.vue';
+import AddButtton from '../components/pages/memberlist/AddButtton.vue';
 
 const member = ref({
     player1: {

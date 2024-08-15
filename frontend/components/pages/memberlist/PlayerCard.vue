@@ -1,5 +1,5 @@
 <script setup>
-import EditButton from '~/components/pages/EditButton.vue';
+import EditButton from '~/components/pages/memberlist/EditButton.vue';
 defineProps(['player']);
 
 const color = ref('primary');
