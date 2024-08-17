@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 from pydantic import BaseModel
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
@@ -163,3 +164,7 @@ async def get_matches():
 @app.get("/member", response_model=List[Player])
 async def get_member():
     return member
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
