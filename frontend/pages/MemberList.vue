@@ -9,7 +9,7 @@ const { data: member } = await useFetch('http://localhost:8000/member');
     <div>
         <v-row>
             <v-col cols="6">
-                <h1>メンバー一覧</h1>
+                <h1>メンバー</h1>
             </v-col>
             <v-col cols="6" class="d-flex justify-end">
                 <AddButtton />
