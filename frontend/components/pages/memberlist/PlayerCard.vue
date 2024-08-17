@@ -1,13 +1,13 @@
 <script setup>
 import EditButton from '~/components/pages/memberlist/EditButton.vue';
+
 defineProps(['player']);
 
-const color = ref('primary');
 const variant = ref('tonal');
 </script>
 
 <template>
-    <v-card :variant="variant" class="mx-auto" elevation="3">
+    <v-card :variant="variant" class="mx-auto" elevation="5">
         <v-row>
             <v-col>
                 <v-card-item>
