@@ -1,35 +1,41 @@
 from pydantic import BaseModel
+from typing import Optional
+from datetime import date, time
 
 
-class ItemBase(BaseModel):
-    title: str
-    description: str | None = None
+class MatchBase(BaseModel):
+    opponent: str
+    date: date
+    time: time
+    venue: str
+    my_team_score: Optional[int]
+    opponent_score: Optional[int]
 
 
-class ItemCreate(ItemBase):
+class MatchCreate(MatchBase):
     pass
 
 
-class Item(ItemBase):
+class Match(MatchBase):
     id: int
-    owner_id: int
 
     class Config:
         orm_mode = True
 
 
-class UserBase(BaseModel):
-    email: str
+class PlayerBase(BaseModel):
+    position: str
+    namae: str
+    name: str
+    number: int
 
 
-class UserCreate(UserBase):
-    password: str
+class PlayerCreate(PlayerBase):
+    pass
 
 
-class User(UserBase):
+class Player(PlayerBase):
     id: int
-    is_active: bool
-    items: list[Item] = []
 
     class Config:
         orm_mode = True
