@@ -13,7 +13,7 @@ const items = [
         to: '/MatchList',
     },
     {
-        title: 'メンバー',
+        title: '選手一覧',
         value: 'player',
         to: '/PlayerList',
     },
