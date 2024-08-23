@@ -32,12 +32,25 @@ app.add_middleware(
 )
 
 
+# Match
 @app.get("/matches/", response_model=list[schemas.Match])
 def get_matches(db: Session = Depends(get_db)):
     matches = crud.get_matches(db)
     return matches
 
 
-@app.post("/matches/", response_model=schemas.Match)
+@app.post("/matche/", response_model=schemas.MatchCreate)
+def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
+    return crud.create_match(db=db, match=match)
+
+
+# Player
+@app.get("/players/", response_model=list[schemas.Player])
+def get_players(db: Session = Depends(get_db)):
+    players = crud.get_players(db)
+    return players
+
+
+@app.post("/player/", response_model=schemas.Match)
 def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
     return crud.create_match(db=db, match=match)
