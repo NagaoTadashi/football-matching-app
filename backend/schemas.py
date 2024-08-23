@@ -3,6 +3,7 @@ from typing import Optional
 from datetime import date, time
 
 
+# Match
 class MatchBase(BaseModel):
     opponent: str
     date: date
@@ -23,6 +24,7 @@ class Match(MatchBase):
         orm_mode = True
 
 
+# Player
 class PlayerBase(BaseModel):
     position: str
     namae: str
