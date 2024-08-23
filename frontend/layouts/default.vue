@@ -14,8 +14,8 @@ const items = [
     },
     {
         title: 'メンバー',
-        value: 'mumber',
-        to: '/MemberList',
+        value: 'player',
+        to: '/PlayerList',
     },
     {
         title: '対戦相手を探す',

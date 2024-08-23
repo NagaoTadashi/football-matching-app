@@ -1,8 +1,8 @@
 <script setup>
-import AddButtton from '../components/pages/memberlist/AddButtton.vue';
-import PlayerCard from '~/components/pages/memberlist/PlayerCard.vue';
+import AddButtton from '../components/pages/playerlist/AddButtton.vue';
+import PlayerCard from '~/components/pages/playerlist/PlayerCard.vue';
 
-const { data: member } = await useFetch('http://localhost:8000/member');
+const { data: players } = await useFetch('http://localhost:8000/players');
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const { data: member } = await useFetch('http://localhost:8000/member');
             </v-col>
         </v-row>
         <v-row>
-            <v-col v-for="(player, i) in member" :key="i" cols="12" md="4">
+            <v-col v-for="(player, i) in players" :key="i" cols="12" md="4">
                 <PlayerCard :player="player" />
             </v-col>
         </v-row>

@@ -1,5 +1,5 @@
 <script setup>
-import EditButton from '~/components/pages/memberlist/EditButton.vue';
+import EditButton from '~/components/pages/playerlist/EditButton.vue';
 
 defineProps(['player']);
 

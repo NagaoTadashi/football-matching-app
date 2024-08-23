@@ -1,6 +1,8 @@
 <script setup>
-import { ref, shallowRef } from 'vue';
+import { shallowRef } from 'vue';
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
+
+defineProps(['player']);
 
 const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
@@ -12,23 +14,26 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
-                    text="メンバーを追加"
+                    prepend-icon="mdi-account"
+                    text="Edit"
                     variant="tonal"
                     v-bind="activatorProps"
                 ></v-btn>
             </template>
 
-            <v-card title="Player Profile">
+            <v-card prepend-icon="mdi-account" title="Player Profile">
                 <v-card-text>
                     <v-row dense>
                         <v-col cols="12" md="4" sm="6">
                             <v-select
+                                v-model="player.position"
                                 :items="positions"
                                 label="ポジション"
                             ></v-select
                         ></v-col>
                         <v-col cols="12" md="4" sm="6"
                             ><v-number-input
+                                v-model="player.number"
                                 label="背番号"
                                 control-variant="stacked"
                             ></v-number-input
@@ -38,6 +43,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                         <v-col>
                             <v-responsive class="mx-auto" max-width="344">
                                 <v-text-field
+                                    v-model="player.namae"
                                     hide-details="auto"
                                     label="名前"
                                     clearable
@@ -47,6 +53,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                         <v-col>
                             <v-responsive class="mx-auto" max-width="344">
                                 <v-text-field
+                                    v-model="player.name"
                                     hide-details="auto"
                                     label="name"
                                     clearable
@@ -69,7 +76,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
 
                     <v-btn
                         color="primary"
-                        text="登録"
+                        text="保存"
                         variant="tonal"
                         @click="dialog = false"
                     ></v-btn>
