@@ -51,6 +51,6 @@ def get_players(db: Session = Depends(get_db)):
     return players
 
 
-@app.post("/player/", response_model=schemas.Match)
-def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
-    return crud.create_match(db=db, match=match)
+@app.post("/player/", response_model=schemas.Player)
+def create_player(player: schemas.PlayerCreate, db: Session = Depends(get_db)):
+    return crud.create_player(db=db, player=player)
