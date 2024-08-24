@@ -37,14 +37,14 @@ async function editPlayer() {
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
-                    prepend-icon="mdi-account"
-                    text="Edit"
+                    prepend-icon="mdi-pencil"
+                    text="編集"
                     elevation="5"
                     v-bind="activatorProps"
                 ></v-btn>
             </template>
 
-            <v-card prepend-icon="mdi-account" title="Player Profile">
+            <v-card prepend-icon="mdi-account" title="選手情報">
                 <v-card-text>
                     <v-row dense>
                         <v-col cols="12" md="4" sm="6">
