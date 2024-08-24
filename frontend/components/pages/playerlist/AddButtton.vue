@@ -39,6 +39,7 @@ async function addPlayer() {
                     class="text-none font-weight-regular"
                     text="メンバーを追加"
                     variant="tonal"
+                    elevation="5"
                     v-bind="activatorProps"
                 ></v-btn>
             </template>
