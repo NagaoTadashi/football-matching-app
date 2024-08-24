@@ -15,14 +15,14 @@ const playerData = reactive({
 });
 
 async function addPlayer() {
-    const player = await $fetch('http://localhost:8000/player', {
+    const newPlayer = await $fetch('http://localhost:8000/player', {
         method: 'POST',
         body: playerData,
     });
     // ダイアログを閉じる
     dialog.value = false;
     // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-    emit('playerAdded', player);
+    emit('playerAdded', newPlayer);
     // フォームデータをクリアする
     playerData.position = '';
     playerData.number = null;
