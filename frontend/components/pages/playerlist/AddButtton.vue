@@ -37,6 +37,7 @@ async function addPlayer() {
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
+                    prepend-icon="mdi-plus"
                     text="メンバーを追加"
                     variant="tonal"
                     elevation="5"
@@ -44,7 +45,7 @@ async function addPlayer() {
                 ></v-btn>
             </template>
 
-            <v-card title="Player Profile">
+            <v-card prepend-icon="mdi-account" title="選手情報">
                 <v-card-text>
                     <v-row dense>
                         <v-col cols="12" md="4" sm="6">
