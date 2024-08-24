@@ -30,10 +30,13 @@ class PlayerBase(BaseModel):
     number: int
     namae: str
     name: str
-    number: int
 
 
 class PlayerCreate(PlayerBase):
+    pass
+
+
+class PlayerUpdate(PlayerBase):
     pass
 
 
