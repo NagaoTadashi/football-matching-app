@@ -3,21 +3,25 @@ import { ref, watch } from 'vue';
 
 const items = [
     {
+        icon: 'mdi-home',
         title: 'ホーム',
         value: 'home',
         to: '/',
     },
     {
+        icon: 'mdi-soccer-field',
         title: '試合日程・結果',
         value: 'match',
         to: '/MatchList',
     },
     {
+        icon: 'mdi-account-group',
         title: '選手一覧',
         value: 'player',
         to: '/PlayerList',
     },
     {
+        icon: 'mdi-account-search',
         title: '対戦相手を探す',
         value: 'findOpponent',
         to: '/FindOpponent',
@@ -33,7 +37,7 @@ watch(group, () => {
 </script>
 
 <template>
-    <!-- <v-app id="inspire">
+    <v-app id="inspire">
         <v-system-bar>
             <v-spacer></v-spacer>
 
@@ -60,26 +64,7 @@ watch(group, () => {
                 :key="index"
                 :link="true"
                 :to="item.to"
-                :title="item.title"
-            ></v-list-item>
-        </v-navigation-drawer>
-
-        <v-main class="bg-grey-lighten-2">
-            <v-container>
-                <slot />
-            </v-container>
-        </v-main>
-    </v-app> -->
-
-    <v-layout class="rounded rounded-md">
-        <v-app-bar title="Football Match"> </v-app-bar>
-
-        <v-navigation-drawer width="180">
-            <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-                :link="true"
-                :to="item.to"
+                :prepend-icon="item.icon"
                 :title="item.title"
             ></v-list-item>
         </v-navigation-drawer>
@@ -92,5 +77,5 @@ watch(group, () => {
                 <slot />
             </v-container>
         </v-main>
-    </v-layout>
+    </v-app>
 </template>
