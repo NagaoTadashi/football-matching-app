@@ -39,7 +39,7 @@ async function editPlayer() {
                     class="text-none font-weight-regular"
                     prepend-icon="mdi-account"
                     text="Edit"
-                    variant="tonal"
+                    elevation="5"
                     v-bind="activatorProps"
                 ></v-btn>
             </template>
