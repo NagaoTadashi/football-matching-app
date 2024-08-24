@@ -1,9 +1,13 @@
 <script setup>
 import EditButton from '~/components/pages/playerlist/EditButton.vue';
 
-defineProps(['player']);
+const props = defineProps(['player']);
 
 const variant = ref('tonal');
+
+function handlePlayerEdited(updatedPlayer) {
+    Object.assign(props.player, updatedPlayer);
+}
 </script>
 
 <template>
@@ -19,7 +23,10 @@ const variant = ref('tonal');
                 </v-card-item>
             </v-col>
             <v-col class="d-flex align-end justify-end">
-                <EditButton :player="player" />
+                <EditButton
+                    :player="player"
+                    @PlayerEdited="handlePlayerEdited"
+                />
             </v-col>
         </v-row>
     </v-card>

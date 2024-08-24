@@ -39,3 +39,18 @@ def create_player(db: Session, player: schemas.PlayerCreate):
     db.commit()
     db.refresh(db_player)
     return db_player
+
+
+def update_player(db: Session, player_id: int, player_update: schemas.PlayerUpdate):
+    player = db.query(models.Player).filter(models.Player.id == player_id).first()
+    if not player:
+        return None
+
+    player.position = player_update.position
+    player.number = player_update.number
+    player.namae = player_update.namae
+    player.name = player_update.name
+
+    db.commit()
+    db.refresh(player)
+    return player

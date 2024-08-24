@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.encoders import jsonable_encoder
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
@@ -54,3 +55,15 @@ def get_players(db: Session = Depends(get_db)):
 @app.post("/player/", response_model=schemas.Player)
 def create_player(player: schemas.PlayerCreate, db: Session = Depends(get_db)):
     return crud.create_player(db=db, player=player)
+
+
+@app.put("/player/{player_id}", response_model=schemas.Player)
+def update_player(
+    player_id: int, player_update: schemas.PlayerUpdate, db: Session = Depends(get_db)
+):
+    updated_player = crud.update_player(
+        db=db, player_id=player_id, player_update=player_update
+    )
+    if update_player is None:
+        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+    return updated_player

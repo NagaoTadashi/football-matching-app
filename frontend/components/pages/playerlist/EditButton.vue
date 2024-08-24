@@ -2,10 +2,33 @@
 import { shallowRef } from 'vue';
 import { VNumberInput } from 'vuetify/labs/VNumberInput';
 
-defineProps(['player']);
-
 const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
+
+const props = defineProps(['player']);
+
+const emit = defineEmits(['PlayerEdited']);
+
+const playerData = reactive({
+    position: props.player.position,
+    number: props.player.number,
+    name: props.player.namae,
+    namae: props.player.name,
+});
+
+async function editPlayer() {
+    const updatedPlayer = await $fetch(
+        `http://localhost:8000/player/${props.player.id}`,
+        {
+            method: 'PUT',
+            body: playerData,
+        }
+    );
+    // ダイアログを閉じる
+    dialog.value = false;
+    // イベントを発火して親コンポーネントにプレイヤー情報を渡す
+    emit('PlayerEdited', updatedPlayer);
+}
 </script>
 
 <template>
@@ -26,14 +49,14 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                     <v-row dense>
                         <v-col cols="12" md="4" sm="6">
                             <v-select
-                                v-model="player.position"
+                                v-model="playerData.position"
                                 :items="positions"
                                 label="ポジション"
                             ></v-select
                         ></v-col>
                         <v-col cols="12" md="4" sm="6"
                             ><v-number-input
-                                v-model="player.number"
+                                v-model="playerData.number"
                                 label="背番号"
                                 control-variant="stacked"
                             ></v-number-input
@@ -43,7 +66,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                         <v-col>
                             <v-responsive class="mx-auto" max-width="344">
                                 <v-text-field
-                                    v-model="player.namae"
+                                    v-model="playerData.namae"
                                     hide-details="auto"
                                     label="名前"
                                     clearable
@@ -53,7 +76,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                         <v-col>
                             <v-responsive class="mx-auto" max-width="344">
                                 <v-text-field
-                                    v-model="player.name"
+                                    v-model="playerData.name"
                                     hide-details="auto"
                                     label="name"
                                     clearable
@@ -78,7 +101,7 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
                         color="primary"
                         text="保存"
                         variant="tonal"
-                        @click="dialog = false"
+                        @click="editPlayer"
                     ></v-btn>
                 </v-card-actions>
             </v-card>
