@@ -27,6 +27,7 @@ class Match(MatchBase):
 # Player
 class PlayerBase(BaseModel):
     position: str
+    number: int
     namae: str
     name: str
     number: int

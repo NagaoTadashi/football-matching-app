@@ -21,6 +21,6 @@ class Player(Base):
 
     id = Column(Integer, primary_key=True)
     position = Column(String)
+    number = Column(Integer)
     namae = Column(String)
     name = Column(String)
-    number = Column(Integer)
