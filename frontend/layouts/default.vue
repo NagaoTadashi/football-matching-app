@@ -56,6 +56,7 @@ watch(group, () => {
 
         <v-navigation-drawer
             v-model="drawer"
+            width="220"
             :location="$vuetify.display.mobile ? 'bottom' : undefined"
             temporary
         >
