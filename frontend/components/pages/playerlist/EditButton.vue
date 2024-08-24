@@ -12,8 +12,8 @@ const emit = defineEmits(['PlayerEdited']);
 const playerData = reactive({
     position: props.player.position,
     number: props.player.number,
-    name: props.player.namae,
-    namae: props.player.name,
+    namae: props.player.namae,
+    name: props.player.name,
 });
 
 async function editPlayer() {
