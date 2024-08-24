@@ -13,7 +13,7 @@ function handlePlayerAdded(newPlayer) {
     <div>
         <v-row>
             <v-col cols="6">
-                <h1>メンバー</h1>
+                <h1>選手一覧</h1>
             </v-col>
             <v-col cols="6" class="d-flex justify-end">
                 <AddButtton @PlayerAdded="handlePlayerAdded" />
