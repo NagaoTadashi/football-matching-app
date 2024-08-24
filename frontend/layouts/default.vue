@@ -74,7 +74,7 @@ watch(group, () => {
     <v-layout class="rounded rounded-md">
         <v-app-bar title="Football Match"> </v-app-bar>
 
-        <v-navigation-drawer>
+        <v-navigation-drawer width="180">
             <v-list-item
                 v-for="(item, index) in items"
                 :key="index"
