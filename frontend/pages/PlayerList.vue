@@ -3,6 +3,10 @@ import AddButtton from '../components/pages/playerlist/AddButtton.vue';
 import PlayerCard from '~/components/pages/playerlist/PlayerCard.vue';
 
 const { data: players } = await useFetch('http://localhost:8000/players');
+
+function handlePlayerAdded(newPlayer) {
+    players.value.push(newPlayer);
+}
 </script>
 
 <template>
@@ -12,7 +16,7 @@ const { data: players } = await useFetch('http://localhost:8000/players');
                 <h1>メンバー</h1>
             </v-col>
             <v-col cols="6" class="d-flex justify-end">
-                <AddButtton />
+                <AddButtton @PlayerAdded="handlePlayerAdded" />
             </v-col>
         </v-row>
         <v-row>
