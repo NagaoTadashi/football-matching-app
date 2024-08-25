@@ -7,6 +7,12 @@ const { data: players } = await useFetch('http://localhost:8000/players');
 function handlePlayerAdded(newPlayer) {
     players.value.push(newPlayer);
 }
+
+function handlePlayerDeleted(deletedPlayer) {
+    players.value = players.value.filter(
+        (player) => player.id !== deletedPlayer.id
+    );
+}
 </script>
 
 <template>
@@ -21,7 +27,10 @@ function handlePlayerAdded(newPlayer) {
         </v-row>
         <v-row>
             <v-col v-for="(player, i) in players" :key="i" cols="12" md="4">
-                <PlayerCard :player="player" />
+                <PlayerCard
+                    :player="player"
+                    @PlayerDeleted="handlePlayerDeleted"
+                />
             </v-col>
         </v-row>
     </div>
