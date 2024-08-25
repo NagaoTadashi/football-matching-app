@@ -9,7 +9,7 @@ const items = [
         to: '/',
     },
     {
-        icon: 'mdi-soccer-field',
+        icon: 'mdi-calendar-month',
         title: '試合日程・結果',
         value: 'match',
         to: '/MatchList',
