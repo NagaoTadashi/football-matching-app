@@ -38,7 +38,7 @@ async function addPlayer() {
                 <v-btn
                     class="text-none font-weight-regular"
                     prepend-icon="mdi-plus"
-                    text="メンバーを追加"
+                    text="選手を追加"
                     variant="tonal"
                     elevation="5"
                     v-bind="activatorProps"
