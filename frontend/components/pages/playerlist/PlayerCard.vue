@@ -1,9 +1,16 @@
 <script setup>
-import EditButton from '~/components/pages/playerlist/EditButton.vue';
+import EditButton from './EditButton.vue';
+import DeleteButton from './DeleteButton.vue';
 
 const props = defineProps(['player']);
 
 const variant = ref('tonal');
+
+const emit = defineEmits(['PlayerDeleted']);
+
+function handlePlayerDeleted(deletedPlayer) {
+    emit('PlayerDeleted', deletedPlayer);
+}
 
 function handlePlayerEdited(updatedPlayer) {
     Object.assign(props.player, updatedPlayer);
@@ -23,10 +30,18 @@ function handlePlayerEdited(updatedPlayer) {
                 </v-card-item>
             </v-col>
             <v-col class="d-flex align-end justify-end">
-                <EditButton
-                    :player="player"
-                    @PlayerEdited="handlePlayerEdited"
-                />
+                <v-row>
+                    <EditButton
+                        :player="player"
+                        @PlayerEdited="handlePlayerEdited"
+                    />
+                </v-row>
+                <v-row>
+                    <DeleteButton
+                        :player="player"
+                        @playerDeleted="handlePlayerDeleted"
+                    />
+                </v-row>
             </v-col>
         </v-row>
     </v-card>
