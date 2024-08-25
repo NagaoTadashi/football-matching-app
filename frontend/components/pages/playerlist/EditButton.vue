@@ -24,10 +24,12 @@ async function editPlayer() {
             body: playerData,
         }
     );
-    // ダイアログを閉じる
-    dialog.value = false;
-    // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-    emit('PlayerEdited', updatedPlayer);
+    if (updatedPlayer) {
+        // ダイアログを閉じる
+        dialog.value = false;
+        // イベントを発火して親コンポーネントにプレイヤー情報を渡す
+        emit('PlayerEdited', updatedPlayer);
+    }
 }
 </script>
 
