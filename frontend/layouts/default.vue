@@ -3,10 +3,16 @@ import { ref, watch } from 'vue';
 
 const items = [
     {
+        icon: 'mdi-calendar-month',
+        title: '試合日程・結果',
+        value: 'matchList',
+        to: '/',
+    },
+    {
         icon: 'mdi-tshirt-crew',
         title: 'チーム情報',
-        value: 'home',
-        to: '/',
+        value: 'teamInfo',
+        to: '/TeamInfo',
     },
     {
         icon: 'mdi-account-group',
