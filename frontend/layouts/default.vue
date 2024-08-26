@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 
 const items = [
     {
-        icon: 'mdi-home',
+        icon: 'mdi-tshirt-crew',
         title: 'チーム情報',
         value: 'home',
         to: '/',
