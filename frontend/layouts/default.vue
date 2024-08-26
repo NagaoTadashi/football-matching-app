@@ -21,12 +21,6 @@ const items = [
         to: '/PlayerList',
     },
     {
-        icon: 'mdi-calendar-month',
-        title: '試合日程・結果',
-        value: 'match',
-        to: '/MatchList',
-    },
-    {
         icon: 'mdi-account-search',
         title: '対戦相手を探す',
         value: 'findOpponent',
