@@ -9,6 +9,12 @@ const items = [
         to: '/',
     },
     {
+        icon: 'mdi-account-group',
+        title: '選手一覧',
+        value: 'playerList',
+        to: '/PlayerList',
+    },
+    {
         icon: 'mdi-calendar-month',
         title: '試合日程・結果',
         value: 'match',
@@ -19,6 +25,12 @@ const items = [
         title: '対戦相手を探す',
         value: 'findOpponent',
         to: '/FindOpponent',
+    },
+    {
+        icon: 'mdi-soccer-field',
+        title: '試合を登録',
+        value: 'registrationMatch',
+        to: '/RegistrationMatch',
     },
 ];
 
