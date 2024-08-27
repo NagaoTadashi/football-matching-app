@@ -25,12 +25,7 @@ async function deletePlayer() {
 
 <template>
     <div class="text-center pa-4">
-        <v-btn
-            @click="dialog = true"
-            prepend-icon="mdi-delete"
-            text="削除"
-            elevation="5"
-        ></v-btn>
+        <v-btn @click="dialog = true" text="削除" elevation="5"></v-btn>
 
         <v-dialog v-model="dialog" width="auto">
             <v-card max-width="400" title="この選手情報を削除しますか？">
