@@ -55,25 +55,22 @@ watch(group, () => {
         </v-system-bar>
 
         <v-app-bar>
-            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-            <v-app-bar-title>Football Match</v-app-bar-title>
+            <v-app-bar-title>
+                <v-icon>mdi-soccer</v-icon> Football Match</v-app-bar-title
+            >
         </v-app-bar>
 
-        <v-navigation-drawer
-            v-model="drawer"
-            width="220"
-            :location="$vuetify.display.mobile ? 'bottom' : undefined"
-            temporary
-        >
-            <v-list-item
-                v-for="(item, index) in items"
-                :key="index"
-                :link="true"
-                :to="item.to"
-                :prepend-icon="item.icon"
-                :title="item.title"
-            ></v-list-item>
+        <v-navigation-drawer floating permanent>
+            <v-list density="compact" nav>
+                <v-list-item
+                    v-for="(item, index) in items"
+                    :key="index"
+                    :link="true"
+                    :to="item.to"
+                    :prepend-icon="item.icon"
+                    :title="item.title"
+                ></v-list-item>
+            </v-list>
         </v-navigation-drawer>
 
         <v-main
