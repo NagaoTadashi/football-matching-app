@@ -3,8 +3,8 @@ import { ref, watch } from 'vue';
 
 const items = [
     {
-        icon: 'mdi-calendar-month',
-        title: '試合日程・結果',
+        icon: 'mdi-soccer-field',
+        title: '試合リスト',
         value: 'matchList',
         to: '/',
     },
@@ -21,16 +21,16 @@ const items = [
         to: '/PlayerList',
     },
     {
+        icon: 'mdi-account-plus',
+        title: '対戦相手を募集',
+        value: 'recruitOppenent',
+        to: '/RecruitOppenent',
+    },
+    {
         icon: 'mdi-account-search',
         title: '対戦相手を探す',
         value: 'findOpponent',
         to: '/FindOpponent',
-    },
-    {
-        icon: 'mdi-soccer-field',
-        title: '試合を登録',
-        value: 'registrationMatch',
-        to: '/RegistrationMatch',
     },
 ];
 
