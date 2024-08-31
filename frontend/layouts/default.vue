@@ -21,8 +21,8 @@ const items = [
         to: '/PlayerList',
     },
     {
-        icon: 'mdi-account-plus',
-        title: '対戦相手を募集',
+        icon: 'mdi-form-select',
+        title: '対戦相手を募集する',
         value: 'recruitOppenent',
         to: '/RecruitOppenent',
     },
