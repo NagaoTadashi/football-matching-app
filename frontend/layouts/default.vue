@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 const items = [
     {
         icon: 'mdi-soccer-field',
-        title: '試合リスト',
+        title: '試合一覧',
         value: 'matchList',
         to: '/',
     },
@@ -16,7 +16,7 @@ const items = [
     },
     {
         icon: 'mdi-account-group',
-        title: '選手一覧',
+        title: 'メンバー',
         value: 'playerList',
         to: '/PlayerList',
     },
