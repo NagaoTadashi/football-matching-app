@@ -5,7 +5,7 @@ import { VNumberInput } from 'vuetify/labs/VNumberInput';
 const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
 
-const emit = defineEmits(['PlayerAdded']);
+const emit = defineEmits(['PlayerRegisterd']);
 
 const playerData = reactive({
     position: '',
@@ -14,7 +14,7 @@ const playerData = reactive({
     namae: '',
 });
 
-async function addPlayer() {
+async function registerPlayer() {
     const newPlayer = await $fetch('http://localhost:8000/player', {
         method: 'POST',
         body: playerData,
@@ -22,7 +22,7 @@ async function addPlayer() {
     // ダイアログを閉じる
     dialog.value = false;
     // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-    emit('playerAdded', newPlayer);
+    emit('playerRegisterd', newPlayer);
     // フォームデータをクリアする
     playerData.position = '';
     playerData.number = null;
@@ -38,7 +38,7 @@ async function addPlayer() {
                 <v-btn
                     class="text-none font-weight-regular"
                     prepend-icon="mdi-plus"
-                    text="選手を追加"
+                    text="選手を登録"
                     variant="tonal"
                     elevation="5"
                     v-bind="activatorProps"
@@ -102,7 +102,7 @@ async function addPlayer() {
                         color="primary"
                         text="登録"
                         variant="tonal"
-                        @click="addPlayer"
+                        @click="registerPlayer"
                     ></v-btn>
                 </v-card-actions>
             </v-card>

@@ -78,6 +78,7 @@ def update_player(
     updated_player = crud.update_player(
         db=db, player_id=player_id, player_update=player_update
     )
+
     if update_player is None:
         raise HTTPException(status_code=404, detail="選手情報が見つかりません")
     return updated_player
@@ -86,6 +87,7 @@ def update_player(
 @app.delete("/player/{player_id}", response_model=schemas.Player)
 def delete_player(player_id: int, db: Session = Depends(get_db)):
     deleted_player = crud.delete_player(db=db, player_id=player_id)
+
     if deleted_player is None:
         raise HTTPException(status_code=404, detail="選手情報が見つかりません")
     return deleted_player

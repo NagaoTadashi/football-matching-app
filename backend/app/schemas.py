@@ -1,6 +1,27 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 from typing import Optional
 from datetime import date, time
+
+
+# Team
+class TeamBase(BaseModel):
+    name: Optional[str]
+    image: Optional[HttpUrl]
+    region: Optional[str]
+    category: Optional[str]
+    league: Optional[str]
+    sns_accounts: Optional[dict] = {}
+
+
+class TeamUpdate(TeamBase):
+    pass
+
+
+class Team(TeamBase):
+    id: int
+
+    class Config:
+        orm_mode = True
 
 
 # Match

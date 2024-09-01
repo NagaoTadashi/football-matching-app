@@ -5,7 +5,14 @@ const { data: matches } = await useFetch('http://localhost:8000/matches');
 </script>
 
 <template>
-    <div>
+    <div v-if="matches.length === 0">
+        <v-empty-state
+            icon="mdi-soccer-field"
+            title="試合日程・結果はまだありません"
+        >
+        </v-empty-state>
+    </div>
+    <div v-else>
         <v-row>
             <v-col v-for="(match, i) in matches" :key="i" cols="12" md="4">
                 <MatchCard :match="match" />

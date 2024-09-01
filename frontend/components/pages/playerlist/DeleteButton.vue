@@ -28,7 +28,7 @@ async function deletePlayer() {
         <v-btn @click="dialog = true" text="削除" elevation="5"></v-btn>
 
         <v-dialog v-model="dialog" width="auto">
-            <v-card max-width="400" title="この選手情報を削除しますか？">
+            <v-card max-width="400" title="この選手を削除しますか？">
                 <template v-slot:actions>
                     <v-spacer></v-spacer>
                     <v-btn
