@@ -32,6 +32,21 @@ app.add_middleware(
 )
 
 
+# Team
+@app.get("/team_info/", response_model=Optional[schemas.Team])
+def get_team_info(db: Session = Depends(get_db)):
+    team_info = crud.get_team_info(db)
+    return team_info
+
+
+@app.put("/team_info/", response_model=schemas.Team)
+def update_team_info(
+    team_info_update: schemas.TeamUpdate, db: Session = Depends(get_db)
+):
+    updated_team_info = crud.update_team_info(db=db, team_info_update=team_info_update)
+    return updated_team_info
+
+
 # Match
 @app.get("/matches/", response_model=list[schemas.Match])
 def get_matches(db: Session = Depends(get_db)):
