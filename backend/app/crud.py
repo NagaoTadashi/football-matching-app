@@ -3,6 +3,29 @@ from sqlalchemy.orm import Session
 from . import models, schemas
 
 
+# Team
+def get_team_info(db: Session):
+    return db.query(models.Team).first()
+
+
+def update_team_info(
+    db: Session,
+    team_info_update: schemas.TeamUpdate,
+):
+    team_info = db.query(models.Team)
+
+    team_info.name = team_info_update.name
+    team_info.image = team_info_update.image
+    team_info.region = team_info_update.region
+    team_info.category = team_info_update.category
+    team_info.league = team_info_update.league
+    team_info.sns_accounts = team_info_update.sns_accounts
+
+    db.commit()
+    db.refresh(team_info)
+    return team_info
+
+
 # Match
 def get_matches(db: Session):
     return db.query(models.Match).all()
