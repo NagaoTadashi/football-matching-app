@@ -13,6 +13,10 @@ class TeamBase(BaseModel):
     sns_accounts: Optional[dict] = {}
 
 
+class TeamCreate(TeamBase):
+    pass
+
+
 class TeamUpdate(TeamBase):
     pass
 
