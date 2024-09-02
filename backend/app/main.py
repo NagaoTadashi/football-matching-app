@@ -87,7 +87,7 @@ def update_player(
         db=db, player_id=player_id, player_update=player_update
     )
 
-    if update_player is None:
+    if updated_player is None:
         raise HTTPException(status_code=404, detail="選手情報が見つかりません")
     return updated_player
 
