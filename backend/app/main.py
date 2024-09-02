@@ -39,6 +39,12 @@ def get_team_info(db: Session = Depends(get_db)):
     return team_info
 
 
+@app.post("/team_info/", response_model=schemas.Team)
+def create_team_info(team_info: schemas.TeamCreate, db: Session = Depends(get_db)):
+    created_team_info = crud.create_team_info(db, team_info=team_info)
+    return created_team_info
+
+
 @app.put("/team_info/", response_model=schemas.Team)
 def update_team_info(
     team_info_update: schemas.TeamUpdate, db: Session = Depends(get_db)
