@@ -8,6 +8,22 @@ def get_team_info(db: Session):
     return db.query(models.Team).first()
 
 
+def create_team_info(db: Session, team_info: schemas.TeamCreate):
+    db_team_info = models.Team(
+        name=team_info.name,
+        # image=team_info.image,
+        region=team_info.region,
+        category=team_info.category,
+        league=team_info.league,
+        sns_accounts=team_info.sns_accounts,
+    )
+
+    db.add(db_team_info)
+    db.commit()
+    db.refresh(db_team_info)
+    return db_team_info
+
+
 def update_team_info(
     db: Session,
     team_info_update: schemas.TeamUpdate,
