@@ -6,11 +6,10 @@ from datetime import date, time
 # Team
 class TeamBase(BaseModel):
     name: Optional[str]
-    image: Optional[HttpUrl]
     region: Optional[str]
+    prefecture: Optional[str]
     category: Optional[str]
     league: Optional[str]
-    sns_accounts: Optional[dict] = {}
 
 
 class TeamCreate(TeamBase):

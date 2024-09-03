@@ -11,11 +11,10 @@ def get_team_info(db: Session):
 def create_team_info(db: Session, team_info: schemas.TeamCreate):
     db_team_info = models.Team(
         name=team_info.name,
-        # image=team_info.image,
         region=team_info.region,
+        prefecture=team_info.prefecture,
         category=team_info.category,
         league=team_info.league,
-        sns_accounts=team_info.sns_accounts,
     )
 
     db.add(db_team_info)
@@ -29,13 +28,11 @@ def update_team_info(
     team_info_update: schemas.TeamUpdate,
 ):
     team_info = db.query(models.Team)
-
     team_info.name = team_info_update.name
-    team_info.image = team_info_update.image
     team_info.region = team_info_update.region
+    team_info.prefecture = team_info_update.prefecture
     team_info.category = team_info_update.category
     team_info.league = team_info_update.league
-    team_info.sns_accounts = team_info_update.sns_accounts
 
     db.commit()
     db.refresh(team_info)
