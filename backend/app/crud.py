@@ -5,7 +5,7 @@ from . import models, schemas
 
 # Team
 def get_team_info(db: Session):
-    return db.query(models.Team).first()
+    return db.query(models.Team).one()
 
 
 def create_team_info(db: Session, team_info: schemas.TeamCreate):
@@ -27,7 +27,10 @@ def update_team_info(
     db: Session,
     team_info_update: schemas.TeamUpdate,
 ):
-    team_info = db.query(models.Team)
+    team_info = db.query(models.Team).one()
+    if not team_info:
+        return None
+
     team_info.name = team_info_update.name
     team_info.region = team_info_update.region
     team_info.prefecture = team_info_update.prefecture
