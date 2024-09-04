@@ -6,7 +6,6 @@ const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
 
 const props = defineProps(['player']);
-
 const emit = defineEmits(['PlayerEdited']);
 
 const playerData = reactive({
