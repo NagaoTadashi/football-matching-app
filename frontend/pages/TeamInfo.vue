@@ -23,9 +23,8 @@ function handleTeamInfoEdited(updatedTeamInfo) {
             <v-empty-state
                 icon="mdi-tshirt-crew"
                 title="チーム情報が登録されていません"
-            >
+                ><RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
             </v-empty-state>
-            <RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
         </div>
         <div v-else>
             <v-row class="d-flex align-end justify-end">
