@@ -23,8 +23,8 @@ const items = [
     {
         icon: 'mdi-form-select',
         title: '対戦相手を募集する',
-        value: 'recruitOppenent',
-        to: '/RecruitOppenent',
+        value: 'requirementOpponent',
+        to: '/RequirementOpponent',
     },
     {
         icon: 'mdi-account-search',
