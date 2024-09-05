@@ -54,16 +54,16 @@ def update_team_info(
 
 
 # Match
-@app.get("/matches/", response_model=list[schemas.Match])
-def get_matches(db: Session = Depends(get_db)):
-    matches = crud.get_matches(db)
-    return matches
+# @app.get("/matches/", response_model=list[schemas.Match])
+# def get_matches(db: Session = Depends(get_db)):
+#     matches = crud.get_matches(db)
+#     return matches
 
 
-@app.post("/match/", response_model=schemas.Match)
-def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
-    created_match = crud.create_match(db=db, match=match)
-    return created_match
+# @app.post("/match/", response_model=schemas.Match)
+# def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
+#     created_match = crud.create_match(db=db, match=match)
+#     return created_match
 
 
 # Player

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Date, Time, Text, JSON
+from sqlalchemy import Column, ForeignKey, Integer, String, Date, Time, Enum
 from sqlalchemy.orm import relationship
 
 from .database import Base
@@ -14,17 +14,33 @@ class Team(Base):
     category = Column(String, nullable=True)
     league = Column(String, nullable=True)
 
+    recruitments = relationship("Recruitment", back_populates="team")
 
-class Match(Base):
-    __tablename__ = "matches"
 
-    id = Column(Integer, primary_key=True)
-    opponent = Column(String)
-    date = Column(Date)
-    time = Column(Time)
-    venue = Column(String)
-    my_team_score = Column(Integer)
-    opponent_score = Column(Integer)
+class Recruitment(Base):
+    __tablename__ = "recruitments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    team_id = Column(Integer, ForeignKey("teams.id"))
+    location = Column(String, nullable=False)
+    date = Column(Date, nullable=False)
+    start_time = Column(Time, nullable=False)
+    end_time = Column(Time, nullable=False)
+    status = Column(Enum("open", "matched", "closed"), default="open")
+
+    team = relationship("Team", back_populates="recruitments")
+
+
+# class Match(Base):
+#     __tablename__ = "matches"
+
+#     id = Column(Integer, primary_key=True)
+#     opponent = Column(String)
+#     date = Column(Date)
+#     time = Column(Time)
+#     venue = Column(String)
+#     my_team_score = Column(Integer)
+#     opponent_score = Column(Integer)
 
 
 class Player(Base):
