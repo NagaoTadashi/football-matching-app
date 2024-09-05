@@ -31,18 +31,6 @@ class Recruitment(Base):
     team = relationship("Team", back_populates="recruitments")
 
 
-# class Match(Base):
-#     __tablename__ = "matches"
-
-#     id = Column(Integer, primary_key=True)
-#     opponent = Column(String)
-#     date = Column(Date)
-#     time = Column(Time)
-#     venue = Column(String)
-#     my_team_score = Column(Integer)
-#     opponent_score = Column(Integer)
-
-
 class Player(Base):
     __tablename__ = "players"
 
@@ -51,3 +39,15 @@ class Player(Base):
     number = Column(Integer)
     namae = Column(String)
     name = Column(String)
+
+
+class Match(Base):
+    __tablename__ = "matches"
+
+    id = Column(Integer, primary_key=True)
+    opponent = Column(String)
+    date = Column(Date)
+    time = Column(Time)
+    venue = Column(String)
+    my_team_score = Column(Integer)
+    opponent_score = Column(Integer)

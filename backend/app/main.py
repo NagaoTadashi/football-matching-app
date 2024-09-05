@@ -66,19 +66,6 @@ def create_recruitment(
     return create_recruitment
 
 
-# # Match
-# @app.get("/matches/", response_model=list[schemas.Match])
-# def get_matches(db: Session = Depends(get_db)):
-#     matches = crud.get_matches(db)
-#     return matches
-
-
-# @app.post("/match/", response_model=schemas.Match)
-# def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
-#     created_match = crud.create_match(db=db, match=match)
-#     return created_match
-
-
 # Player
 @app.get("/players/", response_model=list[schemas.Player])
 def get_players(db: Session = Depends(get_db)):
@@ -112,3 +99,16 @@ def delete_player(player_id: int, db: Session = Depends(get_db)):
     if deleted_player is None:
         raise HTTPException(status_code=404, detail="選手情報が見つかりません")
     return deleted_player
+
+
+# Match
+@app.get("/matches/", response_model=list[schemas.Match])
+def get_matches(db: Session = Depends(get_db)):
+    matches = crud.get_matches(db)
+    return matches
+
+
+# @app.post("/match/", response_model=schemas.Match)
+# def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
+#     created_match = crud.create_match(db=db, match=match)
+#     return created_match
