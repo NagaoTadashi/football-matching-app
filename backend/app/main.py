@@ -53,7 +53,20 @@ def update_team_info(
     return updated_team_info
 
 
-# Match
+# Recruitment
+@app.post("/recruitments/", response_model=schemas.Recruitment)
+def create_recruitment(
+    recruitment: schemas.RecruitmentCreate, db: Session = Depends(get_db)
+):
+    team = db.query(models.Team).filter(models.Team.id == recruitment.team_id).first()
+    if not team:
+        raise HTTPException(status_code=400, detail="Team not found")
+
+    create_recruitment = crud.create_recruitment(db=db, recruitment=recruitment)
+    return create_recruitment
+
+
+# # Match
 # @app.get("/matches/", response_model=list[schemas.Match])
 # def get_matches(db: Session = Depends(get_db)):
 #     matches = crud.get_matches(db)

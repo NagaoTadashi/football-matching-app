@@ -42,21 +42,16 @@ def update_team_info(
     return team_info
 
 
-# Match
-def get_matches(db: Session):
-    return db.query(models.Match).all()
-
-
-def create_match(db: Session, match: schemas.MatchCreate):
-    db_match = models.Match(
-        opponent=match.opponent,
-        date=match.date,
-        time=match.time,
-        venue=match.venue,
-        my_team_score=match.my_team_score,
-        opponent_score=match.opponent_score,
+def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate):
+    db_recruitment = models.Recruitment(
+        team_id=recruitment.team_id,
+        location=recruitment.location,
+        date=recruitment.date,
+        start_time=recruitment.start_time,
+        end_time=recruitment.end_time,
+        status=recruitment.status,
     )
-    db.add(db_match)
+    db.add(db_recruitment)
     db.commit()
     db.refresh(db_recruitment)
     return db_recruitment

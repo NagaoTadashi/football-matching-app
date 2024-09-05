@@ -27,22 +27,21 @@ class Team(TeamBase):
         orm_mode = True
 
 
-# Match
-class MatchBase(BaseModel):
-    opponent: str
+class RecruitmentBase(BaseModel):
+    location: str
     date: date
-    time: time
-    venue: str
-    my_team_score: Optional[int]
-    opponent_score: Optional[int]
+    start_time: time
+    end_time: time
+    status: Optional[str] = "open"
 
 
-class MatchCreate(MatchBase):
-    pass
+class RecruitmentCreate(RecruitmentBase):
+    team_id: int
 
 
-class Match(MatchBase):
+class Recruitment(RecruitmentBase):
     id: int
+    team_id: int
 
     class Config:
         orm_mode = True
