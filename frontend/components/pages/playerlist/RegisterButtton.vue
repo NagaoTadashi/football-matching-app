@@ -15,7 +15,7 @@ const playerData = reactive({
 });
 
 async function registerPlayer() {
-    const newPlayer = await $fetch('http://localhost:8000/player', {
+    const newPlayer = await $fetch('http://localhost:8000/players', {
         method: 'POST',
         body: playerData,
     });

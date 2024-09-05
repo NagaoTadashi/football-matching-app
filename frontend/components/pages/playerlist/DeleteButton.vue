@@ -9,7 +9,7 @@ const emit = defineEmits(['PlayerDeleted']);
 
 async function deletePlayer() {
     const deletedPlayer = await $fetch(
-        `http://localhost:8000/player/${props.player.id}`,
+        `http://localhost:8000/players/${props.player.id}`,
         {
             method: 'DELETE',
         }

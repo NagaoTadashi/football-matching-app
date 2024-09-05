@@ -17,13 +17,14 @@ function handlePlayerDeleted(deletedPlayer) {
 
 <template>
     <div>
-        <div v-if="players.length === 0">
-            <v-empty-state
-                icon="mdi-account"
-                title="選手が登録されていません"
-            ></v-empty-state>
-
-            <AddButton @PlayerRegisterd="handlePlayerRegisterd" />
+        <div
+            v-if="players.length === 0"
+            class="d-flex align-center justify-center"
+            style="min-height: 300px"
+        >
+            <v-empty-state icon="mdi-account" title="選手が登録されていません"
+                ><AddButton @PlayerRegisterd="handlePlayerRegisterd"
+            /></v-empty-state>
         </div>
         <div v-else>
             <v-row>

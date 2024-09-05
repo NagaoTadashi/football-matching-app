@@ -86,13 +86,13 @@ def get_players(db: Session = Depends(get_db)):
     return players
 
 
-@app.post("/player/", response_model=schemas.Player)
+@app.post("/players/", response_model=schemas.Player)
 def create_player(player: schemas.PlayerCreate, db: Session = Depends(get_db)):
     created_player = crud.create_player(db=db, player=player)
     return created_player
 
 
-@app.put("/player/{player_id}", response_model=schemas.Player)
+@app.put("/players/{player_id}", response_model=schemas.Player)
 def update_player(
     player_id: int, player_update: schemas.PlayerUpdate, db: Session = Depends(get_db)
 ):
@@ -105,7 +105,7 @@ def update_player(
     return updated_player
 
 
-@app.delete("/player/{player_id}", response_model=schemas.Player)
+@app.delete("/players/{player_id}", response_model=schemas.Player)
 def delete_player(player_id: int, db: Session = Depends(get_db)):
     deleted_player = crud.delete_player(db=db, player_id=player_id)
 

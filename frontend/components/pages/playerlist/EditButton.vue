@@ -17,7 +17,7 @@ const playerData = reactive({
 
 async function editPlayer() {
     const updatedPlayer = await $fetch(
-        `http://localhost:8000/player/${props.player.id}`,
+        `http://localhost:8000/players/${props.player.id}`,
         {
             method: 'PUT',
             body: playerData,
