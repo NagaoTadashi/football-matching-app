@@ -58,6 +58,7 @@ async function registerPlayer() {
                             ><v-number-input
                                 v-model="playerData.number"
                                 label="背番号"
+                                :min="1"
                                 control-variant="stacked"
                             ></v-number-input
                         ></v-col>
