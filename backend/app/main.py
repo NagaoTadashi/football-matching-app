@@ -54,6 +54,12 @@ def update_team_info(
 
 
 # Recruitment
+@app.get("/recruitments/", response_model=list[schemas.Recruitment])
+def get_recruitments(db: Session = Depends(get_db)):
+    recruitments = crud.get_recruitments(db)
+    return recruitments
+
+
 @app.post("/recruitments/", response_model=schemas.Recruitment)
 def create_recruitment(
     recruitment: schemas.RecruitmentCreate, db: Session = Depends(get_db)

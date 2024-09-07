@@ -42,6 +42,11 @@ def update_team_info(
     return team_info
 
 
+# Recruitment
+def get_recruitments(db: Session):
+    return db.query(models.Recruitment).all()
+
+
 def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate):
     db_recruitment = models.Recruitment(
         team_id=recruitment.team_id,
