@@ -5,7 +5,7 @@ const dialog = ref(false);
 
 const props = defineProps(['player']);
 
-const emit = defineEmits(['PlayerDeleted']);
+const emit = defineEmits(['playerDeleted']);
 
 async function deletePlayer() {
     const deletedPlayer = await $fetch(
@@ -18,7 +18,7 @@ async function deletePlayer() {
         // ダイアログを閉じる
         dialog.value = false;
         // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-        emit('PlayerDeleted', deletedPlayer);
+        emit('playerDeleted', deletedPlayer);
     }
 }
 </script>

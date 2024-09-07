@@ -5,7 +5,7 @@ import { VNumberInput } from 'vuetify/labs/VNumberInput';
 const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
 
-const emit = defineEmits(['PlayerRegisterd']);
+const emit = defineEmits(['playerRegisterd']);
 
 const playerData = reactive({
     position: '',

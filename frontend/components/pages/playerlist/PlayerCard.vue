@@ -6,10 +6,10 @@ const props = defineProps(['player']);
 
 const variant = ref('tonal');
 
-const emit = defineEmits(['PlayerDeleted']);
+const emit = defineEmits(['playerDeleted']);
 
 function handlePlayerDeleted(deletedPlayer) {
-    emit('PlayerDeleted', deletedPlayer);
+    emit('playerDeleted', deletedPlayer);
 }
 
 function handlePlayerEdited(updatedPlayer) {
@@ -33,7 +33,7 @@ function handlePlayerEdited(updatedPlayer) {
                 <v-row>
                     <EditButton
                         :player="player"
-                        @PlayerEdited="handlePlayerEdited"
+                        @playerEdited="handlePlayerEdited"
                     />
                 </v-row>
                 <v-row>

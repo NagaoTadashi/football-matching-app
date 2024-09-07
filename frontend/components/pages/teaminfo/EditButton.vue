@@ -4,7 +4,7 @@ import { reactive, shallowRef } from 'vue';
 const dialog = shallowRef(false);
 
 const props = defineProps(['teamInfo']);
-const emit = defineEmits(['TeamInfoEdited']);
+const emit = defineEmits(['teamInfoEdited']);
 
 const teamInfo = reactive({
     name: props.teamInfo.name,
@@ -80,7 +80,7 @@ async function editTeamInfo() {
         // ダイアログを閉じる
         dialog.value = false;
         // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-        emit('TeamInfoEdited', updatedTeamInfo);
+        emit('teamInfoEdited', updatedTeamInfo);
     }
 }
 </script>

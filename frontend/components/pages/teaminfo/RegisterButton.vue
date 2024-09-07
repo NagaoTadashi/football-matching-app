@@ -68,7 +68,7 @@ const regionsList = Object.keys(regions);
 
 const category = ['社会人', '大学', '高校', '中学', '小学'];
 
-const emit = defineEmits(['TeamInfoRegisterd']);
+const emit = defineEmits(['teamInfoRegisterd']);
 
 async function registerTeamInfo() {
     const newTeamInfo = await $fetch('http://localhost:8000/team_info', {
@@ -78,7 +78,7 @@ async function registerTeamInfo() {
     // ダイアログを閉じる
     dialog.value = false;
     // イベントを発火して親コンポーネントにチーム情報を渡す
-    emit('TeamInfoRegisterd', newTeamInfo);
+    emit('teamInfoRegisterd', newTeamInfo);
     // フォームデータをクリアする
     teamInfo.name = '';
     teamInfo.region = '';

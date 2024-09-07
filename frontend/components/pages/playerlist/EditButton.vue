@@ -6,7 +6,7 @@ const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
 
 const props = defineProps(['player']);
-const emit = defineEmits(['PlayerEdited']);
+const emit = defineEmits(['playerEdited']);
 
 const playerData = reactive({
     position: props.player.position,
@@ -27,7 +27,7 @@ async function editPlayer() {
         // ダイアログを閉じる
         dialog.value = false;
         // イベントを発火して親コンポーネントにプレイヤー情報を渡す
-        emit('PlayerEdited', updatedPlayer);
+        emit('playerEdited', updatedPlayer);
     }
 }
 </script>
