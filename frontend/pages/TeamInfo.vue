@@ -15,15 +15,13 @@ function handleTeamInfoEdited(updatedTeamInfo) {
 
 <template>
     <div>
-        <v-row class="d-flex align-end justify-end">
-            <RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
-        </v-row>
-        <div
-            v-if="teamInfo === null"
-            class="d-flex align-center justify-center"
-            style="min-height: 300px"
-        >
+        <div v-if="teamInfo === null">
+            <v-row class="d-flex align-end justify-end">
+                <RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
+            </v-row>
             <v-empty-state
+                class="d-flex align-center justify-center"
+                style="min-height: 300px"
                 icon="mdi-tshirt-crew"
                 title="チーム情報が登録されていません"
             >

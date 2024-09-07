@@ -32,11 +32,6 @@ function handlePlayerDeleted(deletedPlayer) {
         </div>
         <div v-else>
             <v-row>
-                <v-col cols="12" class="d-flex justify-end">
-                    <AddButton @PlayerRegisterd="handlePlayerRegisterd" />
-                </v-col>
-            </v-row>
-            <v-row>
                 <v-col v-for="(player, i) in players" :key="i" cols="12" md="4">
                     <PlayerCard
                         :player="player"
