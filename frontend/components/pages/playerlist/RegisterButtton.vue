@@ -36,7 +36,7 @@ async function registerPlayer() {
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
-                    prepend-icon="mdi-plus"
+                    prepend-icon="mdi-account-plus"
                     text="選手を登録"
                     variant="tonal"
                     elevation="5"

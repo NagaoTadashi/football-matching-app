@@ -91,7 +91,8 @@ async function editTeamInfo() {
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
-                    text="編集"
+                    prepend-icon="mdi-text-box-edit-outline"
+                    text="チーム情報を編集"
                     variant="tonal"
                     elevation="5"
                     v-bind="activatorProps"

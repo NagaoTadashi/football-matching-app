@@ -21,7 +21,7 @@ const items = [
         to: '/PlayerList',
     },
     {
-        icon: 'mdi-form-select',
+        icon: 'mdi-text-box-outline',
         title: '対戦相手を募集する',
         value: 'requirementOpponent',
         to: '/RequirementOpponent',
