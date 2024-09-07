@@ -94,6 +94,7 @@ async function registerTeamInfo() {
             <template v-slot:activator="{ props: activatorProps }">
                 <v-btn
                     class="text-none font-weight-regular"
+                    prepend-icon="mdi-plus"
                     text="チーム情報を登録"
                     variant="tonal"
                     elevation="5"
