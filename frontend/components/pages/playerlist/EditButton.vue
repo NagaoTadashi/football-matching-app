@@ -1,6 +1,5 @@
 <script setup>
 import { shallowRef } from 'vue';
-import { VNumberInput } from 'vuetify/labs/VNumberInput';
 
 const dialog = shallowRef(false);
 const positions = ['GK', 'DF', 'MF', 'FW'];
