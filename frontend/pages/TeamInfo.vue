@@ -15,6 +15,9 @@ function handleTeamInfoEdited(updatedTeamInfo) {
 
 <template>
     <div>
+        <v-row class="d-flex align-end justify-end">
+            <RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
+        </v-row>
         <div
             v-if="teamInfo === null"
             class="d-flex align-center justify-center"
@@ -23,7 +26,7 @@ function handleTeamInfoEdited(updatedTeamInfo) {
             <v-empty-state
                 icon="mdi-tshirt-crew"
                 title="チーム情報が登録されていません"
-                ><RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
+            >
             </v-empty-state>
         </div>
         <div v-else>
@@ -43,6 +46,7 @@ function handleTeamInfoEdited(updatedTeamInfo) {
                                     teamInfo.name
                                 }}</v-card-title>
                                 <br />
+
                                 <v-card-subtitle class="text-h6"
                                     >地域:
                                     {{ teamInfo.region }}</v-card-subtitle
