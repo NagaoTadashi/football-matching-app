@@ -9,6 +9,12 @@ const { data: recruitments } = await useFetch(
 function handleRecruitmentPosted(newRecruitment) {
     recruitments.value.push(newRecruitment);
 }
+
+function handlerecruitmentDeleted(deletedrecruitment) {
+    recruitments.value = recruitments.value.filter(
+        (recruitment) => recruitment.id !== deletedrecruitment.id
+    );
+}
 </script>
 
 <template>
@@ -35,7 +41,10 @@ function handleRecruitmentPosted(newRecruitment) {
                     cols="12"
                     md="4"
                 >
-                    <RecruitmentCard :recruitment="recruitment" />
+                    <RecruitmentCard
+                        :recruitment="recruitment"
+                        @recruitmentDeleted="handlerecruitmentDeleted"
+                    />
                 </v-col>
             </v-row>
         </div>
