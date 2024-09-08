@@ -40,9 +40,12 @@ class RecruitmentCreate(RecruitmentBase):
     team_id: int
 
 
+class RecruitmentUpdate(RecruitmentBase):
+    pass
+
+
 class Recruitment(RecruitmentBase):
     id: int
-    team_id: int
 
     class Config:
         orm_mode = True
