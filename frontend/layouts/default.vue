@@ -60,7 +60,7 @@ watch(group, () => {
             >
         </v-app-bar>
 
-        <v-navigation-drawer floating permanent>
+        <v-navigation-drawer floating permanent width="225">
             <v-list density="compact" nav>
                 <v-list-item
                     v-for="(item, index) in items"
