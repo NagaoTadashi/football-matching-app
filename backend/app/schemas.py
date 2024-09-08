@@ -27,6 +27,7 @@ class Team(TeamBase):
         orm_mode = True
 
 
+# Recruitment
 class RecruitmentBase(BaseModel):
     location: str
     date: date
