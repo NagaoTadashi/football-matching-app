@@ -22,10 +22,10 @@ class Recruitment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     team_id = Column(Integer, ForeignKey("teams.id"))
-    location = Column(String, nullable=False)
     date = Column(Date, nullable=False)
     start_time = Column(Time, nullable=False)
     end_time = Column(Time, nullable=False)
+    location = Column(String, nullable=False)
     status = Column(Enum("open", "matched", "closed"), default="open")
 
     team = relationship("Team", back_populates="recruitments")

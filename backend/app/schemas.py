@@ -29,10 +29,10 @@ class Team(TeamBase):
 
 # Recruitment
 class RecruitmentBase(BaseModel):
-    location: str
     date: date
     start_time: time
     end_time: time
+    location: str
     status: Optional[str] = "open"
 
 
