@@ -72,6 +72,30 @@ def create_recruitment(
     return create_recruitment
 
 
+@app.put("/recruitments/{recruitment_id}", response_model=schemas.Recruitment)
+def update_recruitment(
+    recruitment_id: int,
+    recruitment_update: schemas.RecruitmentUpdate,
+    db: Session = Depends(get_db),
+):
+    updated_recruitment = crud.update_recruitment(
+        db=db, recruitment_id=recruitment_id, recruitment_update=recruitment_update
+    )
+
+    if updated_recruitment is None:
+        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+    return updated_recruitment
+
+
+@app.delete("/recruitments/{recruitment_id}", response_model=schemas.Recruitment)
+def delete_recruitment(recruitment_id: int, db: Session = Depends(get_db)):
+    deleted_recruitment = crud.delete_recruitment(db=db, recruitment_id=recruitment_id)
+
+    if deleted_recruitment is None:
+        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+    return deleted_recruitment
+
+
 # Player
 @app.get("/players/", response_model=list[schemas.Player])
 def get_players(db: Session = Depends(get_db)):
