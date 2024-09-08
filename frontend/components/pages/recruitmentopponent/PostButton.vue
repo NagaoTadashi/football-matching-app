@@ -77,17 +77,6 @@ async function postRecruitment() {
 
             <v-card prepend-icon="mdi-form-select" title="募集内容">
                 <v-card-text>
-                    <v-row dense>
-                        <v-col cols="12" md="8" sm="6">
-                            <v-text-field
-                                v-model="recruitmentData.location"
-                                hide-details="auto"
-                                label="場所"
-                                clearable
-                                prepend-icon="mdi-map-marker-outline"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
                     <v-row>
                         <v-col cols="12" md="5" sm="7"
                             ><v-date-input
@@ -143,6 +132,17 @@ async function postRecruitment() {
                                     ></v-time-picker>
                                 </v-dialog>
                             </v-text-field>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="8" sm="6">
+                            <v-text-field
+                                v-model="recruitmentData.location"
+                                hide-details="auto"
+                                label="場所"
+                                clearable
+                                prepend-icon="mdi-map-marker-outline"
+                            ></v-text-field>
                         </v-col>
                     </v-row>
                 </v-card-text>
