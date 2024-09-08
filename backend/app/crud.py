@@ -62,6 +62,40 @@ def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate):
     return db_recruitment
 
 
+def update_recruitment(
+    db: Session, recruitment_id: int, recruitment_update: schemas.RecruitmentUpdate
+):
+    recruitment = (
+        db.query(models.Recruitment)
+        .filter(models.Recruitment.id == recruitment_id)
+        .first()
+    )
+    if not recruitment:
+        return None
+
+    recruitment.date = recruitment_update.date
+    recruitment.start_time = recruitment_update.start_time
+    recruitment.end_time = recruitment_update.end_time
+    recruitment.location = recruitment_update.location
+
+    db.commit()
+    db.refresh(recruitment)
+    return recruitment
+
+
+def delete_recruitment(db: Session, recruitment_id: int):
+    recruitment = (
+        db.query(models.Recruitment)
+        .filter(models.Recruitment.id == recruitment_id)
+        .first()
+    )
+    if recruitment is None:
+        return None
+    db.delete(recruitment)
+    db.commit()
+    return recruitment
+
+
 # Player
 def get_players(db: Session):
     return db.query(models.Player).all()
