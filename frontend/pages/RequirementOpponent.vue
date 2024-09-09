@@ -39,7 +39,7 @@ function handlerecruitmentDeleted(deletedrecruitment) {
                     v-for="(recruitment, i) in recruitments"
                     :key="i"
                     cols="12"
-                    md="4"
+                    md="3"
                 >
                     <RecruitmentCard
                         :recruitment="recruitment"

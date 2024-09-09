@@ -32,7 +32,7 @@ function handlePlayerDeleted(deletedPlayer) {
         </div>
         <div v-else>
             <v-row>
-                <v-col v-for="(player, i) in players" :key="i" cols="12" md="4">
+                <v-col v-for="(player, i) in players" :key="i" cols="12" md="3">
                     <PlayerCard
                         :player="player"
                         @PlayerDeleted="handlePlayerDeleted"
