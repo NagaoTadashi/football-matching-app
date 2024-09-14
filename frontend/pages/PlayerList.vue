@@ -1,7 +1,4 @@
 <script setup>
-// import AddButton from '~/components/pages/playerlist/RegisterButtton.vue';
-// import PlayerCard from '~/components/pages/playerlist/PlayerCard.vue';
-
 const { data: players } = await useFetch('http://localhost:8000/players');
 
 import { nextTick, ref, watch } from 'vue';
