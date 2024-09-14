@@ -10,13 +10,8 @@ const positions = ['GK', 'DF', 'MF', 'FW'];
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
-    {
-        title: 'ポジション',
-        align: 'start',
-        sortable: false,
-        key: 'position',
-    },
-    { title: '背番号', key: 'number' },
+    { title: '背番号', align: 'start', sortable: false, key: 'number' },
+    { title: 'ポジション', key: 'position' },
     { title: '名前', key: 'namae' },
     { title: 'Name', key: 'name' },
     { title: 'Actions', key: 'actions', sortable: false },
@@ -120,7 +115,11 @@ watch(dialogDelete, (val) => {
                 <v-spacer></v-spacer>
                 <v-dialog v-model="dialog" max-width="500px">
                     <template v-slot:activator="{ props }">
-                        <v-btn class="mb-2" color="primary" dark v-bind="props">
+                        <v-btn
+                            prepend-icon="mdi-account-plus"
+                            elevation="5"
+                            v-bind="props"
+                        >
                             選手を登録
                         </v-btn>
                     </template>
@@ -176,41 +175,30 @@ watch(dialogDelete, (val) => {
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
-                                color="blue-darken-1"
-                                variant="text"
+                                text="キャンセル"
+                                color="primary"
                                 @click="close"
                             >
-                                キャンセル
                             </v-btn>
-                            <v-btn
-                                color="blue-darken-1"
-                                variant="text"
-                                @click="save"
-                            >
-                                保存
+                            <v-btn text="保存" color="primary" @click="save">
                             </v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
                 <v-dialog v-model="dialogDelete" max-width="500px">
-                    <v-card>
-                        <v-card-title class="text-center"
-                            >この選手を消去してもよろしいですか?</v-card-title
-                        >
+                    <v-card max-width="250" title="本当に消去しますか?">
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
-                                color="blue-darken-1"
-                                variant="text"
+                                text="キャンセル"
+                                color="primary"
                                 @click="closeDelete"
-                                >Cancel</v-btn
-                            >
+                            ></v-btn>
                             <v-btn
-                                color="blue-darken-1"
-                                variant="text"
+                                text="Ok"
+                                color="primary"
                                 @click="deleteItemConfirm"
-                                >OK</v-btn
-                            >
+                            ></v-btn>
                             <v-spacer></v-spacer>
                         </v-card-actions>
                     </v-card>
