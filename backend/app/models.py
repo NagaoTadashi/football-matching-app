@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from .database import Base
 
 
+# Team
 class Team(Base):
     __tablename__ = "teams"
 
@@ -17,6 +18,7 @@ class Team(Base):
     recruitments = relationship("Recruitment", back_populates="team")
 
 
+# Recruitment
 class Recruitment(Base):
     __tablename__ = "recruitments"
 
@@ -33,6 +35,7 @@ class Recruitment(Base):
     team = relationship("Team", back_populates="recruitments")
 
 
+# Player
 class Player(Base):
     __tablename__ = "players"
 
@@ -43,6 +46,7 @@ class Player(Base):
     name = Column(String)
 
 
+# Match
 class Match(Base):
     __tablename__ = "matches"
 
