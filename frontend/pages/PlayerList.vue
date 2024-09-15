@@ -170,15 +170,24 @@ watch(dialogDelete, (val) => {
                             </v-container>
                         </v-card-text>
 
+                        <v-divider></v-divider>
+
                         <v-card-actions>
                             <v-spacer></v-spacer>
+
                             <v-btn
                                 text="キャンセル"
-                                color="primary"
+                                variant="plain"
                                 @click="close"
                             >
                             </v-btn>
-                            <v-btn text="保存" color="primary" @click="save">
+
+                            <v-btn
+                                color="primary"
+                                text="保存"
+                                variant="tonal"
+                                @click="save"
+                            >
                             </v-btn>
                         </v-card-actions>
                     </v-card>
@@ -192,12 +201,13 @@ watch(dialogDelete, (val) => {
                             <v-spacer></v-spacer>
                             <v-btn
                                 text="キャンセル"
-                                color="primary"
+                                variant="plain"
                                 @click="closeDelete"
                             ></v-btn>
                             <v-btn
-                                text="OK"
                                 color="primary"
+                                text="OK"
+                                variant="tonal"
                                 @click="deleteItemConfirm"
                             ></v-btn>
                             <v-spacer></v-spacer>
