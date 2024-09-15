@@ -183,7 +183,10 @@ watch(dialogDelete, (val) => {
                     </v-card>
                 </v-dialog>
                 <v-dialog v-model="dialogDelete" max-width="500px">
-                    <v-card max-width="250" title="本当に消去しますか?">
+                    <v-card
+                        prepend-icon="mdi-delete-alert"
+                        title="この選手情報を削除してもよろしいですか？"
+                    >
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
@@ -192,7 +195,7 @@ watch(dialogDelete, (val) => {
                                 @click="closeDelete"
                             ></v-btn>
                             <v-btn
-                                text="Ok"
+                                text="OK"
                                 color="primary"
                                 @click="deleteItemConfirm"
                             ></v-btn>
@@ -206,7 +209,9 @@ watch(dialogDelete, (val) => {
             <v-icon class="me-2" size="small" @click="editItem(item)">
                 mdi-pencil
             </v-icon>
-            <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
+            <v-icon class="me-2" size="small" @click="deleteItem(item)">
+                mdi-delete
+            </v-icon>
         </template>
         <template v-slot:no-data> 選手が登録されていません </template>
     </v-data-table>
