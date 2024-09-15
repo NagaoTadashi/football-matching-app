@@ -1,9 +1,8 @@
 <script setup>
-const { data: players } = await useFetch('http://localhost:8000/players');
-
 import { nextTick, ref, watch } from 'vue';
 
-const positions = ['GK', 'DF', 'MF', 'FW'];
+const { data: players } = await useFetch('http://localhost:8000/players');
+
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
@@ -13,6 +12,8 @@ const headers = ref([
     { title: 'Name', key: 'name' },
     { title: 'Actions', key: 'actions', sortable: false },
 ]);
+
+const positions = ['GK', 'DF', 'MF', 'FW'];
 
 const itemId = ref(-1);
 const editedIndex = ref(-1);
@@ -68,7 +69,7 @@ function close() {
     });
 }
 async function save() {
-    if (itemId.value > -1) {
+    if (editedIndex.value > -1) {
         await editPlayer(itemId.value);
     } else {
         await registerPlayer();
@@ -82,7 +83,7 @@ function deleteItem(item) {
 function closeDelete() {
     dialogDelete.value = false;
     nextTick(() => {
-        editedItem.value = Object.assign({}, defaultItem.value);
+        // editedItem.value = Object.assign({}, defaultItem.value);
         itemId.value = -1;
     });
 }
