@@ -9,11 +9,11 @@ class Team(Base):
     __tablename__ = "teams"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=True, index=True)
-    region = Column(String, nullable=True)
-    prefecture = Column(String, nullable=True)
-    category = Column(String, nullable=True)
-    league = Column(String, nullable=True)
+    name = Column(String)
+    region = Column(String)
+    prefecture = Column(String)
+    category = Column(String)
+    league = Column(String)
 
     recruitments = relationship("Recruitment", back_populates="team")
 
