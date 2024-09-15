@@ -187,3 +187,5 @@ logs
 
 #sqlite
 sql_app.db
+alembic.ini
+alembic/
