@@ -29,11 +29,13 @@ class Team(TeamBase):
 
 # Recruitment
 class RecruitmentBase(BaseModel):
-    date: date
-    start_time: time
-    end_time: time
+    status: Optional[str] = "募集中"
+    year: int
+    month: int
+    day: int
+    start_time: str
+    end_time: str
     location: str
-    status: Optional[str] = "open"
 
 
 class RecruitmentCreate(RecruitmentBase):

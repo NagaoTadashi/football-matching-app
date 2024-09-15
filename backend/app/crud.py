@@ -50,11 +50,13 @@ def get_recruitments(db: Session):
 def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate):
     db_recruitment = models.Recruitment(
         team_id=recruitment.team_id,
-        location=recruitment.location,
-        date=recruitment.date,
+        status=recruitment.status,
+        year=recruitment.year,
+        month=recruitment.month,
+        day=recruitment.day,
         start_time=recruitment.start_time,
         end_time=recruitment.end_time,
-        status=recruitment.status,
+        location=recruitment.location,
     )
     db.add(db_recruitment)
     db.commit()
@@ -73,7 +75,9 @@ def update_recruitment(
     if not recruitment:
         return None
 
-    recruitment.date = recruitment_update.date
+    recruitment.year = recruitment_update.year
+    recruitment.month = recruitment_update.month
+    recruitment.day = recruitment_update.day
     recruitment.start_time = recruitment_update.start_time
     recruitment.end_time = recruitment_update.end_time
     recruitment.location = recruitment_update.location

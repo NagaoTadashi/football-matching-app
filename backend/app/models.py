@@ -22,11 +22,13 @@ class Recruitment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     team_id = Column(Integer, ForeignKey("teams.id"))
-    date = Column(Date, nullable=False)
-    start_time = Column(Time, nullable=False)
-    end_time = Column(Time, nullable=False)
+    status = Column(Enum("募集中", "マッチ済み"), default="募集中")
+    year = Column(Integer, nullable=False)
+    month = Column(Integer, nullable=False)
+    day = Column(Integer, nullable=False)
+    start_time = Column(String, nullable=False)
+    end_time = Column(String, nullable=False)
     location = Column(String, nullable=False)
-    status = Column(Enum("open", "matched", "closed"), default="open")
 
     team = relationship("Team", back_populates="recruitments")
 
