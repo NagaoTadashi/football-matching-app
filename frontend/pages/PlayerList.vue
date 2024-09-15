@@ -6,10 +6,10 @@ const { data: players } = await useFetch('http://localhost:8000/players');
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
-    { title: '背番号', align: 'start', sortable: false, key: 'number' },
-    { title: 'ポジション', key: 'position' },
-    { title: '名前', key: 'namae' },
-    { title: 'Name', key: 'name' },
+    { title: '背番号', align: 'start', key: 'number' },
+    { title: 'ポジション', key: 'position', sortable: false },
+    { title: '名前', key: 'namae', sortable: false },
+    { title: 'Name', key: 'name', sortable: false },
     { title: 'Actions', key: 'actions', sortable: false },
 ]);
 
