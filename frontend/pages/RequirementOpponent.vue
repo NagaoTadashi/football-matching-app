@@ -2,11 +2,15 @@
 import { nextTick, ref, watch } from 'vue';
 
 //teamidを取得(将来的にバックエンドから取得するコードに置き換え)
-const teamId = null;
+const teamId = ref(null);
 
-const { data: recruitments } = await useFetch(
-    'http://localhost:8000/recruitments'
-);
+let recruitments = null;
+if (teamId.value) {
+    const { data } = await useFetch(
+        `http://localhost:8000/recruitments/my_team?team_id=${teamId.value}`
+    );
+    recruitments = data;
+}
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -24,7 +28,7 @@ const headers = ref([
 const itemId = ref(-1);
 const editedIndex = ref(-1);
 const editedItem = ref({
-    team_id: teamId,
+    team_id: teamId.value,
     status: null,
     year: null,
     month: null,
@@ -34,7 +38,7 @@ const editedItem = ref({
     location: '',
 });
 const defaultItem = ref({
-    team_id: teamId,
+    team_id: teamId.value,
     status: null,
     year: null,
     month: null,
@@ -44,8 +48,8 @@ const defaultItem = ref({
     location: '',
 });
 
-async function registerRecruitment() {
-    const registeredRecruitment = await $fetch(
+async function postRecruitment() {
+    const postedRecruitment = await $fetch(
         'http://localhost:8000/recruitments',
         {
             method: 'POST',
@@ -53,7 +57,7 @@ async function registerRecruitment() {
         }
     );
 
-    recruitments.value.push(registeredRecruitment);
+    recruitments.value.push(postedRecruitment);
 }
 async function editRecruitment(id) {
     const editedRecruitment = await $fetch(
@@ -97,7 +101,7 @@ async function save() {
     if (editedIndex.value > -1) {
         await editRecruitment(itemId.value);
     } else {
-        await registerRecruitment();
+        await postRecruitment();
     }
     close();
 }
@@ -149,7 +153,7 @@ watch(dialogDelete, (val) => {
     <div>
         <div v-if="!teamId">
             <v-alert type="info" border="left" colored-border>
-                チーム情報を入力してください
+                はじめにチーム情報を登録してください
             </v-alert>
         </div>
         <div v-else>

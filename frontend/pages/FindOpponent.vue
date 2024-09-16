@@ -68,7 +68,7 @@ const games = [
     <div>
         <div v-if="!teamId">
             <v-alert type="info" border="left" colored-border>
-                チーム情報を入力してください
+                はじめにチーム情報を登録してください
             </v-alert>
         </div>
         <div v-else>
