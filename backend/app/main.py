@@ -83,7 +83,7 @@ def update_recruitment(
     )
 
     if updated_recruitment is None:
-        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+        raise HTTPException(status_code=404, detail="募集投稿が見つかりません")
     return updated_recruitment
 
 
@@ -92,7 +92,7 @@ def delete_recruitment(recruitment_id: int, db: Session = Depends(get_db)):
     deleted_recruitment = crud.delete_recruitment(db=db, recruitment_id=recruitment_id)
 
     if deleted_recruitment is None:
-        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+        raise HTTPException(status_code=404, detail="募集投稿が見つかりません")
     return deleted_recruitment
 
 
