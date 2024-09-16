@@ -54,9 +54,9 @@ def update_team_info(
 
 
 # Recruitment
-@app.get("/recruitments/", response_model=list[schemas.Recruitment])
-def get_recruitments(db: Session = Depends(get_db)):
-    recruitments = crud.get_recruitments(db)
+@app.get("/recruitments/my_team", response_model=list[schemas.Recruitment])
+def get_my_team_recruitments(team_id: int, db: Session = Depends(get_db)):
+    recruitments = crud.get_my_team_recruitments(db, team_id=team_id)
     return recruitments
 
 
