@@ -64,12 +64,8 @@ def get_my_team_recruitments(team_id: int, db: Session = Depends(get_db)):
 def create_recruitment(
     recruitment: schemas.RecruitmentCreate, db: Session = Depends(get_db)
 ):
-    team = db.query(models.Team).filter(models.Team.id == recruitment.team_id).first()
-    if not team:
-        raise HTTPException(status_code=400, detail="Team not found")
-
-    create_recruitment = crud.create_recruitment(db=db, recruitment=recruitment)
-    return create_recruitment
+    created_recruitment = crud.create_recruitment(db=db, recruitment=recruitment)
+    return created_recruitment
 
 
 @app.put("/recruitments/{recruitment_id}", response_model=schemas.Recruitment)
