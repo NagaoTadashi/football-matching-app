@@ -12,8 +12,12 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "date-fns": "^3.6.0",
+    "firebase": "^10.13.2",
+    "firebaseui": "^6.1.0",
     "nuxt": "^3.13.1",
-    "vue": "latest"
+    "nuxt-vuefire": "^1.0.4",
+    "vue": "latest",
+    "vuefire": "^3.2.0"
   },
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.3",
