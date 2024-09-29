@@ -1,9 +1,11 @@
 <script setup>
-import { reactive, shallowRef } from 'vue';
+import { ref, shallowRef } from 'vue';
+
+const props = defineProps(['idToken']);
 
 const dialog = shallowRef(false);
 
-const teamInfo = reactive({
+const teamInfo = ref({
     name: '',
     region: '',
     prefecture: '',
@@ -73,18 +75,22 @@ const emit = defineEmits(['teamInfoRegisterd']);
 async function registerTeamInfo() {
     const newTeamInfo = await $fetch('http://localhost:8000/team_info', {
         method: 'POST',
-        body: teamInfo,
+        headers: {
+            Authorization: `Bearer ${props.idToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: teamInfo.value,
     });
     // ダイアログを閉じる
     dialog.value = false;
     // イベントを発火して親コンポーネントにチーム情報を渡す
     emit('teamInfoRegisterd', newTeamInfo);
     // フォームデータをクリアする
-    teamInfo.name = '';
-    teamInfo.region = '';
-    teamInfo.prefecture = '';
-    teamInfo.category = '';
-    teamInfo.league = '';
+    teamInfo.value.name = '';
+    teamInfo.value.region = '';
+    teamInfo.value.prefecture = '';
+    teamInfo.value.category = '';
+    teamInfo.value.league = '';
 }
 </script>
 
