@@ -1,16 +1,19 @@
 <script setup>
 import { nextTick, ref, watch } from 'vue';
 
-//teamidを取得(将来的にバックエンドから取得するコードに置き換え)
-const teamId = ref(null);
+const user = await getCurrentUser();
+const idToken = await user.getIdToken();
 
-let recruitments = null;
-if (teamId.value) {
-    const { data } = await useFetch(
-        `http://localhost:8000/recruitments/my_team?team_id=${teamId.value}`
-    );
-    recruitments = data;
-}
+const { data: recruitments } = await useFetch(
+    'http://localhost:8000/recruitments',
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -28,7 +31,6 @@ const headers = ref([
 const itemId = ref(-1);
 const editedIndex = ref(-1);
 const editedItem = ref({
-    team_id: teamId.value,
     status: null,
     year: null,
     month: null,
@@ -38,7 +40,6 @@ const editedItem = ref({
     location: '',
 });
 const defaultItem = ref({
-    team_id: teamId.value,
     status: null,
     year: null,
     month: null,
@@ -53,6 +54,10 @@ async function postRecruitment() {
         'http://localhost:8000/recruitments',
         {
             method: 'POST',
+            headers: {
+                Authorization: `Bearer ${idToken}`,
+                'Content-Type': 'application/json',
+            },
             body: editedItem.value,
         }
     );
@@ -71,12 +76,9 @@ async function editRecruitment(id) {
     Object.assign(recruitments.value[editedIndex.value], editedRecruitment);
 }
 async function deleteRecruitment(id) {
-    const deletedRecruitment = await $fetch(
-        `http://localhost:8000/recruitments/${id}`,
-        {
-            method: 'DELETE',
-        }
-    );
+    await $fetch(`http://localhost:8000/recruitments/${id}`, {
+        method: 'DELETE',
+    });
 
     recruitments.value = recruitments.value.filter(
         (recruitment) => recruitment.id !== id
@@ -151,171 +153,155 @@ watch(dialogDelete, (val) => {
 
 <template>
     <div>
-        <div v-if="!teamId">
-            <v-alert type="info" border="left" colored-border>
-                はじめにチーム情報を登録してください
-            </v-alert>
-        </div>
-        <div v-else>
-            <v-data-table
-                :headers="headers"
-                :items="recruitments"
-                :sort-by="[
-                    { key: 'year', order: 'desc' },
-                    { key: 'month', order: 'desc' },
-                    { key: 'day', order: 'desc' },
-                ]"
-            >
-                <template v-slot:top>
-                    <v-toolbar flat>
-                        <v-toolbar-title>投稿済み募集一覧</v-toolbar-title>
-                        <v-divider class="mx-4" inset vertical></v-divider>
-                        <v-spacer></v-spacer>
-                        <v-dialog v-model="dialog" max-width="500px">
-                            <template v-slot:activator="{ props }">
+        <v-data-table
+            :headers="headers"
+            :items="recruitments"
+            :sort-by="[
+                { key: 'year', order: 'desc' },
+                { key: 'month', order: 'desc' },
+                { key: 'day', order: 'desc' },
+            ]"
+        >
+            <template v-slot:top>
+                <v-toolbar flat>
+                    <v-toolbar-title>投稿済み募集一覧</v-toolbar-title>
+                    <v-divider class="mx-4" inset vertical></v-divider>
+                    <v-spacer></v-spacer>
+                    <v-dialog v-model="dialog" max-width="500px">
+                        <template v-slot:activator="{ props }">
+                            <v-btn
+                                prepend-icon="mdi-text-box-plus-outline"
+                                elevation="5"
+                                v-bind="props"
+                            >
+                                募集を投稿
+                            </v-btn>
+                        </template>
+                        <v-card prepend-icon="mdi-form-select" title="募集内容">
+                            <v-card-text>
+                                <v-container>
+                                    <v-row>
+                                        <v-col class="d-flex align-center">
+                                            <v-icon>
+                                                mdi-calendar-month
+                                            </v-icon>
+                                        </v-col>
+                                        <v-col md="4" sm="7">
+                                            <v-select
+                                                v-model="editedItem.year"
+                                                label="年"
+                                                :items="yearOptions"
+                                            />
+                                        </v-col>
+                                        <v-col md="3" sm="7">
+                                            <v-select
+                                                v-model="editedItem.month"
+                                                label="月"
+                                                :items="monthOptions"
+                                            />
+                                        </v-col>
+                                        <v-col md="3" sm="7">
+                                            <v-select
+                                                v-model="editedItem.day"
+                                                label="日"
+                                                :items="dayOptions"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="d-flex align-center">
+                                            <v-icon>
+                                                mdi-clock-time-eight-outline
+                                            </v-icon>
+                                        </v-col>
+                                        <v-col cols="5" md="5" sm="7">
+                                            <v-select
+                                                v-model="editedItem.start_time"
+                                                label="開始時間"
+                                                :items="timeOptions"
+                                            />
+                                        </v-col>
+                                        <v-col cols="5" md="5" sm="7">
+                                            <v-select
+                                                v-model="editedItem.end_time"
+                                                label="終了時間"
+                                                :items="timeOptions"
+                                            />
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col class="d-flex align-center">
+                                            <v-icon>
+                                                mdi-map-marker-outline</v-icon
+                                            >
+                                        </v-col>
+                                        <v-col cols="12" md="10" sm="7">
+                                            <v-text-field
+                                                v-model="editedItem.location"
+                                                hide-details="auto"
+                                                label="場所"
+                                                clearable
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+
+                            <v-divider></v-divider>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+
                                 <v-btn
-                                    prepend-icon="mdi-text-box-plus-outline"
-                                    elevation="5"
-                                    v-bind="props"
+                                    text="キャンセル"
+                                    variant="plain"
+                                    @click="close"
                                 >
-                                    募集を投稿
                                 </v-btn>
-                            </template>
-                            <v-card
-                                prepend-icon="mdi-form-select"
-                                title="募集内容"
-                            >
-                                <v-card-text>
-                                    <v-container>
-                                        <v-row>
-                                            <v-col class="d-flex align-center">
-                                                <v-icon>
-                                                    mdi-calendar-month
-                                                </v-icon>
-                                            </v-col>
-                                            <v-col md="4" sm="7">
-                                                <v-select
-                                                    v-model="editedItem.year"
-                                                    label="年"
-                                                    :items="yearOptions"
-                                                />
-                                            </v-col>
-                                            <v-col md="3" sm="7">
-                                                <v-select
-                                                    v-model="editedItem.month"
-                                                    label="月"
-                                                    :items="monthOptions"
-                                                />
-                                            </v-col>
-                                            <v-col md="3" sm="7">
-                                                <v-select
-                                                    v-model="editedItem.day"
-                                                    label="日"
-                                                    :items="dayOptions"
-                                                />
-                                            </v-col>
-                                        </v-row>
-                                        <v-row>
-                                            <v-col class="d-flex align-center">
-                                                <v-icon>
-                                                    mdi-clock-time-eight-outline
-                                                </v-icon>
-                                            </v-col>
-                                            <v-col cols="5" md="5" sm="7">
-                                                <v-select
-                                                    v-model="
-                                                        editedItem.start_time
-                                                    "
-                                                    label="開始時間"
-                                                    :items="timeOptions"
-                                                />
-                                            </v-col>
-                                            <v-col cols="5" md="5" sm="7">
-                                                <v-select
-                                                    v-model="
-                                                        editedItem.end_time
-                                                    "
-                                                    label="終了時間"
-                                                    :items="timeOptions"
-                                                />
-                                            </v-col>
-                                        </v-row>
-                                        <v-row>
-                                            <v-col class="d-flex align-center">
-                                                <v-icon>
-                                                    mdi-map-marker-outline</v-icon
-                                                >
-                                            </v-col>
-                                            <v-col cols="12" md="10" sm="7">
-                                                <v-text-field
-                                                    v-model="
-                                                        editedItem.location
-                                                    "
-                                                    hide-details="auto"
-                                                    label="場所"
-                                                    clearable
-                                                ></v-text-field>
-                                            </v-col>
-                                        </v-row>
-                                    </v-container>
-                                </v-card-text>
 
-                                <v-divider></v-divider>
-
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-
-                                    <v-btn
-                                        text="キャンセル"
-                                        variant="plain"
-                                        @click="close"
-                                    >
-                                    </v-btn>
-
-                                    <v-btn
-                                        color="primary"
-                                        text="保存"
-                                        variant="tonal"
-                                        @click="save"
-                                    >
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-dialog>
-                        <v-dialog v-model="dialogDelete" max-width="500px">
-                            <v-card
-                                prepend-icon="mdi-delete-alert"
-                                title="この募集投稿を削除してもよろしいですか？"
-                            >
-                                <v-card-actions>
-                                    <v-spacer></v-spacer>
-                                    <v-btn
-                                        text="キャンセル"
-                                        variant="plain"
-                                        @click="closeDelete"
-                                    ></v-btn>
-                                    <v-btn
-                                        color="primary"
-                                        text="OK"
-                                        variant="tonal"
-                                        @click="deleteItemConfirm"
-                                    ></v-btn>
-                                    <v-spacer></v-spacer>
-                                </v-card-actions>
-                            </v-card>
-                        </v-dialog>
-                    </v-toolbar>
-                </template>
-                <template v-slot:[`item.actions`]="{ item }">
-                    <v-icon class="me-2" size="small" @click="editItem(item)">
-                        mdi-pencil
-                    </v-icon>
-                    <v-icon class="me-2" size="small" @click="deleteItem(item)">
-                        mdi-delete
-                    </v-icon>
-                </template>
-                <template v-slot:no-data> 募集が投稿されていません </template>
-            </v-data-table>
-        </div>
+                                <v-btn
+                                    color="primary"
+                                    text="保存"
+                                    variant="tonal"
+                                    @click="save"
+                                >
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                    <v-dialog v-model="dialogDelete" max-width="500px">
+                        <v-card
+                            prepend-icon="mdi-delete-alert"
+                            title="この募集投稿を削除してもよろしいですか？"
+                        >
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    text="キャンセル"
+                                    variant="plain"
+                                    @click="closeDelete"
+                                ></v-btn>
+                                <v-btn
+                                    color="primary"
+                                    text="OK"
+                                    variant="tonal"
+                                    @click="deleteItemConfirm"
+                                ></v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-toolbar>
+            </template>
+            <template v-slot:[`item.actions`]="{ item }">
+                <v-icon class="me-2" size="small" @click="editItem(item)">
+                    mdi-pencil
+                </v-icon>
+                <v-icon class="me-2" size="small" @click="deleteItem(item)">
+                    mdi-delete
+                </v-icon>
+            </template>
+            <template v-slot:no-data> 募集が投稿されていません </template>
+        </v-data-table>
     </div>
 </template>
