@@ -4,12 +4,13 @@ from . import models, schemas
 
 
 # Team
-def get_team_info(db: Session):
-    return db.query(models.Team).one()
+def get_team_info(db: Session, uid: str):
+    return db.query(models.Team).filter(models.Team.uid == uid).first()
 
 
-def create_team_info(db: Session, team_info: schemas.TeamCreate):
+def create_team_info(db: Session, team_info: schemas.TeamCreate, uid: str):
     db_team_info = models.Team(
+        uid=uid,
         name=team_info.name,
         region=team_info.region,
         prefecture=team_info.prefecture,
@@ -43,15 +44,13 @@ def update_team_info(
 
 
 # Recruitment
-def get_my_team_recruitments(db: Session, team_id: int):
-    return (
-        db.query(models.Recruitment).filter(models.Recruitment.team_id == team_id).all()
-    )
+def get_my_team_recruitments(db: Session, uid: str):
+    return db.query(models.Recruitment).filter(models.Recruitment.uid == uid).all()
 
 
-def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate):
+def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate, uid: str):
     db_recruitment = models.Recruitment(
-        team_id=recruitment.team_id,
+        uid=uid,
         status=recruitment.status,
         year=recruitment.year,
         month=recruitment.month,
@@ -103,12 +102,13 @@ def delete_recruitment(db: Session, recruitment_id: int):
 
 
 # Player
-def get_players(db: Session):
-    return db.query(models.Player).all()
+def get_players(db: Session, uid: str):
+    return db.query(models.Player).filter(models.Player.uid == uid).all()
 
 
-def create_player(db: Session, player: schemas.PlayerCreate):
+def create_player(db: Session, player: schemas.PlayerCreate, uid: str):
     db_player = models.Player(
+        uid=uid,
         position=player.position,
         namae=player.namae,
         name=player.name,
