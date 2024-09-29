@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { getAuth, signOut } from 'firebase/auth';
 
 const items = [
     {
@@ -40,6 +41,16 @@ const drawer = ref(null);
 watch(group, () => {
     drawer.value = false;
 });
+
+const handleSignOut = async () => {
+    const auth = getAuth();
+    try {
+        await signOut(auth);
+        console.log('Sign-out successful.');
+    } catch (error) {
+        console.error('An error happened during sign-out:', error);
+    }
+};
 </script>
 
 <template>
