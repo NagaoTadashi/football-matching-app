@@ -70,6 +70,21 @@ const handleSignOut = async () => {
                 <v-icon>mdi-soccer</v-icon> Football Match</v-app-bar-title
             >
             <v-spacer></v-spacer>
+
+            <v-btn class="text-none" stacked v-tooltip:bottom="'通知'">
+                <v-badge color="error" content="2">
+                    <v-icon>mdi-bell-outline</v-icon>
+                </v-badge>
+            </v-btn>
+
+            <v-btn
+                class="text-none"
+                stacked
+                v-tooltip:bottom="'ログアウト'"
+                @click="handleSignOut"
+            >
+                <v-icon>mdi-logout</v-icon>
+            </v-btn>
         </v-app-bar>
 
         <v-navigation-drawer floating permanent width="225">
