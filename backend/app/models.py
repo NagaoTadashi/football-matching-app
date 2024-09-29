@@ -16,8 +16,6 @@ class Team(Base):
     category = Column(String)
     league = Column(String)
 
-    recruitments = relationship("Recruitment", back_populates="team")
-
 
 # Recruitment
 class Recruitment(Base):
@@ -32,8 +30,6 @@ class Recruitment(Base):
     start_time = Column(String)
     end_time = Column(String)
     location = Column(String)
-
-    team = relationship("Team", back_populates="recruitments")
 
 
 # Player
