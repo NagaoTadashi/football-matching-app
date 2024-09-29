@@ -18,7 +18,7 @@ class TeamCreate(TeamBase):
 
 
 class TeamUpdate(TeamBase):
-    pass
+    id: int
 
 
 class Team(TeamBase):
@@ -48,11 +48,11 @@ class RecruitmentBase(BaseModel):
 
 
 class RecruitmentCreate(RecruitmentBase):
-    team_id: int
+    pass
 
 
 class RecruitmentUpdate(RecruitmentBase):
-    pass
+    id: int
 
 
 class Recruitment(RecruitmentBase):
@@ -85,7 +85,7 @@ class PlayerCreate(PlayerBase):
 
 
 class PlayerUpdate(PlayerBase):
-    pass
+    id: int
 
 
 class Player(PlayerBase):
