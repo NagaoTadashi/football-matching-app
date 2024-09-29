@@ -2,7 +2,16 @@
 import RegisterButton from '~/components/pages/teaminfo/RegisterButton.vue';
 import EditButton from '~/components/pages/teaminfo/EditButton.vue';
 
-const { data: teamInfo } = await useFetch('http://localhost:8000/team_info');
+const user = await getCurrentUser();
+const idToken = await user.getIdToken();
+
+const { data: teamInfo } = await useFetch('http://localhost:8000/team_info', {
+    method: 'GET',
+    headers: {
+        Authorization: `Bearer ${idToken}`,
+        'Content-Type': 'application/json',
+    },
+});
 
 function handleTeamInfoRegisterd(newTeamInfo) {
     teamInfo.value = newTeamInfo;
@@ -21,7 +30,10 @@ function handleTeamInfoEdited(updatedTeamInfo) {
                 style="min-height: 300px"
                 icon="mdi-tshirt-crew"
                 title="チーム情報が登録されていません"
-                ><RegisterButton @TeamInfoRegisterd="handleTeamInfoRegisterd" />
+                ><RegisterButton
+                    :idToken="idToken"
+                    @TeamInfoRegisterd="handleTeamInfoRegisterd"
+                />
             </v-empty-state>
         </div>
         <div v-else>
