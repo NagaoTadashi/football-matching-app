@@ -149,6 +149,22 @@ watch(dialog, (val) => {
 watch(dialogDelete, (val) => {
     val || closeDelete();
 });
+
+const isValid = computed(() => {
+    return (
+        editedItem.value.status &&
+        editedItem.value.year &&
+        editedItem.value.month &&
+        editedItem.value.day &&
+        editedItem.value.start_time &&
+        editedItem.value.end_time &&
+        editedItem.value.location
+    );
+});
+
+function required(v) {
+    return !!v || 'フィールドは必須です';
+}
 </script>
 
 <template>
@@ -191,6 +207,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.year"
                                                 label="年"
                                                 :items="yearOptions"
+                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col md="3" sm="7">
@@ -198,6 +215,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.month"
                                                 label="月"
                                                 :items="monthOptions"
+                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col md="3" sm="7">
@@ -205,6 +223,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.day"
                                                 label="日"
                                                 :items="dayOptions"
+                                                :rules="[required]"
                                             />
                                         </v-col>
                                     </v-row>
@@ -219,6 +238,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.start_time"
                                                 label="開始時間"
                                                 :items="timeOptions"
+                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col cols="5" md="5" sm="7">
@@ -226,6 +246,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.end_time"
                                                 label="終了時間"
                                                 :items="timeOptions"
+                                                :rules="[required]"
                                             />
                                         </v-col>
                                     </v-row>
@@ -240,7 +261,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.location"
                                                 hide-details="auto"
                                                 label="場所"
-                                                clearable
+                                                :rules="[required]"
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -264,6 +285,7 @@ watch(dialogDelete, (val) => {
                                     text="保存"
                                     variant="tonal"
                                     @click="save"
+                                    :disabled="!isValid"
                                 >
                                 </v-btn>
                             </v-card-actions>

@@ -119,6 +119,19 @@ watch(dialog, (val) => {
 watch(dialogDelete, (val) => {
     val || closeDelete();
 });
+
+const isValid = computed(() => {
+    return (
+        editedItem.value.position &&
+        editedItem.value.number &&
+        editedItem.value.namae &&
+        editedItem.value.name
+    );
+});
+
+function required(v) {
+    return !!v || 'フィールドは必須です';
+}
 </script>
 
 <template>
@@ -152,6 +165,7 @@ watch(dialogDelete, (val) => {
                                                 v-model="editedItem.position"
                                                 label="ポジション"
                                                 :items="positions"
+                                                :rules="[required]"
                                             ></v-select>
                                         </v-col>
                                         <v-col cols="12" md="4" sm="6">
@@ -160,6 +174,7 @@ watch(dialogDelete, (val) => {
                                                 label="背番号"
                                                 :min="1"
                                                 control-variant="stacked"
+                                                :rules="[required]"
                                             >
                                             </v-number-input>
                                         </v-col>
@@ -173,6 +188,7 @@ watch(dialogDelete, (val) => {
                                                 <v-text-field
                                                     v-model="editedItem.namae"
                                                     label="名前"
+                                                    :rules="[required]"
                                                     clearable
                                                 ></v-text-field>
                                             </v-responsive>
@@ -185,6 +201,8 @@ watch(dialogDelete, (val) => {
                                                 <v-text-field
                                                     v-model="editedItem.name"
                                                     label="Name"
+                                                    :rules="[required]"
+                                                    clearable
                                                 ></v-text-field>
                                             </v-col>
                                         </v-responsive>
@@ -209,6 +227,7 @@ watch(dialogDelete, (val) => {
                                     text="保存"
                                     variant="tonal"
                                     @click="save"
+                                    :disabled="!isValid"
                                 >
                                 </v-btn>
                             </v-card-actions>
