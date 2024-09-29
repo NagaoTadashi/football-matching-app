@@ -97,6 +97,7 @@ def delete_recruitment(db: Session, recruitment_id: int):
     )
     if recruitment is None:
         return None
+
     db.delete(recruitment)
     db.commit()
     return recruitment
