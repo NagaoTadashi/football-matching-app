@@ -1,12 +1,13 @@
 <script setup>
-import { reactive, shallowRef } from 'vue';
+import { ref, shallowRef } from 'vue';
 
 const dialog = shallowRef(false);
 
 const props = defineProps(['teamInfo']);
 const emit = defineEmits(['teamInfoEdited']);
 
-const teamInfo = reactive({
+const teamInfo = ref({
+    id: props.teamInfo.id,
     name: props.teamInfo.name,
     region: props.teamInfo.region,
     prefecture: props.teamInfo.prefecture,
@@ -71,11 +72,14 @@ const regionsList = Object.keys(regions);
 
 const category = ['社会人', '大学', '高校', '中学', '小学'];
 
-async function editTeamInfo() {
-    const updatedTeamInfo = await $fetch(`http://localhost:8000/team_info`, {
-        method: 'PUT',
-        body: teamInfo,
-    });
+async function editTeamInfo(id) {
+    const updatedTeamInfo = await $fetch(
+        `http://localhost:8000/team_info/${id}`,
+        {
+            method: 'PUT',
+            body: teamInfo.value,
+        }
+    );
     if (updatedTeamInfo) {
         // ダイアログを閉じる
         dialog.value = false;
@@ -157,7 +161,7 @@ async function editTeamInfo() {
                         color="primary"
                         text="保存"
                         variant="tonal"
-                        @click="editTeamInfo"
+                        @click="editTeamInfo(props.teamInfo.id)"
                     ></v-btn>
                 </v-card-actions>
             </v-card>
