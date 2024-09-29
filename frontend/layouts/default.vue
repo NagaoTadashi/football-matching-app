@@ -58,6 +58,7 @@ watch(group, () => {
             <v-app-bar-title>
                 <v-icon>mdi-soccer</v-icon> Football Match</v-app-bar-title
             >
+            <v-spacer></v-spacer>
         </v-app-bar>
 
         <v-navigation-drawer floating permanent width="225">
@@ -73,10 +74,6 @@ watch(group, () => {
             </v-list>
         </v-navigation-drawer>
 
-        <!-- <v-main
-            class="d-flex align-center justify-center"
-            style="min-height: 300px"
-        > -->
         <v-main>
             <v-container>
                 <slot />
