@@ -26,9 +26,10 @@ def create_team_info(db: Session, team_info: schemas.TeamCreate, uid: str):
 
 def update_team_info(
     db: Session,
+    team_id: int,
     team_info_update: schemas.TeamUpdate,
 ):
-    team_info = db.query(models.Team).one()
+    team_info = db.query(models.Team).filter(models.Team.id == team_id).first()
     if not team_info:
         return None
 
