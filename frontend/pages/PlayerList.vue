@@ -239,10 +239,20 @@ watch(dialogDelete, (val) => {
                 </v-toolbar>
             </template>
             <template v-slot:[`item.actions`]="{ item }">
-                <v-icon class="me-2" size="small" @click="editItem(item)">
+                <v-icon
+                    class="me-2"
+                    size="small"
+                    @click="editItem(item)"
+                    v-tooltip:top="'編集'"
+                >
                     mdi-pencil
                 </v-icon>
-                <v-icon class="me-2" size="small" @click="deleteItem(item)">
+                <v-icon
+                    class="me-2"
+                    size="small"
+                    @click="deleteItem(item)"
+                    v-tooltip:top="'削除'"
+                >
                     mdi-delete
                 </v-icon>
             </template>
