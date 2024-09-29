@@ -139,6 +139,7 @@ def delete_player(db: Session, player_id: int):
     player = db.query(models.Player).filter(models.Player.id == player_id).first()
     if player is None:
         return None
+
     db.delete(player)
     db.commit()
     return player
