@@ -189,6 +189,7 @@ function required(v) {
                         text="登録"
                         variant="tonal"
                         @click="registerTeamInfo"
+                        :disabled="!isValid"
                     ></v-btn>
                 </v-card-actions>
             </v-card>
