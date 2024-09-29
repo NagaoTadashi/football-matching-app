@@ -9,6 +9,7 @@ class Team(Base):
     __tablename__ = "teams"
 
     id = Column(Integer, primary_key=True, index=True)
+    uid = Column(String)
     name = Column(String)
     region = Column(String)
     prefecture = Column(String)
@@ -23,7 +24,7 @@ class Recruitment(Base):
     __tablename__ = "recruitments"
 
     id = Column(Integer, primary_key=True, index=True)
-    team_id = Column(Integer, ForeignKey("teams.id"))
+    uid = Column(String)
     status = Column(Enum("募集中", "マッチ済み"), default="募集中")
     year = Column(Integer)
     month = Column(Integer)
@@ -40,6 +41,7 @@ class Player(Base):
     __tablename__ = "players"
 
     id = Column(Integer, primary_key=True)
+    uid = Column(String)
     position = Column(Enum("GK", "DF", "MF", "FW"))
     number = Column(Integer)
     namae = Column(String)
