@@ -32,7 +32,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# firebase settings
+cred = credentials.Certificate("serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
 
+
+# Firebaseトークンの検証関数
+async def get_current_user(request: Request):
+    auth_header = request.headers.get("Authorization")
+
+    if not auth_header:
+        raise HTTPException(status_code=403, detail="Authorization header missing")
+
+    token = auth_header.split(" ")[1]
+    try:
+        # Firebaseのトークンを検証
+        decoded_token = auth.verify_id_token(token)
+        return decoded_token
+    except Exception as e:
+        raise HTTPException(status_code=403, detail="Invalid token")
+
+
+# endpoint functions
 # Team
 @app.get("/team_info/", response_model=Optional[schemas.Team])
 def get_team_info(db: Session = Depends(get_db)):
