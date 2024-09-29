@@ -80,11 +80,13 @@ def create_team_info(
     return created_team_info
 
 
-@app.put("/team_info/", response_model=schemas.Team)
+@app.put("/team_info/{team_id}", response_model=schemas.Team)
 def update_team_info(
-    team_info_update: schemas.TeamUpdate, db: Session = Depends(get_db)
+    team_id: int, team_info_update: schemas.TeamUpdate, db: Session = Depends(get_db)
 ):
-    updated_team_info = crud.update_team_info(db=db, team_info_update=team_info_update)
+    updated_team_info = crud.update_team_info(
+        db=db, team_id=team_id, team_info_update=team_info_update
+    )
     return updated_team_info
 
 
