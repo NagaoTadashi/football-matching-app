@@ -56,14 +56,23 @@ async def get_current_user(request: Request):
 # endpoint functions
 # Team
 @app.get("/team_info/", response_model=Optional[schemas.Team])
-def get_team_info(db: Session = Depends(get_db)):
-    team_info = crud.get_team_info(db)
+def get_team_info(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    team_info = crud.get_team_info(db, uid=uid)
     return team_info
 
 
 @app.post("/team_info/", response_model=schemas.Team)
-def create_team_info(team_info: schemas.TeamCreate, db: Session = Depends(get_db)):
-    created_team_info = crud.create_team_info(db, team_info=team_info)
+def create_team_info(
+    team_info: schemas.TeamCreate,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    created_team_info = crud.create_team_info(db, team_info=team_info, uid=uid)
     return created_team_info
 
 
@@ -76,17 +85,26 @@ def update_team_info(
 
 
 # Recruitment
-@app.get("/recruitments/my_team", response_model=list[schemas.Recruitment])
-def get_my_team_recruitments(team_id: int, db: Session = Depends(get_db)):
-    recruitments = crud.get_my_team_recruitments(db, team_id=team_id)
+@app.get("/recruitments/", response_model=list[schemas.Recruitment])
+def get_my_team_recruitments(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    recruitments = crud.get_my_team_recruitments(db, uid=uid)
     return recruitments
 
 
 @app.post("/recruitments/", response_model=schemas.Recruitment)
 def create_recruitment(
-    recruitment: schemas.RecruitmentCreate, db: Session = Depends(get_db)
+    recruitment: schemas.RecruitmentCreate,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
 ):
-    created_recruitment = crud.create_recruitment(db=db, recruitment=recruitment)
+    uid = user["uid"]
+    created_recruitment = crud.create_recruitment(
+        db=db, recruitment=recruitment, uid=uid
+    )
     return created_recruitment
 
 
@@ -116,14 +134,23 @@ def delete_recruitment(recruitment_id: int, db: Session = Depends(get_db)):
 
 # Player
 @app.get("/players/", response_model=list[schemas.Player])
-def get_players(db: Session = Depends(get_db)):
-    players = crud.get_players(db)
+def get_players(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    players = crud.get_players(db, uid)
     return players
 
 
 @app.post("/players/", response_model=schemas.Player)
-def create_player(player: schemas.PlayerCreate, db: Session = Depends(get_db)):
-    created_player = crud.create_player(db=db, player=player)
+def create_player(
+    player: schemas.PlayerCreate,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    created_player = crud.create_player(db=db, player=player, uid=uid)
     return created_player
 
 
