@@ -1,7 +1,10 @@
-from fastapi import FastAPI, Depends, FastAPI, HTTPException
+from fastapi import FastAPI, Depends, FastAPI, HTTPException, Request
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
+import firebase_admin
+from firebase_admin import auth, credentials, initialize_app
+
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
