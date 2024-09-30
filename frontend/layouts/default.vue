@@ -55,16 +55,6 @@ const handleSignOut = async () => {
 
 <template>
     <v-app id="inspire">
-        <v-system-bar>
-            <v-spacer></v-spacer>
-
-            <v-icon>mdi-square</v-icon>
-
-            <v-icon>mdi-circle</v-icon>
-
-            <v-icon>mdi-triangle</v-icon>
-        </v-system-bar>
-
         <v-app-bar>
             <v-app-bar-title>
                 <v-icon>mdi-soccer</v-icon> Football Match</v-app-bar-title
