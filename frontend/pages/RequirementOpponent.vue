@@ -261,6 +261,7 @@ function required(v) {
                                                 hide-details="auto"
                                                 label="場所"
                                                 :rules="[required]"
+                                                clearable
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
