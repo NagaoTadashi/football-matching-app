@@ -152,7 +152,6 @@ watch(dialogDelete, (val) => {
 
 const isValid = computed(() => {
     return (
-        editedItem.value.status &&
         editedItem.value.year &&
         editedItem.value.month &&
         editedItem.value.day &&
