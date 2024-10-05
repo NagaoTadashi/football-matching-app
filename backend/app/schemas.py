@@ -29,13 +29,13 @@ class Team(TeamBase):
 
 
 # Recruitment
-class StatusEnum(str, PyEnum):
+class RecruitmentStatusEnum(str, PyEnum):
     open = "募集中"
     matched = "マッチ済み"
 
 
 class RecruitmentBase(BaseModel):
-    status: Optional[StatusEnum] = StatusEnum.open
+    status: Optional[RecruitmentStatusEnum] = RecruitmentStatusEnum.open
     year: int
     month: int
     day: int
