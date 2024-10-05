@@ -101,6 +101,16 @@ def get_my_team_recruitments(
     return recruitments
 
 
+@app.get("/other_team_recruitments/", response_model=list[schemas.Recruitment])
+def get_other_team_recruitments(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    recruitments = crud.get_other_team_recruitments(db, uid=uid)
+    return recruitments
+
+
 @app.post("/recruitments/", response_model=schemas.Recruitment)
 def create_recruitment(
     recruitment: schemas.RecruitmentCreate,
