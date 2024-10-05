@@ -91,7 +91,7 @@ def update_team_info(
 
 
 # Recruitment
-@app.get("/recruitments/", response_model=list[schemas.Recruitment])
+@app.get("/my_team_recruitments/", response_model=list[schemas.Recruitment])
 def get_my_team_recruitments(
     db: Session = Depends(get_db),
     user=Depends(get_current_user),
