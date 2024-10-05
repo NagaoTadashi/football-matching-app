@@ -17,21 +17,6 @@ class Team(Base):
     league = Column(String)
 
 
-# Recruitment
-class Recruitment(Base):
-    __tablename__ = "recruitments"
-
-    id = Column(Integer, primary_key=True, index=True)
-    uid = Column(String)
-    status = Column(Enum("募集中", "マッチ済み"), default="募集中")
-    year = Column(Integer)
-    month = Column(Integer)
-    day = Column(Integer)
-    start_time = Column(String)
-    end_time = Column(String)
-    location = Column(String)
-
-
 # Player
 class Player(Base):
     __tablename__ = "players"
@@ -42,6 +27,21 @@ class Player(Base):
     number = Column(Integer)
     namae = Column(String)
     name = Column(String)
+
+
+# Recruitment
+class Recruitment(Base):
+    __tablename__ = "recruitments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    uid = Column(String)
+    status = Column(Enum("募集中", "申し込み中", "マッチ済み"), default="募集中")
+    year = Column(Integer)
+    month = Column(Integer)
+    day = Column(Integer)
+    start_time = Column(String)
+    end_time = Column(String)
+    location = Column(String)
 
 
 # Match
