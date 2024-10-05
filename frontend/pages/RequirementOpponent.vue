@@ -5,7 +5,7 @@ const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
 const { data: recruitments } = await useFetch(
-    'http://localhost:8000/recruitments',
+    'http://localhost:8000/my_team_recruitments',
     {
         method: 'GET',
         headers: {
