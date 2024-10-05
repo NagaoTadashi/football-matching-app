@@ -44,6 +44,16 @@ class Recruitment(Base):
     location = Column(String)
 
 
+# Application
+class Application(Base):
+    __tablename__ = "applications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    recruitment_id = Column(Integer, ForeignKey("recruitments.id"))
+    uid = Column(String)
+    status = Column(Enum("未回答", "承認", "拒否"), default="未回答")
+
+
 # Match
 class Match(Base):
     __tablename__ = "matches"
