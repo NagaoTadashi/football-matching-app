@@ -63,6 +63,48 @@ class Recruitment(RecruitmentBase):
         orm_mode = True
 
 
+class OtherTeamRecruitment(RecruitmentBase):
+    id: int
+    name: str
+    region: str
+    prefecture: str
+    category: str
+    league: str
+
+    class Config:
+        orm_mode = True
+
+
+# Application
+class ApplicationStatusEnum(str, PyEnum):
+    noreply = "未回答"
+    approved = "承認"
+    rejected = "拒否"
+
+
+class ApplicationBase(BaseModel):
+    recruitment_id: int
+    status: Optional[ApplicationStatusEnum] = ApplicationStatusEnum.noreply
+
+    class Config:
+        use_enum_values = True
+
+
+class ApplicationCreate(ApplicationBase):
+    pass
+
+
+class ApplicationUpdate(ApplicationBase):
+    id: int
+
+
+class Application(ApplicationBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 # Player
 class PositionEnum(PyEnum):
     GK = "GK"
