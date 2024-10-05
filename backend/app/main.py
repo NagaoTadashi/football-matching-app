@@ -101,7 +101,7 @@ def get_my_team_recruitments(
     return recruitments
 
 
-@app.get("/other_team_recruitments/", response_model=list[schemas.Recruitment])
+@app.get("/other_team_recruitments/", response_model=list[schemas.OtherTeamRecruitment])
 def get_other_team_recruitments(
     db: Session = Depends(get_db),
     user=Depends(get_current_user),
