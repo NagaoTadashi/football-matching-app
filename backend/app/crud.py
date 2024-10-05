@@ -127,6 +127,19 @@ def delete_recruitment(db: Session, recruitment_id: int):
     return recruitment
 
 
+# Application
+def create_application(db: Session, application: schemas.ApplicationCreate, uid: str):
+    db_application = models.Application(
+        recruitment_id=application.recruitment_id,
+        uid=uid,
+        status=application.status,
+    )
+    db.add(db_application)
+    db.commit()
+    db.refresh(db_application)
+    return db_application
+
+
 # Player
 def get_players(db: Session, uid: str):
     return db.query(models.Player).filter(models.Player.uid == uid).all()
