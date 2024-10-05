@@ -31,7 +31,6 @@ const headers = ref([
 const itemId = ref(-1);
 const editedIndex = ref(-1);
 const editedItem = ref({
-    status: null,
     year: null,
     month: null,
     day: null,
@@ -40,7 +39,6 @@ const editedItem = ref({
     location: '',
 });
 const defaultItem = ref({
-    status: null,
     year: null,
     month: null,
     day: null,
