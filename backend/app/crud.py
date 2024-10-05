@@ -62,6 +62,10 @@ def get_other_team_recruitments(db: Session, uid: str):
             models.Recruitment.end_time,
             models.Recruitment.location,
             models.Team.name,
+            models.Team.region,
+            models.Team.prefecture,
+            models.Team.category,
+            models.Team.league,
         )
         .join(models.Team, models.Recruitment.uid == models.Team.uid)
         .filter(models.Recruitment.uid != uid)
