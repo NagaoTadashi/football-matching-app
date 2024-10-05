@@ -42,7 +42,6 @@ class RecruitmentBase(BaseModel):
     start_time: str
     end_time: str
     location: str
-    name: Optional[str] = None
 
     class Config:
         use_enum_values = True
