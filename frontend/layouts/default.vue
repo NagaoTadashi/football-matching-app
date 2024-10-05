@@ -61,24 +61,8 @@ const handleSignOut = async () => {
             >
             <v-spacer></v-spacer>
 
-            <v-btn
-                class="text-none"
-                stacked
-                v-tooltip:bottom="'他チームからの申し込み'"
-            >
-                <v-badge color="error" content="2">
-                    <v-icon>mdi-email-outline</v-icon>
-                </v-badge>
-            </v-btn>
-
-            <v-btn class="text-none" stacked v-tooltip:bottom="'申し込み結果'">
-                <v-badge color="error" content="2">
-                    <v-icon>mdi-check-circle-outline</v-icon>
-                </v-badge>
-            </v-btn>
-
             <v-btn class="text-none" stacked v-tooltip:bottom="'お知らせ'">
-                <v-badge color="error" content="2">
+                <v-badge color="error" content="200">
                     <v-icon>mdi-bell-outline</v-icon>
                 </v-badge>
             </v-btn>
