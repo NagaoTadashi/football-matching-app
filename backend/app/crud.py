@@ -49,6 +49,10 @@ def get_my_team_recruitments(db: Session, uid: str):
     return db.query(models.Recruitment).filter(models.Recruitment.uid == uid).all()
 
 
+def get_other_team_recruitments(db: Session, uid: str):
+    return db.query(models.Recruitment).filter(models.Recruitment.uid != uid).all()
+
+
 def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate, uid: str):
     db_recruitment = models.Recruitment(
         uid=uid,
