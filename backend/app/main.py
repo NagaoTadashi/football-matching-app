@@ -148,6 +148,18 @@ def delete_recruitment(recruitment_id: int, db: Session = Depends(get_db)):
     return deleted_recruitment
 
 
+# Application
+@app.post("/applications/", response_model=schemas.Application)
+def create_application(
+    application: schemas.ApplicationCreate,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    created_application = crud.create_application(db, application=application, uid=uid)
+    return created_application
+
+
 # Player
 @app.get("/players/", response_model=list[schemas.Player])
 def get_players(
