@@ -1,3 +1,4 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from . import models, schemas
@@ -50,7 +51,22 @@ def get_my_team_recruitments(db: Session, uid: str):
 
 
 def get_other_team_recruitments(db: Session, uid: str):
-    return db.query(models.Recruitment).filter(models.Recruitment.uid != uid).all()
+    stmt = (
+        select(
+            models.Recruitment.id,
+            models.Recruitment.status,
+            models.Recruitment.year,
+            models.Recruitment.month,
+            models.Recruitment.day,
+            models.Recruitment.start_time,
+            models.Recruitment.end_time,
+            models.Recruitment.location,
+            models.Team.name,
+        )
+        .join(models.Team, models.Recruitment.uid == models.Team.uid)
+        .filter(models.Recruitment.uid != uid)
+    )
+    return db.execute(stmt).all()
 
 
 def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate, uid: str):
