@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 import { getAuth, signOut } from 'firebase/auth';
 
-const items = [
+const menues = [
     {
         icon: 'mdi-soccer-field',
         title: '試合日程・結果',
@@ -80,12 +80,12 @@ const handleSignOut = async () => {
         <v-navigation-drawer floating permanent width="225">
             <v-list density="compact" nav>
                 <v-list-item
-                    v-for="(item, index) in items"
+                    v-for="(menue, index) in menues"
                     :key="index"
                     :link="true"
-                    :to="item.to"
-                    :prepend-icon="item.icon"
-                    :title="item.title"
+                    :to="menue.to"
+                    :prepend-icon="menue.icon"
+                    :title="menue.title"
                 ></v-list-item>
             </v-list>
         </v-navigation-drawer>
