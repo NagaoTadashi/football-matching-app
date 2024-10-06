@@ -28,6 +28,12 @@ const menues = [
         to: '/RequirementOpponent',
     },
     {
+        icon: 'mdi-email',
+        title: '申し込み依頼',
+        value: 'applicationRequest',
+        to: '/ApplicationRequest',
+    },
+    {
         icon: 'mdi-account-search',
         title: '対戦相手を探す',
         value: 'findOpponent',
