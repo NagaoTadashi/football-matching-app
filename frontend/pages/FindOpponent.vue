@@ -141,6 +141,9 @@ const img_url =
                                             text="申し込む"
                                             border
                                             flat
+                                            @click="
+                                                postApplication(item.raw.id)
+                                            "
                                         >
                                         </v-btn>
                                     </div>
