@@ -42,7 +42,9 @@ const headers = ref([
         >
             <template v-slot:top>
                 <v-toolbar flat>
-                    <v-toolbar-title>他チームからの申込一覧</v-toolbar-title>
+                    <v-toolbar-title
+                        >他チームからの申し込み依頼</v-toolbar-title
+                    >
                 </v-toolbar>
             </template>
             <template v-slot:[`item.actions`]="{ item }">
