@@ -1,8 +1,32 @@
 <script setup>
 import { shallowRef } from 'vue';
 
-//teamidを取得(将来的にバックエンドから取得するコードに置き換え)
-const teamId = null;
+const user = await getCurrentUser();
+const idToken = await user.getIdToken();
+
+const { data: recruitments } = await useFetch(
+    'http://localhost:8000/other_team_recruitments',
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
+
+const postApplication = async (recruitment_id) => {
+    await $fetch('http://localhost:8000/applications', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: {
+            recruitment_id: recruitment_id,
+        },
+    });
+};
 
 const search = shallowRef('');
 
