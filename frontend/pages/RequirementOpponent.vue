@@ -22,8 +22,8 @@ const headers = ref([
     { title: '年', key: 'year', sortable: false },
     { title: '月', key: 'month', sortable: false },
     { title: '日', key: 'day', sortable: false },
-    { title: '開始時間', key: 'start_time', sortable: false },
-    { title: '終了時間', key: 'end_time', sortable: false },
+    { title: '開始', key: 'start_time', sortable: false },
+    { title: '終了', key: 'end_time', sortable: false },
     { title: '場所', key: 'location', sortable: false },
     { title: 'Actions', key: 'actions', sortable: false },
 ]);
