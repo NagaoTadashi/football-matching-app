@@ -18,7 +18,8 @@ const { data: applicationRequests } = await useFetch(
 const dialog = ref(false);
 const dialogDelete = ref(false);
 const headers = ref([
-    { title: '年', align: 'start', key: 'year', sortable: false },
+    { title: 'チーム', align: 'start', key: 'name', sortable: false },
+    { title: '年', key: 'year', sortable: false },
     { title: '月', key: 'month', sortable: false },
     { title: '日', key: 'day', sortable: false },
     { title: '開始時間', key: 'start_time', sortable: false },
