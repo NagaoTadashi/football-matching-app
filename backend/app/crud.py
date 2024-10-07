@@ -128,6 +128,33 @@ def delete_recruitment(db: Session, recruitment_id: int):
 
 
 # Application
+def get_application_requests(db: Session, uid: str):
+    stmt = (
+        select(
+            models.Application.id,
+            models.Application.recruitment_id,
+            models.Recruitment.year,
+            models.Recruitment.month,
+            models.Recruitment.day,
+            models.Recruitment.start_time,
+            models.Recruitment.end_time,
+            models.Recruitment.location,
+            models.Team.name,
+            models.Team.region,
+            models.Team.prefecture,
+            models.Team.category,
+            models.Team.league,
+        )
+        .join(
+            models.Application,
+            models.Recruitment.id == models.Application.recruitment_id,
+        )
+        .join(models.Team, models.Application.uid == models.Team.uid)
+        .filter(models.Recruitment.uid == uid)
+    )
+    return db.execute(stmt).all()
+
+
 def create_application(db: Session, application: schemas.ApplicationCreate, uid: str):
     db_application = models.Application(
         recruitment_id=application.recruitment_id,
