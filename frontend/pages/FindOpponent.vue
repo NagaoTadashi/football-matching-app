@@ -66,7 +66,7 @@ const img_url =
         </div>
         <div v-else>
             <v-data-iterator
-                :items="games"
+                :items="recruitments"
                 :items-per-page="3"
                 :search="search"
             >
