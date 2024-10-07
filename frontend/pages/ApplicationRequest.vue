@@ -4,8 +4,8 @@ import { ref } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: recruitments } = await useFetch(
-    'http://localhost:8000/my_team_recruitments',
+const { data: applicationRequests } = await useFetch(
+    'http://localhost:8000/application_requests',
     {
         method: 'GET',
         headers: {
