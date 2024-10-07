@@ -109,21 +109,39 @@ const img_url =
                                 md="4"
                             >
                                 <v-card class="pb-3" border flat>
-                                    <v-img :src="item.raw.img"></v-img>
+                                    <v-img :src="img_url"></v-img>
 
                                     <v-card-item>
-                                        <v-card-title
-                                            >vs
-                                            {{ item.raw.title }}</v-card-title
-                                        >
-                                        <br />
+                                        <v-card-title>
+                                            vs {{ item.raw.name }}
+                                        </v-card-title>
+
                                         <v-card-subtitle>
-                                            日時：{{ item.raw.date }}
-                                            {{ item.raw.time }}</v-card-subtitle
-                                        >
+                                            {{ item.raw.prefecture }} |
+                                            {{ item.raw.category }} |
+                                            {{ item.raw.league }}
+                                        </v-card-subtitle>
+
                                         <v-card-subtitle>
-                                            場所：{{
-                                                item.raw.venue
+                                            <v-icon>mdi-calendar-month</v-icon>
+                                            {{ item.raw.year }}年{{
+                                                item.raw.month
+                                            }}月{{ item.raw.day }}日
+                                        </v-card-subtitle>
+                                        <v-card-subtitle>
+                                            <v-icon>
+                                                mdi-clock-time-eight-outline
+                                            </v-icon>
+                                            {{ item.raw.start_time }}
+                                            ~
+                                            {{ item.raw.end_time }}
+                                        </v-card-subtitle>
+
+                                        <v-card-subtitle
+                                            ><v-icon>
+                                                mdi-map-marker-outline</v-icon
+                                            >{{
+                                                item.raw.location
                                             }}</v-card-subtitle
                                         >
                                     </v-card-item>
