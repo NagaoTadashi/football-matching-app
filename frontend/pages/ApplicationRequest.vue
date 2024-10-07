@@ -33,7 +33,7 @@ const headers = ref([
     <div>
         <v-data-table
             :headers="headers"
-            :items="recruitments"
+            :items="applicationRequests"
             :sort-by="[
                 { key: 'year', order: 'desc' },
                 { key: 'month', order: 'desc' },
