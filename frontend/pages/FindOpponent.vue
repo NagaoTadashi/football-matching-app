@@ -87,7 +87,7 @@ const img_url =
 
                 <template v-slot:default="{ items }">
                     <v-container class="pa-2" fluid>
-                        <v-row>
+                        <!-- <v-row>
                             <v-sheet class="py-4 px-1">
                                 <v-chip-group
                                     selected-class="text-primary"
@@ -100,7 +100,7 @@ const img_url =
                                     ></v-chip>
                                 </v-chip-group>
                             </v-sheet>
-                        </v-row>
+                        </v-row> -->
                         <v-row dense>
                             <v-col
                                 v-for="item in items"
