@@ -53,10 +53,16 @@ const img_url =
 
 <template>
     <div>
-        <div v-if="!teamId">
-            <v-alert type="info" border="left" colored-border>
-                はじめにチーム情報を登録してください
-            </v-alert>
+        <div
+            v-if="recruitments.length === 0"
+            class="d-flex align-center justify-center"
+            style="min-height: 300px"
+        >
+            <v-empty-state
+                icon="mdi-soccer-field"
+                title="申し込み可能な試合がありません"
+            >
+            </v-empty-state>
         </div>
         <div v-else>
             <v-data-iterator
