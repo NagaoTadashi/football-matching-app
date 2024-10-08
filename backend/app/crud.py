@@ -69,6 +69,7 @@ def get_other_team_recruitments(db: Session, uid: str):
         )
         .join(models.Team, models.Recruitment.uid == models.Team.uid)
         .filter(models.Recruitment.uid != uid)
+        .filter(models.Recruitment.status == "募集中")
     )
     return db.execute(stmt).all()
 
