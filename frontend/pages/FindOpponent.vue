@@ -4,6 +4,14 @@ import { shallowRef } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
+const { data: teamInfo } = await useFetch('http://localhost:8000/team_info', {
+    method: 'GET',
+    headers: {
+        Authorization: `Bearer ${idToken}`,
+        'Content-Type': 'application/json',
+    },
+});
+
 const { data: recruitments } = await useFetch(
     'http://localhost:8000/other_team_recruitments',
     {
@@ -52,7 +60,20 @@ const img_url =
 </script>
 
 <template>
-    <div>
+    <div v-if="teamInfo === null">
+        <v-empty-state
+            class="d-flex align-center justify-center"
+            style="min-height: 300px"
+            icon="mdi-tshirt-crew"
+            title="チーム情報が登録されていません"
+        >
+            <template #text>
+                「<v-icon left>mdi-tshirt-crew</v-icon>
+                チーム情報」より、まずはじめにチーム情報を登録してください
+            </template>
+        </v-empty-state>
+    </div>
+    <div v-else>
         <div
             v-if="recruitments.length === 0"
             class="d-flex align-center justify-center"
