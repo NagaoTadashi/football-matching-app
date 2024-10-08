@@ -35,7 +35,7 @@ class Recruitment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     uid = Column(String)
-    status = Column(Enum("募集中", "申し込み中", "終了"), default="募集中")
+    status = Column(Enum("募集中", "回答待ち", "終了"), default="募集中")
     year = Column(Integer)
     month = Column(Integer)
     day = Column(Integer)
