@@ -30,6 +30,7 @@ function handleTeamInfoEdited(updatedTeamInfo) {
                 style="min-height: 300px"
                 icon="mdi-tshirt-crew"
                 title="チーム情報が登録されていません"
+                text="まずはじめに下記のボタンをクリックしてチーム情報を登録してください"
                 ><RegisterButton
                     :idToken="idToken"
                     @TeamInfoRegisterd="handleTeamInfoRegisterd"
