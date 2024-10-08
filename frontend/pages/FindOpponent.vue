@@ -23,6 +23,11 @@ const { data: recruitments } = await useFetch(
     }
 );
 
+recruitments.value = recruitments.value.map((item) => ({
+    ...item,
+    isApplied: false,
+}));
+
 const postApplication = async (recruitment_id) => {
     await $fetch('http://localhost:8000/applications', {
         method: 'POST',
@@ -37,6 +42,7 @@ const postApplication = async (recruitment_id) => {
 };
 
 const search = shallowRef('');
+const isApply = shallowRef(false);
 
 const img_url =
     // 'https://images.pexels.com/photos/41257/pexels-photo-41257.jpeg?auto=compress&cs=tinysrgb&w=800';
@@ -177,11 +183,25 @@ const img_url =
                                         <v-btn
                                             class="text-none"
                                             size="small"
-                                            text="申し込む"
+                                            :disabled="item.isApplied"
+                                            :prepend-icon="
+                                                item.isApplied
+                                                    ? 'mdi-check'
+                                                    : ''
+                                            "
+                                            :color="
+                                                item.isApplied ? 'success' : ''
+                                            "
+                                            :text="
+                                                item.isApplied
+                                                    ? '申し込み済'
+                                                    : '申し込む'
+                                            "
                                             border
                                             flat
                                             @click="
-                                                postApplication(item.raw.id)
+                                                postApplication(item.raw.id);
+                                                item.isApplied = true;
                                             "
                                         >
                                         </v-btn>
