@@ -164,6 +164,18 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
         status=application.status,
     )
     db.add(db_application)
+
+    # 申し込みされた募集のステータスを変更
+    db_recruitment = (
+        db.query(models.Recruitment)
+        .filter(models.Recruitment.id == application.recruitment_id)
+        .first()
+    )
+    if db_recruitment:
+        db_recruitment.status = "回答待ち"
+        db.commit()
+        db.refresh(db_recruitment)
+
     db.commit()
     db.refresh(db_application)
     return db_application
