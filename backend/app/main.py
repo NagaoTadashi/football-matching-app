@@ -156,7 +156,6 @@ def get_applocation_requests(
 ):
     uid = user["uid"]
     application_requests = crud.get_application_requests(db, uid=uid)
-    print(application_requests)
     return application_requests
 
 
