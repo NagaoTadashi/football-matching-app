@@ -29,7 +29,7 @@ recruitments.value = recruitments.value.map((item) => ({
 }));
 
 const postApplication = async (recruitment_id) => {
-    await $fetch('http://localhost:8000/applications', {
+    await $fetch('http://localhost:8000/application', {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${idToken}`,
