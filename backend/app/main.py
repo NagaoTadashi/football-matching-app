@@ -160,7 +160,7 @@ def get_applocation_requests(
     return application_requests
 
 
-@app.post("/applications/", response_model=schemas.Application)
+@app.post("/application/", response_model=schemas.Application)
 def create_application(
     application: schemas.ApplicationCreate,
     db: Session = Depends(get_db),
