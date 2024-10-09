@@ -60,7 +60,7 @@ const headers = ref([
                     color="#F44336"
                     class="me-2"
                     @click="deleteItem(item)"
-                    v-tooltip:top="'辞退'"
+                    v-tooltip:top="'拒否'"
                 >
                     mdi-close-circle
                 </v-icon>
