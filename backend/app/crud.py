@@ -152,6 +152,7 @@ def get_application_requests(db: Session, uid: str):
         )
         .join(models.Team, models.Application.uid == models.Team.uid)
         .filter(models.Recruitment.uid == uid)
+        .filter(models.Application.status == "回答待ち")
     )
     return db.execute(stmt).all()
 
