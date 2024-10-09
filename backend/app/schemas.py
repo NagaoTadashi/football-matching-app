@@ -31,6 +31,7 @@ class Team(TeamBase):
 # Recruitment
 class RecruitmentStatusEnum(str, PyEnum):
     open = "募集中"
+    waiting_for_response = "回答待ち"
     matched = "マッチ済み"
 
 
@@ -76,14 +77,14 @@ class OtherTeamRecruitment(RecruitmentBase):
 
 # Application
 class ApplicationStatusEnum(str, PyEnum):
-    noreply = "未回答"
+    waiting_for_response = "回答待ち"
     approved = "承認"
     rejected = "拒否"
 
 
 class ApplicationBase(BaseModel):
     recruitment_id: int
-    status: Optional[ApplicationStatusEnum] = ApplicationStatusEnum.noreply
+    status: Optional[ApplicationStatusEnum] = ApplicationStatusEnum.waiting_for_response
 
     class Config:
         use_enum_values = True
