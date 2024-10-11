@@ -186,7 +186,7 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
         .first()
     )
     if db_recruitment:
-        db_recruitment.status = "回答待ち"
+        db_recruitment.status = "申し込み受領"
         db.commit()
         db.refresh(db_recruitment)
 
