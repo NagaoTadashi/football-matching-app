@@ -100,6 +100,16 @@ def delete_recruitment(db: Session, recruitment_id: int):
     if recruitment is None:
         return None
 
+    # その募集に関連する申し込みを全て取得し削除
+    applications = (
+        db.query(models.Application)
+        .filter(models.Application.recruitment_id == recruitment_id)
+        .all()
+    )
+
+    for application in applications:
+        db.delete(application)
+
     db.delete(recruitment)
     db.commit()
     return recruitment
