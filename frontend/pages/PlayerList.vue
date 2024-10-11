@@ -235,7 +235,7 @@ function required(v) {
                     </v-dialog>
                     <v-dialog v-model="dialogDelete" max-width="500px">
                         <v-card
-                            prepend-icon="mdi-delete-alert"
+                            prepend-icon="mdi-alert-circle-outline"
                             title="この選手情報を削除してもよろしいですか？"
                         >
                             <v-card-actions>
