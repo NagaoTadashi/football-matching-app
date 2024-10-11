@@ -52,10 +52,6 @@ class RecruitmentCreate(RecruitmentBase):
     pass
 
 
-class RecruitmentUpdate(RecruitmentBase):
-    id: int
-
-
 class Recruitment(RecruitmentBase):
     id: int
 

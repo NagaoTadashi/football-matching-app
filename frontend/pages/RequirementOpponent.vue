@@ -37,7 +37,6 @@ const headers = ref([
 ]);
 
 const itemId = ref(-1);
-const editedIndex = ref(-1);
 const editedItem = ref({
     year: null,
     month: null,
@@ -67,20 +66,9 @@ async function postRecruitment() {
             body: editedItem.value,
         }
     );
-
     recruitments.value.push(postedRecruitment);
 }
-async function editRecruitment(id) {
-    const editedRecruitment = await $fetch(
-        `http://localhost:8000/recruitments/${id}`,
-        {
-            method: 'PUT',
-            body: editedItem.value,
-        }
-    );
 
-    Object.assign(recruitments.value[editedIndex.value], editedRecruitment);
-}
 async function deleteRecruitment(id) {
     await $fetch(`http://localhost:8000/recruitments/${id}`, {
         method: 'DELETE',
@@ -91,39 +79,31 @@ async function deleteRecruitment(id) {
     );
 }
 
-function editItem(item) {
-    itemId.value = item.id;
-    editedIndex.value = recruitments.value.indexOf(item);
-    editedItem.value = Object.assign({}, item);
-    dialog.value = true;
-}
 function close() {
     dialog.value = false;
     nextTick(() => {
         editedItem.value = Object.assign({}, defaultItem.value);
         itemId.value = -1;
-        editedIndex.value = -1;
     });
 }
-async function save() {
-    if (editedIndex.value > -1) {
-        await editRecruitment(itemId.value);
-    } else {
-        await postRecruitment();
-    }
+
+function post() {
+    postRecruitment();
     close();
 }
+
 function deleteItem(item) {
     itemId.value = item.id;
     dialogDelete.value = true;
 }
+
 function closeDelete() {
     dialogDelete.value = false;
     nextTick(() => {
-        // editedItem.value = Object.assign({}, defaultItem.value);
         itemId.value = -1;
     });
 }
+
 function deleteItemConfirm() {
     deleteRecruitment(itemId.value);
     closeDelete();
@@ -338,13 +318,7 @@ function required(v) {
             </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
-                    class="me-2"
-                    @click="editItem(item)"
-                    v-tooltip:top="'編集'"
-                >
-                    mdi-pencil
-                </v-icon>
-                <v-icon
+                    color="#F44336"
                     class="me-2"
                     @click="deleteItem(item)"
                     v-tooltip:top="'削除'"

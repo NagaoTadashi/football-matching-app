@@ -91,29 +91,6 @@ def create_recruitment(db: Session, recruitment: schemas.RecruitmentCreate, uid:
     return db_recruitment
 
 
-def update_recruitment(
-    db: Session, recruitment_id: int, recruitment_update: schemas.RecruitmentUpdate
-):
-    recruitment = (
-        db.query(models.Recruitment)
-        .filter(models.Recruitment.id == recruitment_id)
-        .first()
-    )
-    if not recruitment:
-        return None
-
-    recruitment.year = recruitment_update.year
-    recruitment.month = recruitment_update.month
-    recruitment.day = recruitment_update.day
-    recruitment.start_time = recruitment_update.start_time
-    recruitment.end_time = recruitment_update.end_time
-    recruitment.location = recruitment_update.location
-
-    db.commit()
-    db.refresh(recruitment)
-    return recruitment
-
-
 def delete_recruitment(db: Session, recruitment_id: int):
     recruitment = (
         db.query(models.Recruitment)
