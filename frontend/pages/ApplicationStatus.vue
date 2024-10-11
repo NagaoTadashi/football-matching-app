@@ -27,7 +27,7 @@ const headers = ref([
     { title: '開始', key: 'start_time', sortable: false },
     { title: '終了', key: 'end_time', sortable: false },
     { title: '場所', key: 'location', sortable: false },
-    { title: 'Actions', key: 'actions', sortable: false },
+    { title: '', key: 'actions', sortable: false },
 ]);
 
 async function deleteApplication(id) {

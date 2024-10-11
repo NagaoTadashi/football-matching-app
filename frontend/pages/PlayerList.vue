@@ -19,7 +19,7 @@ const headers = ref([
     { title: 'ポジション', key: 'position', sortable: false },
     { title: '名前', key: 'namae', sortable: false },
     { title: 'Name', key: 'name', sortable: false },
-    { title: 'Actions', key: 'actions', sortable: false },
+    { title: '', key: 'actions', sortable: false },
 ]);
 
 const positions = ['GK', 'DF', 'MF', 'FW'];
