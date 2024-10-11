@@ -39,10 +39,17 @@ const menues = [
         value: 'findOpponent',
         to: '/FindOpponent',
     },
+    {
+        icon: 'mdi-progress-check',
+        title: '申し込み状況',
+        value: 'applicationStatus',
+        to: '/ApplicationStatus',
+    },
 ];
 
 const group = ref(null);
 const drawer = ref(null);
+const applicationsDialog = ref(false);
 
 watch(group, () => {
     drawer.value = false;
@@ -57,6 +64,21 @@ const handleSignOut = async () => {
         console.error('An error happened during sign-out:', error);
     }
 };
+
+const applications = [
+    {
+        subtitle: 'Jan 9, 2014',
+        title: 'Photos',
+    },
+    {
+        subtitle: 'Jan 17, 2014',
+        title: 'Recipes',
+    },
+    {
+        subtitle: 'Jan 28, 2014',
+        title: 'Work',
+    },
+];
 </script>
 
 <template>
