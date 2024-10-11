@@ -146,10 +146,6 @@ const isValid = computed(() => {
         editedItem.value.location
     );
 });
-
-function required(v) {
-    return !!v || 'フィールドは必須です';
-}
 </script>
 
 <template>
@@ -207,7 +203,6 @@ function required(v) {
                                                 v-model="editedItem.year"
                                                 label="年"
                                                 :items="yearOptions"
-                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col md="3" sm="7">
@@ -215,7 +210,6 @@ function required(v) {
                                                 v-model="editedItem.month"
                                                 label="月"
                                                 :items="monthOptions"
-                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col md="3" sm="7">
@@ -223,7 +217,6 @@ function required(v) {
                                                 v-model="editedItem.day"
                                                 label="日"
                                                 :items="dayOptions"
-                                                :rules="[required]"
                                             />
                                         </v-col>
                                     </v-row>
@@ -238,7 +231,6 @@ function required(v) {
                                                 v-model="editedItem.start_time"
                                                 label="開始時間"
                                                 :items="timeOptions"
-                                                :rules="[required]"
                                             />
                                         </v-col>
                                         <v-col cols="5" md="5" sm="7">
@@ -246,7 +238,6 @@ function required(v) {
                                                 v-model="editedItem.end_time"
                                                 label="終了時間"
                                                 :items="timeOptions"
-                                                :rules="[required]"
                                             />
                                         </v-col>
                                     </v-row>
@@ -261,7 +252,6 @@ function required(v) {
                                                 v-model="editedItem.location"
                                                 hide-details="auto"
                                                 label="場所"
-                                                :rules="[required]"
                                                 clearable
                                             ></v-text-field>
                                         </v-col>
