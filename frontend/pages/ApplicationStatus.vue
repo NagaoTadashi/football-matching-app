@@ -66,7 +66,7 @@ watch(dialogDelete, (val) => {
     <div>
         <v-data-table
             :headers="headers"
-            :items="recruitments"
+            :items="applications"
             :sort-by="[
                 { key: 'year', order: 'desc' },
                 { key: 'month', order: 'desc' },
