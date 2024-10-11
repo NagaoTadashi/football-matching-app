@@ -178,17 +178,15 @@ const isValid = computed(() => {
                     <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
 
-                    <v-dialog v-model="dialog" max-width="500px">
-                        <template v-slot:activator="{ props }">
-                            <v-btn
-                                prepend-icon="mdi-text-box-plus-outline"
-                                elevation="5"
-                                v-bind="props"
-                            >
-                                募集を投稿
-                            </v-btn>
-                        </template>
+                    <v-btn
+                        prepend-icon="mdi-text-box-plus-outline"
+                        elevation="5"
+                        @click="dialog = true"
+                    >
+                        募集を投稿
+                    </v-btn>
 
+                    <v-dialog v-model="dialog" max-width="500px">
                         <v-card prepend-icon="mdi-form-select" title="募集内容">
                             <v-card-text>
                                 <v-container>
@@ -273,9 +271,9 @@ const isValid = computed(() => {
 
                                 <v-btn
                                     color="primary"
-                                    text="保存"
+                                    text="投稿"
                                     variant="tonal"
-                                    @click="save"
+                                    @click="post"
                                     :disabled="!isValid"
                                 >
                                 </v-btn>
