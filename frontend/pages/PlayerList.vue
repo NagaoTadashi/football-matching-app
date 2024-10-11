@@ -102,7 +102,6 @@ function deleteItem(item) {
 function closeDelete() {
     dialogDelete.value = false;
     nextTick(() => {
-        // editedItem.value = Object.assign({}, defaultItem);
         itemId.value = -1;
     });
 }
@@ -128,10 +127,6 @@ const isValid = computed(() => {
         editedItem.value.name
     );
 });
-
-function required(v) {
-    return !!v || 'フィールドは必須です';
-}
 </script>
 
 <template>
@@ -147,7 +142,7 @@ function required(v) {
                     <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
                     <v-dialog v-model="dialog" max-width="500px">
-                        <template v-slot:activator="{ props }">
+                        <!-- <template v-slot:activator="{ props }">
                             <v-btn
                                 prepend-icon="mdi-account-plus"
                                 elevation="5"
@@ -155,7 +150,7 @@ function required(v) {
                             >
                                 選手を登録
                             </v-btn>
-                        </template>
+                        </template> -->
                         <v-card prepend-icon="mdi-account" title="選手情報">
                             <v-card-text>
                                 <v-container>
@@ -165,7 +160,6 @@ function required(v) {
                                                 v-model="editedItem.position"
                                                 label="ポジション"
                                                 :items="positions"
-                                                :rules="[required]"
                                             ></v-select>
                                         </v-col>
                                         <v-col cols="12" md="4" sm="6">
@@ -174,7 +168,6 @@ function required(v) {
                                                 label="背番号"
                                                 :min="1"
                                                 control-variant="stacked"
-                                                :rules="[required]"
                                             >
                                             </v-number-input>
                                         </v-col>
@@ -188,7 +181,6 @@ function required(v) {
                                                 <v-text-field
                                                     v-model="editedItem.namae"
                                                     label="名前"
-                                                    :rules="[required]"
                                                     clearable
                                                 ></v-text-field>
                                             </v-responsive>
@@ -201,7 +193,6 @@ function required(v) {
                                                 <v-text-field
                                                     v-model="editedItem.name"
                                                     label="Name"
-                                                    :rules="[required]"
                                                     clearable
                                                 ></v-text-field>
                                             </v-col>
