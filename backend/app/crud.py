@@ -195,6 +195,31 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
     return db_application
 
 
+def delete_application(db: Session, application_id: int):
+    application = (
+        db.query(models.Application)
+        .filter(models.Application.id == application_id)
+        .first()
+    )
+    if application is None:
+        return None
+
+    # キャンセルされた募集のステータスを変更
+    db_recruitment = (
+        db.query(models.Recruitment)
+        .filter(models.Recruitment.id == application.recruitment_id)
+        .first()
+    )
+    if db_recruitment:
+        db_recruitment.status = "募集中"
+        db.commit()
+        db.refresh(db_recruitment)
+
+    db.delete(application)
+    db.commit()
+    return application
+
+
 # Player
 def get_players(db: Session, uid: str):
     return db.query(models.Player).filter(models.Player.uid == uid).all()
