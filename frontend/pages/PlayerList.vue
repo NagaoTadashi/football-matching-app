@@ -259,6 +259,7 @@ function required(v) {
             </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
+                    color="#4CAF50"
                     class="me-2"
                     @click="editItem(item)"
                     v-tooltip:top="'編集'"
@@ -266,6 +267,7 @@ function required(v) {
                     mdi-pencil
                 </v-icon>
                 <v-icon
+                    color="#F44336"
                     class="me-2"
                     @click="deleteItem(item)"
                     v-tooltip:top="'削除'"
