@@ -141,16 +141,16 @@ const isValid = computed(() => {
                     <v-toolbar-title>選手一覧</v-toolbar-title>
                     <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
-                    <v-dialog v-model="dialog" max-width="500px">
-                        <!-- <template v-slot:activator="{ props }">
+
                             <v-btn
                                 prepend-icon="mdi-account-plus"
                                 elevation="5"
-                                v-bind="props"
+                        @click="dialog = true"
                             >
                                 選手を登録
                             </v-btn>
-                        </template> -->
+
+                    <v-dialog v-model="dialog" max-width="500px">
                         <v-card prepend-icon="mdi-account" title="選手情報">
                             <v-card-text>
                                 <v-container>
