@@ -31,7 +31,7 @@ class Team(TeamBase):
 # Recruitment
 class RecruitmentStatusEnum(str, PyEnum):
     open = "募集中"
-    waiting_for_response = "回答待ち"
+    waiting_for_response = "申し込み受領"
     matched = "マッチ済み"
 
 
