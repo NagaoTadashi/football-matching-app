@@ -144,6 +144,16 @@ def get_applocation_requests(
     return application_requests
 
 
+@app.get("/application_status/", response_model=list[schemas.ApplicationStatus])
+def get_applocation_status(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    application_status = crud.get_application_status(db, uid=uid)
+    return application_status
+
+
 @app.post("/application/", response_model=schemas.Application)
 def create_application(
     application: schemas.ApplicationCreate,
@@ -153,6 +163,15 @@ def create_application(
     uid = user["uid"]
     created_application = crud.create_application(db, application=application, uid=uid)
     return created_application
+
+
+@app.delete("/application/{application_id}", response_model=schemas.Application)
+def delete_application(application_id: int, db: Session = Depends(get_db)):
+    deleted_application = crud.delete_application(db=db, application_id=application_id)
+
+    if deleted_application is None:
+        raise HTTPException(status_code=404, detail="申し込み情報が見つかりません")
+    return deleted_application
 
 
 # Player
