@@ -108,6 +108,13 @@ class ApplicationRequest(ApplicationBase, TeamBase, RecruitmentBase):
         orm_mode = True
 
 
+class ApplicationStatus(ApplicationBase, TeamBase, RecruitmentBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 # Player
 class PositionEnum(PyEnum):
     GK = "GK"
