@@ -18,8 +18,6 @@ const { data: myTeam } = await useFetch('http://localhost:8000/team_info', {
     },
 });
 
-console.log(matches.value);
-
 const search = shallowRef('');
 
 const img_url =
