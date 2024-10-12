@@ -27,6 +27,11 @@ const headers = ref([
 
 const positions = ['GK', 'DF', 'MF', 'FW'];
 
+const min_height = ref(0);
+const max_height = ref(250);
+const min_weight = ref(0);
+const max_weight = ref(100);
+
 const itemId = ref(-1);
 const editedIndex = ref(-1);
 const editedItem = ref({
