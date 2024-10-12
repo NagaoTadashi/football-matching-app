@@ -100,6 +100,50 @@ def update_team_info(
     return updated_team_info
 
 
+# Player
+@app.get("/players/", response_model=list[schemas.Player])
+def get_players(
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    players = crud.get_players(db=db, uid=uid)
+    return players
+
+
+@app.post("/players/", response_model=schemas.Player)
+def create_player(
+    player: schemas.PlayerCreate,
+    db: Session = Depends(get_db),
+    user=Depends(get_current_user),
+):
+    uid = user["uid"]
+    created_player = crud.create_player(db=db, player=player, uid=uid)
+    return created_player
+
+
+@app.put("/players/{player_id}", response_model=schemas.Player)
+def update_player(
+    player_id: int, player_update: schemas.PlayerUpdate, db: Session = Depends(get_db)
+):
+    updated_player = crud.update_player(
+        db=db, player_id=player_id, player_update=player_update
+    )
+
+    if updated_player is None:
+        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+    return updated_player
+
+
+@app.delete("/players/{player_id}", response_model=schemas.Player)
+def delete_player(player_id: int, db: Session = Depends(get_db)):
+    deleted_player = crud.delete_player(db=db, player_id=player_id)
+
+    if deleted_player is None:
+        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
+    return deleted_player
+
+
 # Recruitment
 @app.get("/my_team_recruitments/", response_model=list[schemas.Recruitment])
 def get_my_team_recruitments(
@@ -194,60 +238,3 @@ def delete_application(application_id: int, db: Session = Depends(get_db)):
     if deleted_application is None:
         raise HTTPException(status_code=404, detail="申し込み情報が見つかりません")
     return deleted_application
-
-
-# Player
-@app.get("/players/", response_model=list[schemas.Player])
-def get_players(
-    db: Session = Depends(get_db),
-    user=Depends(get_current_user),
-):
-    uid = user["uid"]
-    players = crud.get_players(db=db, uid=uid)
-    return players
-
-
-@app.post("/players/", response_model=schemas.Player)
-def create_player(
-    player: schemas.PlayerCreate,
-    db: Session = Depends(get_db),
-    user=Depends(get_current_user),
-):
-    uid = user["uid"]
-    created_player = crud.create_player(db=db, player=player, uid=uid)
-    return created_player
-
-
-@app.put("/players/{player_id}", response_model=schemas.Player)
-def update_player(
-    player_id: int, player_update: schemas.PlayerUpdate, db: Session = Depends(get_db)
-):
-    updated_player = crud.update_player(
-        db=db, player_id=player_id, player_update=player_update
-    )
-
-    if updated_player is None:
-        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
-    return updated_player
-
-
-@app.delete("/players/{player_id}", response_model=schemas.Player)
-def delete_player(player_id: int, db: Session = Depends(get_db)):
-    deleted_player = crud.delete_player(db=db, player_id=player_id)
-
-    if deleted_player is None:
-        raise HTTPException(status_code=404, detail="選手情報が見つかりません")
-    return deleted_player
-
-
-# Match
-@app.get("/matches/", response_model=list[schemas.Match])
-def get_matches(db: Session = Depends(get_db)):
-    matches = crud.get_matches(db=db)
-    return matches
-
-
-# @app.post("/match/", response_model=schemas.Match)
-# def create_match(match: schemas.MatchCreate, db: Session = Depends(get_db)):
-#     created_match = crud.create_match(db=db, match=match)
-#     return created_match
