@@ -230,6 +230,49 @@ def get_application_requests(db: Session, uid: str):
     return db.execute(stmt).all()
 
 
+def approve_application_request(db: Session, application_id: int):
+
+    application = (
+        db.query(models.Application)
+        .filter(models.Application.id == application_id)
+        .first()
+    )
+    if application is None:
+        return None
+
+    application.status = "承認"
+
+    db_recruitment = (
+        db.query(models.Recruitment)
+        .filter(models.Recruitment.id == application.recruitment_id)
+        .first()
+    )
+
+    if db_recruitment:
+        db_recruitment.status = "マッチ済み"
+
+    # 試合を作成
+    db_match = models.Match(
+        home_team_uid=db_recruitment.uid,
+        away_team_uid=application.uid,
+        year=db_recruitment.year,
+        month=db_recruitment.month,
+        day=db_recruitment.day,
+        start_time=db_recruitment.start_time,
+        end_time=db_recruitment.end_time,
+        location=db_recruitment.location,
+    )
+
+    db.add(db_match)
+    db.commit()
+    db.refresh(db_match)
+
+    db.commit()
+    db.refresh(application)
+
+    return application
+
+
 def decline_application_request(db: Session, application_id: int):
     # 申し込みを取得
     application = (
