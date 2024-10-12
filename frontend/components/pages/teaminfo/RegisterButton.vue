@@ -125,7 +125,6 @@ const isValid = computed(() => {
                             <v-text-field
                                 v-model="teamInfo.name"
                                 label="チーム名を入力"
-                                :rules="[required]"
                                 clearable
                             ></v-text-field>
                         </v-col>
@@ -178,7 +177,7 @@ const isValid = computed(() => {
 
                     <v-btn
                         color="primary"
-                        text="登録"
+                        text="保存"
                         variant="tonal"
                         @click="registerTeamInfo"
                         :disabled="!isValid"
