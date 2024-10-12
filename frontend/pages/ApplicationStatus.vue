@@ -112,7 +112,7 @@ watch(dialogDelete, (val) => {
                     mdi-cancel
                 </v-icon>
             </template>
-            <template v-slot:no-data>申し込みはまだありません</template>
+            <template v-slot:no-data>現在、申し込みはありません。</template>
         </v-data-table>
     </div>
 </template>

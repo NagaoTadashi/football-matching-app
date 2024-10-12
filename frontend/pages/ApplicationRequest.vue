@@ -66,7 +66,7 @@ const headers = ref([
                 </v-icon>
             </template>
             <template v-slot:no-data>
-                他チームからの申し込みはまだありません
+                現在、他チームからの申し込みはありません
             </template>
         </v-data-table>
     </div>
