@@ -102,10 +102,6 @@ const isValid = computed(() => {
         teamInfo.value.league
     );
 });
-
-function required(v) {
-    return !!v || 'フィールドは必須です';
-}
 </script>
 
 <template>
@@ -140,7 +136,6 @@ function required(v) {
                                 v-model="teamInfo.region"
                                 :items="regionsList"
                                 label="地域を選択"
-                                :rules="[required]"
                             ></v-select>
                         </v-col>
                         <v-col cols="12" md="4" sm="6">
@@ -148,7 +143,6 @@ function required(v) {
                                 v-model="teamInfo.prefecture"
                                 :items="regions[teamInfo.region]"
                                 label="都道府県を選択"
-                                :rules="[required]"
                             ></v-select>
                         </v-col>
                     </v-row>
@@ -158,14 +152,12 @@ function required(v) {
                                 v-model="teamInfo.category"
                                 :items="category"
                                 label="カテゴリを選択"
-                                :rules="[required]"
                             ></v-select>
                         </v-col>
                         <v-col cols="12" md="8" sm="6">
                             <v-text-field
                                 v-model="teamInfo.league"
                                 label="所属リーグを入力"
-                                :rules="[required]"
                                 clearable
                             ></v-text-field>
                         </v-col>
