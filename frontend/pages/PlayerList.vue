@@ -94,7 +94,7 @@ function close() {
     });
 }
 
-async function save() {
+async function post() {
     if (editedIndex.value > -1) {
         await editPlayer(itemId.value);
     } else {
@@ -290,9 +290,9 @@ const isValid = computed(() => {
 
                                 <v-btn
                                     color="primary"
-                                    text="保存"
+                                    text="登録"
                                     variant="tonal"
-                                    @click="save"
+                                    @click="post"
                                     :disabled="!isValid"
                                 >
                                 </v-btn>
