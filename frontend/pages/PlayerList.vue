@@ -19,6 +19,9 @@ const headers = ref([
     { title: 'ポジション', key: 'position', sortable: false },
     { title: '名前', key: 'namae', sortable: false },
     { title: 'Name', key: 'name', sortable: false },
+    { title: '身長(cm)', key: 'height', sortable: false },
+    { title: '体重(kg)', key: 'weight', sortable: false },
+    { title: '前所属', key: 'previous_team', sortable: false },
     { title: '', key: 'actions', sortable: false },
 ]);
 
@@ -31,12 +34,18 @@ const editedItem = ref({
     number: null,
     namae: '',
     name: '',
+    height: null,
+    weight: null,
+    previous_team: '',
 });
 const defaultItem = ref({
     position: '',
     number: null,
     namae: '',
     name: '',
+    height: null,
+    weight: null,
+    previous_team: '',
 });
 
 async function registerPlayer() {
@@ -124,7 +133,10 @@ const isValid = computed(() => {
         editedItem.value.position &&
         editedItem.value.number &&
         editedItem.value.namae &&
-        editedItem.value.name
+        editedItem.value.name &&
+        editedItem.value.height &&
+        editedItem.value.weight &&
+        editedItem.value.previous_team
     );
 });
 </script>
