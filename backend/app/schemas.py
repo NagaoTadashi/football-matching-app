@@ -128,6 +128,9 @@ class PlayerBase(BaseModel):
     number: int
     namae: str
     name: str
+    height: int
+    weight: int
+    previous_team: str
 
     class Config:
         use_enum_values = True

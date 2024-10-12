@@ -27,6 +27,9 @@ class Player(Base):
     number = Column(Integer)
     namae = Column(String)
     name = Column(String)
+    height = Column(Integer)
+    weight = Column(Integer)
+    previous_team = Column(String)
 
 
 # Recruitment

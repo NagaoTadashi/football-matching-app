@@ -232,7 +232,9 @@ def create_player(db: Session, player: schemas.PlayerCreate, uid: str):
         number=player.number,
         namae=player.namae,
         name=player.name,
-        number=player.number,
+        height=player.height,
+        weight=player.weight,
+        previous_team=player.previous_team,
     )
     db.add(db_player)
     db.commit()
@@ -249,6 +251,9 @@ def update_player(db: Session, player_id: int, player_update: schemas.PlayerUpda
     player.number = player_update.number
     player.namae = player_update.namae
     player.name = player_update.name
+    player.height = player_update.height
+    player.weight = player_update.weight
+    player.previous_team = player_update.previous_team
 
     db.commit()
     db.refresh(player)
