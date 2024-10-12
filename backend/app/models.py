@@ -72,16 +72,3 @@ class Application(Base):
     recruitment_id = Column(Integer, ForeignKey("recruitments.id"))
     uid = Column(String)
     status = Column(Enum("回答待ち", "承認", "辞退"), default="回答待ち")
-
-
-# Match
-class Match(Base):
-    __tablename__ = "matches"
-
-    id = Column(Integer, primary_key=True)
-    opponent = Column(String)
-    date = Column(Date)
-    time = Column(Time)
-    venue = Column(String)
-    my_team_score = Column(Integer)
-    opponent_score = Column(Integer)
