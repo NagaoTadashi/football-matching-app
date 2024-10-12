@@ -57,6 +57,42 @@ class Team(TeamBase):
         orm_mode = True
 
 
+# Player
+class PositionEnum(PyEnum):
+    GK = "GK"
+    DF = "DF"
+    MF = "MF"
+    FW = "FW"
+
+
+class PlayerBase(BaseModel):
+    position: PositionEnum
+    number: int
+    namae: str
+    name: str
+    height: int
+    weight: int
+    previous_team: str
+
+    class Config:
+        use_enum_values = True
+
+
+class PlayerCreate(PlayerBase):
+    pass
+
+
+class PlayerUpdate(PlayerBase):
+    id: int
+
+
+class Player(PlayerBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 # Recruitment
 class RecruitmentStatusEnum(str, PyEnum):
     open = "募集中"
@@ -138,63 +174,6 @@ class ApplicationRequest(ApplicationBase, TeamBase, RecruitmentBase):
 
 
 class ApplicationStatus(ApplicationBase, TeamBase, RecruitmentBase):
-    id: int
-
-    class Config:
-        orm_mode = True
-
-
-# Player
-class PositionEnum(PyEnum):
-    GK = "GK"
-    DF = "DF"
-    MF = "MF"
-    FW = "FW"
-
-
-class PlayerBase(BaseModel):
-    position: PositionEnum
-    number: int
-    namae: str
-    name: str
-    height: int
-    weight: int
-    previous_team: str
-
-    class Config:
-        use_enum_values = True
-
-
-class PlayerCreate(PlayerBase):
-    pass
-
-
-class PlayerUpdate(PlayerBase):
-    id: int
-
-
-class Player(PlayerBase):
-    id: int
-
-    class Config:
-        orm_mode = True
-
-
-# Match
-class MatchBase(BaseModel):
-    opponent: str
-    date: date
-    time: time
-    venue: str
-    my_team_score: Optional[int]
-    opponent_score: Optional[int]
-
-
-class MatchCreate(MatchBase):
-    pass
-
-
-class Match(MatchBase):
     id: int
 
     class Config:
