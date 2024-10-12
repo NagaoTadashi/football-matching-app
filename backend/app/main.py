@@ -65,7 +65,7 @@ def get_team_info(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    team_info = crud.get_team_info(db, uid=uid)
+    team_info = crud.get_team_info(db=db, uid=uid)
     return team_info
 
 
@@ -76,7 +76,7 @@ def create_team_info(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    created_team_info = crud.create_team_info(db, team_info=team_info, uid=uid)
+    created_team_info = crud.create_team_info(db=db, team_info=team_info, uid=uid)
     return created_team_info
 
 
@@ -97,7 +97,7 @@ def get_my_team_recruitments(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    recruitments = crud.get_my_team_recruitments(db, uid=uid)
+    recruitments = crud.get_my_team_recruitments(db=db, uid=uid)
     return recruitments
 
 
@@ -107,7 +107,7 @@ def get_other_team_recruitments(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    recruitments = crud.get_other_team_recruitments(db, uid=uid)
+    recruitments = crud.get_other_team_recruitments(db=db, uid=uid)
     return recruitments
 
 
@@ -135,12 +135,12 @@ def delete_recruitment(recruitment_id: int, db: Session = Depends(get_db)):
 
 # Application
 @app.get("/application_requests/", response_model=list[schemas.ApplicationRequest])
-def get_applocation_requests(
+def get_application_requests(
     db: Session = Depends(get_db),
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    application_requests = crud.get_application_requests(db, uid=uid)
+    application_requests = crud.get_application_requests(db=db, uid=uid)
     return application_requests
 
 
@@ -155,12 +155,12 @@ def decline_application_request(application_id: int, db: Session = Depends(get_d
 
 
 @app.get("/application_status/", response_model=list[schemas.ApplicationStatus])
-def get_applocation_status(
+def get_application_status(
     db: Session = Depends(get_db),
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    application_status = crud.get_application_status(db, uid=uid)
+    application_status = crud.get_application_status(db=db, uid=uid)
     return application_status
 
 
@@ -171,7 +171,9 @@ def create_application(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    created_application = crud.create_application(db, application=application, uid=uid)
+    created_application = crud.create_application(
+        db=db, application=application, uid=uid
+    )
     return created_application
 
 
@@ -191,7 +193,7 @@ def get_players(
     user=Depends(get_current_user),
 ):
     uid = user["uid"]
-    players = crud.get_players(db, uid)
+    players = crud.get_players(db=db, uid=uid)
     return players
 
 
@@ -231,7 +233,7 @@ def delete_player(player_id: int, db: Session = Depends(get_db)):
 # Match
 @app.get("/matches/", response_model=list[schemas.Match])
 def get_matches(db: Session = Depends(get_db)):
-    matches = crud.get_matches(db)
+    matches = crud.get_matches(db=db)
     return matches
 
 
