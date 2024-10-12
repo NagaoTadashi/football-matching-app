@@ -199,6 +199,16 @@ def get_application_requests(
 
 
 @app.post(
+    "/approve_application_request/{application_id}", response_model=schemas.Application
+)
+def approve_application_request(application_id: int, db: Session = Depends(get_db)):
+    approved_application_request = crud.approve_application_request(
+        db=db, application_id=application_id
+    )
+    return approved_application_request
+
+
+@app.post(
     "/decline_application_request/{application_id}", response_model=schemas.Application
 )
 def decline_application_request(application_id: int, db: Session = Depends(get_db)):
