@@ -4,6 +4,42 @@ from sqlalchemy.orm import Session, aliased
 from . import models, schemas
 
 
+# Match
+def get_matches(db: Session, uid: str):
+
+    home_team = aliased(models.Team)
+    away_team = aliased(models.Team)
+
+    stmt = (
+        select(
+            models.Match.id,
+            home_team.name.label("home_team_name"),
+            home_team.region.label("home_team_region"),
+            home_team.prefecture.label("home_team_prefecture"),
+            home_team.category.label("home_team_category"),
+            home_team.league.label("home_team_league"),
+            away_team.name.label("away_team_name"),
+            away_team.region.label("away_team_region"),
+            away_team.prefecture.label("away_team_prefecture"),
+            away_team.category.label("away_team_category"),
+            away_team.league.label("away_team_league"),
+            models.Match.year,
+            models.Match.month,
+            models.Match.day,
+            models.Match.start_time,
+            models.Match.end_time,
+            models.Match.location,
+            models.Match.home_team_score,
+            models.Match.away_team_score,
+        )
+        .select_from(models.Match)
+        .join(home_team, models.Match.home_team_uid == home_team.uid)
+        .join(away_team, models.Match.away_team_uid == away_team.uid)
+        .filter((home_team.uid == uid) | (away_team.uid == uid))
+    )
+    return db.execute(stmt).all()
+
+
 # Team
 def get_team_info(db: Session, uid: str):
     return db.query(models.Team).filter(models.Team.uid == uid).first()
