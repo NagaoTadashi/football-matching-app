@@ -13,11 +13,13 @@ def get_matches(db: Session, uid: str):
     stmt = (
         select(
             models.Match.id,
+            home_team.id.label("home_team_id"),
             home_team.name.label("home_team_name"),
             home_team.region.label("home_team_region"),
             home_team.prefecture.label("home_team_prefecture"),
             home_team.category.label("home_team_category"),
             home_team.league.label("home_team_league"),
+            away_team.id.label("away_team_id"),
             away_team.name.label("away_team_name"),
             away_team.region.label("away_team_region"),
             away_team.prefecture.label("away_team_prefecture"),
