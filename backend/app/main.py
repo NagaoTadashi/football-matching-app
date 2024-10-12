@@ -58,6 +58,16 @@ async def get_current_user(request: Request):
 
 
 # endpoint functions
+
+
+# Match
+@app.get("/matches/", response_model=list[schemas.Match])
+def get_matches(db: Session = Depends(get_db), user=Depends(get_current_user)):
+    uid = user["uid"]
+    matches = crud.get_matches(db=db, uid=uid)
+    return matches
+
+
 # Team
 @app.get("/team_info/", response_model=Optional[schemas.Team])
 def get_team_info(
