@@ -4,6 +4,35 @@ from datetime import date, time
 from enum import Enum as PyEnum
 
 
+# Match
+class MatchBase(BaseModel):
+    home_team_name: str
+    home_team_region: str
+    home_team_prefecture: str
+    home_team_category: str
+    home_team_league: str
+    away_team_name: str
+    away_team_region: str
+    away_team_prefecture: str
+    away_team_category: str
+    away_team_league: str
+    year: int
+    month: int
+    day: int
+    start_time: str
+    end_time: str
+    location: str
+    home_team_score: Optional[int]
+    away_team_score: Optional[int]
+
+
+class Match(MatchBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
 # Team
 class TeamBase(BaseModel):
     name: str
