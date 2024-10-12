@@ -144,6 +144,16 @@ def get_applocation_requests(
     return application_requests
 
 
+@app.post(
+    "/decline_application_request/{application_id}", response_model=schemas.Application
+)
+def decline_application_request(application_id: int, db: Session = Depends(get_db)):
+    declined_application_request = crud.decline_application_request(
+        db=db, application_id=application_id
+    )
+    return declined_application_request
+
+
 @app.get("/application_status/", response_model=list[schemas.ApplicationStatus])
 def get_applocation_status(
     db: Session = Depends(get_db),
