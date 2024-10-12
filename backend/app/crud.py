@@ -229,6 +229,7 @@ def create_player(db: Session, player: schemas.PlayerCreate, uid: str):
     db_player = models.Player(
         uid=uid,
         position=player.position,
+        number=player.number,
         namae=player.namae,
         name=player.name,
         number=player.number,
