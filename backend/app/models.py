@@ -4,6 +4,23 @@ from sqlalchemy.orm import relationship
 from .database import Base
 
 
+# Match
+class Match(Base):
+    __tablename__ = "matches"
+
+    id = Column(Integer, primary_key=True, index=True)
+    home_team_uid = Column(String)
+    away_team_uid = Column(String)
+    year = Column(Integer)
+    month = Column(Integer)
+    day = Column(Integer)
+    start_time = Column(String)
+    end_time = Column(String)
+    location = Column(String)
+    home_team_score = Column(Integer, nullable=True)
+    away_team_score = Column(Integer, nullable=True)
+
+
 # Team
 class Team(Base):
     __tablename__ = "teams"
