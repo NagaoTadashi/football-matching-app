@@ -87,7 +87,7 @@ function close() {
     });
 }
 
-function post() {
+function save() {
     postRecruitment();
     close();
 }
@@ -271,9 +271,9 @@ const isValid = computed(() => {
 
                                 <v-btn
                                     color="primary"
-                                    text="投稿"
+                                    text="保存"
                                     variant="tonal"
-                                    @click="post"
+                                    @click="save"
                                     :disabled="!isValid"
                                 >
                                 </v-btn>
