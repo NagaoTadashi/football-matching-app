@@ -42,7 +42,6 @@ const postApplication = async (recruitment_id) => {
 };
 
 const search = shallowRef('');
-const isApply = shallowRef(false);
 
 const img_url =
     // 'https://images.pexels.com/photos/41257/pexels-photo-41257.jpeg?auto=compress&cs=tinysrgb&w=800';
