@@ -54,7 +54,7 @@ class Application(Base):
     id = Column(Integer, primary_key=True, index=True)
     recruitment_id = Column(Integer, ForeignKey("recruitments.id"))
     uid = Column(String)
-    status = Column(Enum("回答待ち", "承認", "拒否"), default="回答待ち")
+    status = Column(Enum("回答待ち", "承認", "辞退"), default="回答待ち")
 
 
 # Match

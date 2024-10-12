@@ -75,7 +75,7 @@ class OtherTeamRecruitment(RecruitmentBase):
 class ApplicationStatusEnum(str, PyEnum):
     waiting_for_response = "回答待ち"
     approved = "承認"
-    rejected = "拒否"
+    decline = "辞退"
 
 
 class ApplicationBase(BaseModel):
