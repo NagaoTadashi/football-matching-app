@@ -15,6 +15,16 @@ const { data: applicationRequests } = await useFetch(
     }
 );
 
+async function approveApplicationRequest(id) {
+    await $fetch(`http://localhost:8000/approve_application_request/${id}`, {
+        method: 'POST',
+    });
+
+    applicationRequests.value = applicationRequests.value.filter(
+        (applicationRequest) => applicationRequest.id !== id
+    );
+}
+
 async function declineApplicationRequest(id) {
     await $fetch(`http://localhost:8000/decline_application_request/${id}`, {
         method: 'POST',
@@ -26,7 +36,7 @@ async function declineApplicationRequest(id) {
 }
 
 const itemId = ref(-1);
-// const dialog = ref(false);
+const dialogApprove = ref(false);
 const dialogDecline = ref(false);
 const headers = ref([
     { title: 'チーム', align: 'start', key: 'name', sortable: false },
@@ -38,6 +48,23 @@ const headers = ref([
     { title: '場所', key: 'location', sortable: false },
     { title: '', key: 'actions', sortable: false },
 ]);
+
+function approveItem(item) {
+    itemId.value = item.id;
+    dialogApprove.value = true;
+}
+
+function closeApprove() {
+    dialogApprove.value = false;
+    nextTick(() => {
+        itemId.value = -1;
+    });
+}
+
+function approveItemConfirm() {
+    approveApplicationRequest(itemId.value);
+    closeApprove();
+}
 
 function declineItem(item) {
     itemId.value = item.id;
@@ -76,6 +103,28 @@ function declineItemConfirm() {
                     <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
 
+                    <v-dialog v-model="dialogApprove" max-width="500px">
+                        <v-card
+                            prepend-icon="mdi-alert-circle-outline"
+                            title="この申し込みを承認してもよろしいですか？"
+                        >
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                    text="キャンセル"
+                                    variant="plain"
+                                    @click="closeApprove"
+                                ></v-btn>
+                                <v-btn
+                                    color="primary"
+                                    text="OK"
+                                    variant="tonal"
+                                    @click="approveItemConfirm"
+                                ></v-btn>
+                                <v-spacer></v-spacer>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
                     <v-dialog v-model="dialogDecline" max-width="500px">
                         <v-card
                             prepend-icon="mdi-alert-circle-outline"
@@ -104,7 +153,7 @@ function declineItemConfirm() {
                 <v-icon
                     class="me-2"
                     color="#4CAF50"
-                    @click="editItem(item)"
+                    @click="approveItem(item)"
                     v-tooltip:top="'承認'"
                 >
                     mdi-check-circle-outline
