@@ -6,11 +6,13 @@ from enum import Enum as PyEnum
 
 # Match
 class MatchBase(BaseModel):
+    home_team_id: int
     home_team_name: str
     home_team_region: str
     home_team_prefecture: str
     home_team_category: str
     home_team_league: str
+    away_team_id: int
     away_team_name: str
     away_team_region: str
     away_team_prefecture: str
