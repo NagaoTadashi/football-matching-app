@@ -104,6 +104,7 @@ watch(dialogDelete, (val) => {
             </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
+                    v-if="item.status === '回答待ち'"
                     color="#F44336"
                     class="me-2"
                     @click="deleteItem(item)"
