@@ -210,6 +210,69 @@ const isValid = computed(() => {
                                             </v-col>
                                         </v-responsive>
                                     </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-slider
+                                                v-model="editedItem.height"
+                                                :step="1"
+                                                :max="max_height"
+                                                :min="min_height"
+                                                class="align-center"
+                                                hide-details
+                                                label="身長"
+                                            >
+                                                <template v-slot:append>
+                                                    <v-text-field
+                                                        v-model="
+                                                            editedItem.height
+                                                        "
+                                                        density="compact"
+                                                        style="width: 75px"
+                                                        type="number"
+                                                        hide-details
+                                                        single-line
+                                                    ></v-text-field>
+                                                </template>
+                                            </v-slider>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-slider
+                                                v-model="editedItem.weight"
+                                                :step="1"
+                                                :max="max_weight"
+                                                :min="min_weight"
+                                                class="align-center"
+                                                hide-details
+                                                label="体重"
+                                            >
+                                                <template v-slot:append>
+                                                    <v-text-field
+                                                        v-model="
+                                                            editedItem.weight
+                                                        "
+                                                        density="compact"
+                                                        style="width: 75px"
+                                                        type="number"
+                                                        hide-details
+                                                        single-line
+                                                    ></v-text-field>
+                                                </template>
+                                            </v-slider>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-text-field
+                                                v-model="
+                                                    editedItem.previous_team
+                                                "
+                                                label="前所属"
+                                                clearable
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
                                 </v-container>
                             </v-card-text>
 
