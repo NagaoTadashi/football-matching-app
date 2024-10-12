@@ -181,7 +181,6 @@ const img_url =
 
                                         <v-btn
                                             class="text-none"
-                                            size="small"
                                             :disabled="item.isApplied"
                                             :prepend-icon="
                                                 item.isApplied

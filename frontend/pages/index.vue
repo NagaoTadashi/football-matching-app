@@ -105,9 +105,7 @@ const img_url =
                                         <div v-else>
                                             <v-card-title>
                                                 vs
-                                                {{
-                                                    item.raw.away_team_name
-                                                }}
+                                                {{ item.raw.away_team_name }}
                                                 (H)
                                             </v-card-title>
 
@@ -158,7 +156,6 @@ const img_url =
 
                                         <v-btn
                                             class="text-none"
-                                            size="small"
                                             text="詳細"
                                             border
                                             flat
