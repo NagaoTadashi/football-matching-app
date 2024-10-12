@@ -180,6 +180,7 @@ def get_application_status(db: Session, uid: str):
         select(
             models.Application.id,
             models.Application.recruitment_id,
+            models.Application.status,
             models.Recruitment.year,
             models.Recruitment.month,
             models.Recruitment.day,
