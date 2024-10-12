@@ -274,7 +274,7 @@ def approve_application_request(db: Session, application_id: int):
 
 
 def decline_application_request(db: Session, application_id: int):
-    # 申し込みを取得
+
     application = (
         db.query(models.Application)
         .filter(models.Application.id == application_id)
@@ -283,14 +283,8 @@ def decline_application_request(db: Session, application_id: int):
     if application is None:
         return None
 
-    print(application.status)
-
-    # 申し込みのステータスを辞退に変更
     application.status = "辞退"
 
-    print(application.status)
-
-    # 対応する募集のステータスを募集中に変更
     db_recruitment = (
         db.query(models.Recruitment)
         .filter(models.Recruitment.id == application.recruitment_id)
