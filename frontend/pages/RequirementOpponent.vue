@@ -306,6 +306,7 @@ const isValid = computed(() => {
             </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-icon
+                    v-if="item.status === '募集中'"
                     color="#F44336"
                     class="me-2"
                     @click="deleteItem(item)"
