@@ -99,7 +99,7 @@ const img_url =
         >
             <v-empty-state
                 icon="mdi-soccer-field"
-                title="申し込み可能な試合がありません"
+                title="現在、申し込み可能な試合はありません"
             >
             </v-empty-state>
         </div>
