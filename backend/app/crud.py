@@ -1,4 +1,4 @@
-from sqlalchemy import select, or_
+from sqlalchemy import select, and_
 from sqlalchemy.orm import Session, aliased
 
 from . import models, schemas
