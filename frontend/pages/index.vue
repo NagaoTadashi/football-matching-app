@@ -82,7 +82,7 @@ const img_url =
                                                 density="comfortable"
                                                 v-tooltip:top="'試合メモ'"
                                                 icon="mdi-note-edit-outline"
-                                            ></v-btn>
+                                            ></v-btn> -->
                                         </div>
                                     </v-img>
 
