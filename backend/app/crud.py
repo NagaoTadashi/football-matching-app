@@ -193,7 +193,6 @@ def delete_recruitment(db: Session, recruitment_id: int):
     if recruitment is None:
         return None
 
-    # その募集に関連する申し込みを全て取得し削除
     applications = (
         db.query(models.Application)
         .filter(models.Application.recruitment_id == recruitment_id)
@@ -258,7 +257,6 @@ def approve_application_request(db: Session, application_id: int):
     if db_recruitment:
         db_recruitment.status = "マッチ済み"
 
-    # 試合を作成
     db_match = models.Match(
         home_team_uid=db_recruitment.uid,
         away_team_uid=application.uid,
@@ -341,7 +339,6 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
     )
     db.add(db_application)
 
-    # 申し込みされた募集のステータスを変更
     db_recruitment = (
         db.query(models.Recruitment)
         .filter(models.Recruitment.id == application.recruitment_id)
@@ -368,7 +365,6 @@ def delete_application(db: Session, application_id: int):
     if application is None:
         return None
 
-    # キャンセルされた募集のステータスを変更
     db_recruitment = (
         db.query(models.Recruitment)
         .filter(models.Recruitment.id == application.recruitment_id)
