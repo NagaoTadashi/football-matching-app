@@ -34,14 +34,14 @@ const postApplication = async (recruitment_id) => {
     const postedApplication = await $fetch(
         'http://localhost:8000/application',
         {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${idToken}`,
-            'Content-Type': 'application/json',
-        },
-        body: {
-            recruitment_id: recruitment_id,
-        },
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${idToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: {
+                recruitment_id: recruitment_id,
+            },
         }
     );
 
