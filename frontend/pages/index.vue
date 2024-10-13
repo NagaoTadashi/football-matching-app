@@ -73,6 +73,11 @@ const img_url =
                                 <v-card class="pb-3" border flat>
                                     <v-img :src="img_url">
                                         <div class="d-flex justify-end">
+                                            <!-- <v-btn
+                                                density="comfortable"
+                                                v-tooltip:top="'試合動画'"
+                                                icon="mdi-video"
+                                            ></v-btn> -->
                                             <v-btn
                                                 density="comfortable"
                                                 v-tooltip:top="'試合メモ'"
