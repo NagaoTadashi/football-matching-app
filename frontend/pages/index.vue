@@ -78,7 +78,7 @@ const img_url =
                                                 v-tooltip:top="'試合動画'"
                                                 icon="mdi-video"
                                             ></v-btn> -->
-                                            <v-btn
+                                            <!-- <v-btn
                                                 density="comfortable"
                                                 v-tooltip:top="'試合メモ'"
                                                 icon="mdi-note-edit-outline"
