@@ -257,7 +257,7 @@ const img_url =
         <v-dialog v-model="isErrorDialogVisible" max-width="630">
             <v-card
                 prepend-icon="mdi-alert-circle-outline"
-                title="この募集は直前で削除されたため、申し込みができません。"
+                title="この募集は直前で削除もしくは先着で申し込みされました。"
             >
                 <v-card-actions>
                     <v-btn color="primary" @click="isErrorDialogVisible = false"
