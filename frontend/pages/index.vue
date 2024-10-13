@@ -71,7 +71,15 @@ const img_url =
                                 md="4"
                             >
                                 <v-card class="pb-3" border flat>
-                                    <v-img :src="img_url"></v-img>
+                                    <v-img :src="img_url">
+                                        <div class="d-flex justify-end">
+                                            <v-btn
+                                                density="comfortable"
+                                                v-tooltip:top="'試合メモ'"
+                                                icon="mdi-note-edit-outline"
+                                            ></v-btn>
+                                        </div>
+                                    </v-img>
 
                                     <v-card-item>
                                         <div
@@ -98,108 +106,6 @@ const img_url =
                                                 |
                                                 {{ item.raw.away_team_league }}
                                             </v-card-subtitle>
-
-                                            <v-card-subtitle>
-                                                <v-icon
-                                                    >mdi-calendar-month</v-icon
-                                                >
-                                                {{ item.raw.year }}年{{
-                                                    item.raw.month
-                                                }}月{{ item.raw.day }}日
-                                            </v-card-subtitle>
-                                            <v-card-subtitle>
-                                                <v-icon>
-                                                    mdi-clock-time-eight-outline
-                                                </v-icon>
-                                                {{ item.raw.start_time }}
-                                                ~
-                                                {{ item.raw.end_time }}
-                                            </v-card-subtitle>
-
-                                            <v-card-subtitle>
-                                                <v-icon
-                                                    >mdi-map-marker-outline</v-icon
-                                                >
-                                                {{ item.raw.location }}
-                                            </v-card-subtitle>
-
-                                            <div
-                                                v-if="
-                                                    item.raw.home_team_score ===
-                                                        null &&
-                                                    item.raw.away_team_score ===
-                                                        null
-                                                "
-                                            >
-                                                <v-card-subtitle>
-                                                    <v-icon
-                                                        >mdi-calendar-clock</v-icon
-                                                    >
-                                                    試合前
-                                                </v-card-subtitle>
-                                            </div>
-                                            <div v-else>
-                                                <div
-                                                    v-if="
-                                                        item.raw
-                                                            .home_team_score >
-                                                        item.raw.away_team_score
-                                                    "
-                                                >
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-checkbox-blank-circle-outline</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                                <div
-                                                    v-else-if="
-                                                        item.raw
-                                                            .home_team_score <
-                                                        item.raw.away_team_score
-                                                    "
-                                                >
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-checkbox-blank-circle</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                                <div v-else>
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-triangle-outline</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                            </div>
                                         </div>
 
                                         <div v-else>
@@ -221,126 +127,30 @@ const img_url =
                                                 |
                                                 {{ item.raw.home_team_league }}
                                             </v-card-subtitle>
-
-                                            <v-card-subtitle>
-                                                <v-icon
-                                                    >mdi-calendar-month</v-icon
-                                                >
-                                                {{ item.raw.year }}年{{
-                                                    item.raw.month
-                                                }}月{{ item.raw.day }}日
-                                            </v-card-subtitle>
-                                            <v-card-subtitle>
-                                                <v-icon>
-                                                    mdi-clock-time-eight-outline
-                                                </v-icon>
-                                                {{ item.raw.start_time }}
-                                                ~
-                                                {{ item.raw.end_time }}
-                                            </v-card-subtitle>
-
-                                            <v-card-subtitle>
-                                                <v-icon
-                                                    >mdi-map-marker-outline</v-icon
-                                                >
-                                                {{ item.raw.location }}
-                                            </v-card-subtitle>
-
-                                            <div
-                                                v-if="
-                                                    item.raw.home_team_score ===
-                                                        null &&
-                                                    item.raw.away_team_score ===
-                                                        null
-                                                "
-                                            >
-                                                <v-card-subtitle>
-                                                    <v-icon
-                                                        >mdi-calendar-clock</v-icon
-                                                    >
-                                                    試合前
-                                                </v-card-subtitle>
-                                            </div>
-                                            <div v-else>
-                                                <div
-                                                    v-if="
-                                                        item.raw
-                                                            .away_team_score >
-                                                        item.raw.home_team_score
-                                                    "
-                                                >
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-checkbox-blank-circle-outline</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                                <div
-                                                    v-else-if="
-                                                        item.raw
-                                                            .away_team_score <
-                                                        item.raw.home_team_score
-                                                    "
-                                                >
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-checkbox-blank-circle</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                                <div v-else>
-                                                    <v-card-subtitle
-                                                        ><v-icon>
-                                                            mdi-triangle-outline</v-icon
-                                                        >
-                                                        {{
-                                                            item.raw
-                                                                .home_team_score
-                                                        }}
-                                                        -
-                                                        {{
-                                                            item.raw
-                                                                .away_team_score
-                                                        }}</v-card-subtitle
-                                                    >
-                                                </div>
-                                            </div>
                                         </div>
+
+                                        <v-card-subtitle>
+                                            <v-icon>mdi-calendar-month</v-icon>
+                                            {{ item.raw.year }}年{{
+                                                item.raw.month
+                                            }}月{{ item.raw.day }}日
+                                        </v-card-subtitle>
+                                        <v-card-subtitle>
+                                            <v-icon>
+                                                mdi-clock-time-eight-outline
+                                            </v-icon>
+                                            {{ item.raw.start_time }}
+                                            ~
+                                            {{ item.raw.end_time }}
+                                        </v-card-subtitle>
+
+                                        <v-card-subtitle>
+                                            <v-icon
+                                                >mdi-map-marker-outline</v-icon
+                                            >
+                                            {{ item.raw.location }}
+                                        </v-card-subtitle>
                                     </v-card-item>
-
-                                    <div
-                                        class="d-flex justify-space-between px-4"
-                                    >
-                                        <div
-                                            class="d-flex align-center text-caption text-medium-emphasis me-1"
-                                        ></div>
-
-                                        <v-btn
-                                            class="text-none"
-                                            text="詳細"
-                                            border
-                                            flat
-                                        >
-                                        </v-btn>
-                                    </div>
                                 </v-card>
                             </v-col>
                         </v-row>
