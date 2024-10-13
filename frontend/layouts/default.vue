@@ -49,7 +49,6 @@ const menues = [
 
 const group = ref(null);
 const drawer = ref(null);
-const applicationsDialog = ref(false);
 
 watch(group, () => {
     drawer.value = false;
@@ -64,26 +63,11 @@ const handleSignOut = async () => {
         console.error('An error happened during sign-out:', error);
     }
 };
-
-const applications = [
-    {
-        subtitle: 'Jan 9, 2014',
-        title: 'Photos',
-    },
-    {
-        subtitle: 'Jan 17, 2014',
-        title: 'Recipes',
-    },
-    {
-        subtitle: 'Jan 28, 2014',
-        title: 'Work',
-    },
-];
 </script>
 
 <template>
     <v-app id="inspire">
-        <v-app-bar>
+        <v-app-bar :elevation="3" rounded>
             <v-app-bar-title>
                 <v-icon>mdi-soccer</v-icon> Football Match</v-app-bar-title
             >
