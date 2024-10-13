@@ -226,7 +226,7 @@ def get_application_status(
     return application_status
 
 
-@app.post("/application/", response_model=schemas.Application)
+@app.post("/application/", response_model=Optional[schemas.Application])
 def create_application(
     application: schemas.ApplicationCreate,
     db: Session = Depends(get_db),

@@ -347,10 +347,12 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
         .filter(models.Recruitment.id == application.recruitment_id)
         .first()
     )
-    if db_recruitment:
-        db_recruitment.status = "申し込み受領"
-        db.commit()
-        db.refresh(db_recruitment)
+    if not db_recruitment:
+        return None
+
+    db_recruitment.status = "申し込み受領"
+    db.commit()
+    db.refresh(db_recruitment)
 
     db.commit()
     db.refresh(db_application)

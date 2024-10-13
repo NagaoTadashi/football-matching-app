@@ -28,8 +28,12 @@ recruitments.value = recruitments.value.map((item) => ({
     isApplied: false,
 }));
 
+const isErrorDialogVisible = ref(false);
+
 const postApplication = async (recruitment_id) => {
-    await $fetch('http://localhost:8000/application', {
+    const postedApplication = await $fetch(
+        'http://localhost:8000/application',
+        {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${idToken}`,
@@ -38,7 +42,16 @@ const postApplication = async (recruitment_id) => {
         body: {
             recruitment_id: recruitment_id,
         },
-    });
+        }
+    );
+
+    if (postedApplication === null) {
+        isErrorDialogVisible.value = true;
+
+        recruitments.value = recruitments.value.filter(
+            (recruitment) => recruitment.id !== recruitment_id
+        );
+    }
 };
 
 const search = shallowRef('');
@@ -240,5 +253,18 @@ const img_url =
                 </template>
             </v-data-iterator>
         </div>
+
+        <v-dialog v-model="isErrorDialogVisible" max-width="630">
+            <v-card
+                prepend-icon="mdi-alert-circle-outline"
+                title="この募集は直前で削除されたため、申し込みができません。"
+            >
+                <v-card-actions>
+                    <v-btn color="primary" @click="isErrorDialogVisible = false"
+                        >閉じる</v-btn
+                    >
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
