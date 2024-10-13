@@ -347,7 +347,7 @@ def create_application(db: Session, application: schemas.ApplicationCreate, uid:
         .filter(models.Recruitment.id == application.recruitment_id)
         .first()
     )
-    if not db_recruitment:
+    if not db_recruitment or db_recruitment.status != "募集中":
         return None
 
     db_recruitment.status = "申し込み受領"
