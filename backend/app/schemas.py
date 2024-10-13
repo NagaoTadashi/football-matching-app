@@ -24,8 +24,6 @@ class MatchBase(BaseModel):
     start_time: str
     end_time: str
     location: str
-    home_team_score: Optional[int]
-    away_team_score: Optional[int]
 
 
 class Match(MatchBase):

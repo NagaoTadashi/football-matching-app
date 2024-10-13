@@ -17,8 +17,6 @@ class Match(Base):
     start_time = Column(String)
     end_time = Column(String)
     location = Column(String)
-    home_team_score = Column(Integer, nullable=True)
-    away_team_score = Column(Integer, nullable=True)
 
 
 # Team

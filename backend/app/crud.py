@@ -31,8 +31,6 @@ def get_matches(db: Session, uid: str):
             models.Match.start_time,
             models.Match.end_time,
             models.Match.location,
-            models.Match.home_team_score,
-            models.Match.away_team_score,
         )
         .select_from(models.Match)
         .join(home_team, models.Match.home_team_uid == home_team.uid)
