@@ -89,8 +89,8 @@ const handleSignOut = async () => {
             </v-btn>
         </v-app-bar>
 
-        <v-navigation-drawer floating permanent width="225">
-            <v-list density="compact" nav>
+        <v-navigation-drawer rounded floating permanent width="225">
+            <v-list nav>
                 <v-list-item
                     v-for="(menue, index) in menues"
                     :key="index"
