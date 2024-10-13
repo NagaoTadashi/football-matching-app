@@ -1,4 +1,4 @@
-from sqlalchemy import select, and_
+from sqlalchemy import select, or_
 from sqlalchemy.orm import Session, aliased
 
 from . import models, schemas
@@ -35,7 +35,14 @@ def get_matches(db: Session, uid: str):
         .select_from(models.Match)
         .join(home_team, models.Match.home_team_uid == home_team.uid)
         .join(away_team, models.Match.away_team_uid == away_team.uid)
-        .filter((home_team.uid == uid) | (away_team.uid == uid))
+        # .outerjoin(
+        #     models.MatchRecord,
+        #     and_(
+        #         models.MatchRecord.match_id == models.Match.id,
+        #         models.MatchRecord.uid == uid,
+        #     ),
+        # )
+        .filter(or_(home_team.uid == uid, away_team.uid == uid))
     )
     return db.execute(stmt).all()
 
