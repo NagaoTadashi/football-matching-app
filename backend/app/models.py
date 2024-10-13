@@ -61,6 +61,8 @@ class Recruitment(Base):
     end_time = Column(String)
     location = Column(String)
 
+    applications = relationship("Application", back_populates="recruitment")
+
 
 # Application
 class Application(Base):
@@ -70,3 +72,5 @@ class Application(Base):
     recruitment_id = Column(Integer, ForeignKey("recruitments.id"))
     uid = Column(String)
     status = Column(Enum("回答待ち", "承認", "辞退"), default="回答待ち")
+
+    recruitment = relationship("Recruitment", back_populates="applications")
