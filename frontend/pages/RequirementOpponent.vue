@@ -4,16 +4,21 @@ import { nextTick, ref, watch } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: teamInfo } = await useFetch('http://localhost:8000/team_info', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const runtimeConfig = useRuntimeConfig();
+
+const { data: teamInfo } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/team_info`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 const { data: recruitments } = await useFetch(
-    'http://localhost:8000/my_team_recruitments',
+    `${runtimeConfig.public.apiUrl}/my_team_recruitments`,
     {
         method: 'GET',
         headers: {
@@ -56,7 +61,7 @@ const defaultItem = ref({
 
 async function postRecruitment() {
     const postedRecruitment = await $fetch(
-        'http://localhost:8000/recruitments',
+        `${runtimeConfig.public.apiUrl}/recruitments`,
         {
             method: 'POST',
             headers: {
@@ -70,7 +75,7 @@ async function postRecruitment() {
 }
 
 async function deleteRecruitment(id) {
-    await $fetch(`http://localhost:8000/recruitments/${id}`, {
+    await $fetch(`${runtimeConfig.public.apiUrl}/recruitments/${id}`, {
         method: 'DELETE',
     });
 

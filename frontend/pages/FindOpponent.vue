@@ -4,16 +4,21 @@ import { shallowRef } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: teamInfo } = await useFetch('http://localhost:8000/team_info', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const runtimeConfig = useRuntimeConfig();
+
+const { data: teamInfo } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/team_info`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 const { data: recruitments } = await useFetch(
-    'http://localhost:8000/other_team_recruitments',
+    `${runtimeConfig.public.apiUrl}/other_team_recruitments`,
     {
         method: 'GET',
         headers: {
@@ -32,7 +37,7 @@ const isErrorDialogVisible = ref(false);
 
 const postApplication = async (recruitment_id) => {
     const postedApplication = await $fetch(
-        'http://localhost:8000/application',
+        `${runtimeConfig.public.apiUrl}/application`,
         {
             method: 'POST',
             headers: {

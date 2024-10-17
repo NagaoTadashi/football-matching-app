@@ -4,8 +4,10 @@ import { ref } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
+const runtimeConfig = useRuntimeConfig();
+
 const { data: applications } = await useFetch(
-    'http://localhost:8000/application_status',
+    `${runtimeConfig.public.apiUrl}/application_status`,
     {
         method: 'GET',
         headers: {
@@ -31,7 +33,7 @@ const headers = ref([
 ]);
 
 async function deleteApplication(id) {
-    await $fetch(`http://localhost:8000/application/${id}`, {
+    await $fetch(`${runtimeConfig.public.apiUrl}/application/${id}`, {
         method: 'DELETE',
     });
 

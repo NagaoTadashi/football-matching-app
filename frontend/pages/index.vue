@@ -2,21 +2,29 @@
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: matches } = await useFetch('http://localhost:8000/matches', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const runtimeConfig = useRuntimeConfig();
 
-const { data: myTeam } = await useFetch('http://localhost:8000/team_info', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const { data: matches } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/matches`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
+
+const { data: myTeam } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/team_info`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 const search = shallowRef('');
 

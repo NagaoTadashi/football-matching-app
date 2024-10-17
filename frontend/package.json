@@ -1,26 +1,26 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@mdi/font": "^7.4.47",
-    "date-fns": "^3.6.0",
-    "firebase": "^10.13.2",
-    "firebaseui": "^6.1.0",
-    "nuxt": "^3.13.1",
-    "nuxt-vuefire": "^1.0.4",
-    "vue": "latest",
-    "vuefire": "^3.2.0"
-  },
-  "devDependencies": {
-    "vite-plugin-vuetify": "^2.0.3",
-    "vuetify": "^3.6.14"
-  }
+    "name": "nuxt-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build --dotenv .env.production",
+        "dev": "nuxt dev --dotenv .env.development",
+        "generate": "nuxt generate --dotenv .env.production",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@mdi/font": "^7.4.47",
+        "date-fns": "^3.6.0",
+        "firebase": "^10.13.2",
+        "firebaseui": "^6.1.0",
+        "nuxt": "^3.13.1",
+        "nuxt-vuefire": "^1.0.4",
+        "vue": "latest",
+        "vuefire": "^3.2.0"
+    },
+    "devDependencies": {
+        "vite-plugin-vuetify": "^2.0.3",
+        "vuetify": "^3.6.14"
+    }
 }

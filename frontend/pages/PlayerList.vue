@@ -4,13 +4,18 @@ import { nextTick, ref, watch } from 'vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: players } = await useFetch('http://localhost:8000/players', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const runtimeConfig = useRuntimeConfig();
+
+const { data: players } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/players`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -54,29 +59,35 @@ const defaultItem = ref({
 });
 
 async function registerPlayer() {
-    const registeredPlayer = await $fetch('http://localhost:8000/players', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${idToken}`,
-            'Content-Type': 'application/json',
-        },
-        body: editedItem.value,
-    });
+    const registeredPlayer = await $fetch(
+        `${runtimeConfig.public.apiUrl}/players`,
+        {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${idToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: editedItem.value,
+        }
+    );
 
     players.value.push(registeredPlayer);
 }
 
 async function editPlayer(id) {
-    const editedPlayer = await $fetch(`http://localhost:8000/players/${id}`, {
-        method: 'PUT',
-        body: editedItem.value,
-    });
+    const editedPlayer = await $fetch(
+        `${runtimeConfig.public.apiUrl}/players/${id}`,
+        {
+            method: 'PUT',
+            body: editedItem.value,
+        }
+    );
 
     Object.assign(players.value[editedIndex.value], editedPlayer);
 }
 
 async function deletePlayer(id) {
-    await $fetch(`http://localhost:8000/players/${id}`, {
+    await $fetch(`${runtimeConfig.public.apiUrl}/players/${id}`, {
         method: 'DELETE',
     });
 

@@ -5,13 +5,18 @@ import EditButton from '~/components/pages/teaminfo/EditButton.vue';
 const user = await getCurrentUser();
 const idToken = await user.getIdToken();
 
-const { data: teamInfo } = await useFetch('http://localhost:8000/team_info', {
-    method: 'GET',
-    headers: {
-        Authorization: `Bearer ${idToken}`,
-        'Content-Type': 'application/json',
-    },
-});
+const runtimeConfig = useRuntimeConfig();
+
+const { data: teamInfo } = await useFetch(
+    `${runtimeConfig.public.apiUrl}/team_info`,
+    {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${idToken}`,
+            'Content-Type': 'application/json',
+        },
+    }
+);
 
 function handleTeamInfoRegisterd(newTeamInfo) {
     teamInfo.value = newTeamInfo;
