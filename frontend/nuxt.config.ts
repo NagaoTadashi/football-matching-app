@@ -27,13 +27,6 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             apiUrl: process.env.NUXT_PUBLIC_API_URL || '',
-            apiKey: process.env.NUXT_API_KEY || '',
-            authDomain: process.env.NUXT_AUTH_DOMAIN || '',
-            projectId: process.env.NUXT_PROJECT_ID || '',
-            storageBucket: process.env.NUXT_STORAGE_BUCKET || '',
-            messagingSenderId: process.env.NUXT_MESSAGING_SENDER_ID || '',
-            appId: process.env.NUXT_APP_ID || '',
-            measurementId: process.env.NUXT_MEASUREMENT_ID || '',
         },
     },
     vuefire: {
@@ -41,13 +34,13 @@ export default defineNuxtConfig({
             enabled: true,
         },
         config: {
-            apiKey: process.env.NUXT_PUBLIC_API_KEY,
-            authDomain: process.env.NUXT_PUBLIC_AUTH_DOMAIN,
-            projectId: process.env.NUXT_PUBLIC_PROJECT_ID,
-            storageBucket: process.env.NUXT_PUBLIC_STORAGE_BUCKET,
-            messagingSenderId: process.env.NUXT_PUBLIC_MESSAGING_SENDER_ID,
-            appId: process.env.NUXT_PUBLIC_APP_ID,
-            measurementId: process.env.NUXT_PUBLIC_MEASUREMENT_ID,
+            apiKey: process.env.API_KEY,
+            authDomain: process.env.AUTH_DOMAIN,
+            projectId: process.env.PROJECT_ID,
+            storageBucket: process.env.STORAGE_BUCKET,
+            messagingSenderId: process.env.MESSAGING_SENDER_ID,
+            appId: process.env.APP_ID,
+            measurementId: process.env.MEASUREMENT_ID,
         },
     },
 });
