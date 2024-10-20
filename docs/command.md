@@ -1,5 +1,3 @@
-# マイグレーションコマンド
-
 ## FastAPI 開発サーバーの起動
 
 vicorn app.main:app --reload
@@ -8,10 +6,12 @@ vicorn app.main:app --reload
 
 npm run dev -- -o
 
-## マイグレーションファイルの生成
+## データベース操作関係
 
-alembic revision --autogenerate -m "Add new column to team model"
+# マイグレーションファイルの生成
 
-## マイグレーションの適用
+alembic revision --autogenerate -m "コメント"
+
+# マイグレーションの適用
 
 alembic upgrade head
