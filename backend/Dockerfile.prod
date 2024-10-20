@@ -8,7 +8,9 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./serviceAccountKey.json /code/serviceAccountKey.json
 
-COPY ./.env /code/.env
+ENV ENV=production
+
+COPY ./.env.production /code/.env.production
 
 COPY ./app /code/app
 
