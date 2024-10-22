@@ -3,7 +3,7 @@ services:
         container_name: nuxt
         build:
             context: .
-            dockerfile: ./frontend/Dockerfile.dev
+            dockerfile: ./frontend/Dockerfile.development
         volumes:
             - ./frontend:/app:cached
             - nuxt_node_modules:/app/node_modules
@@ -21,7 +21,7 @@ services:
         container_name: fastapi
         build:
             context: .
-            dockerfile: ./backend/Dockerfile.dev
+            dockerfile: ./backend/Dockerfile.development
         volumes:
             - ./backend:/code
         ports:
